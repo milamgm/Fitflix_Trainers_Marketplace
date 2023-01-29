@@ -1,0 +1,60 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/components/Card.scss" as * ;
+
+.dashboard {
+    width: 80%;
+    padding-top: 70px;
+    margin-bottom: 150px;
+    .post_tip {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 30px;
+      padding-top: 25px;
+      background-color: rgba(255, 255, 149, 0.695);
+      border-radius: 20px;
+    }
+    section {
+      gap: 40px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      .profile_card {
+        @include card;
+        hr {
+          margin: 10px 0px;
+          border: 1px solid $background;
+          width: 5%;
+        }
+        .username {
+          font-size: 2rem;
+          color: $dark;
+        }
+        .title {
+          font-size: 1.4rem;
+          margin-bottom: 30px;
+        }
+        .subtitle {
+          font-size: 0.8rem;
+          margin-bottom: 30px;
+        }
+        .disabled {
+          color: $dark;
+        }
+        .fixed__size {
+          max-width: 300px;
+        }
+      }
+      .messages_card {
+        @include card;
+        width: 60%;
+      }
+    }
+    .ads {
+      margin-top: 90px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 30px;
+    }
+  }

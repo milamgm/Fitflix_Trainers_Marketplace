@@ -1,0 +1,76 @@
+@use "../../styles/abstracts/" as *;
+
+.reauth_modal {
+  position: absolute;
+  width: 40%;
+  min-width: 400px;
+  max-width: 900px;
+  height: fit-content;
+  padding-bottom: 60px;
+  border-radius: 20px;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  color: $background;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  background-color: $background;
+  padding: 20px 40px;
+  @include box-shadow;
+  outline: none;
+
+  .header {
+    height: 100px;
+    text-align: center;
+    color: $light;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .body {
+    text-align: center;
+
+    color: $light;
+    .title {
+      padding: 30px 0px 10px 0px;
+    }
+
+    form {
+      margin-top: 5%;
+      padding: 0px 80px;
+      input {
+        &::placeholder {
+          color: grey;
+        }
+        width: 100%;
+        margin: 5px;
+        border-bottom: solid 1px mix($background, white, 60%);
+        color:  $light;
+      }
+      input:-webkit-autofill{
+        -webkit-text-fill-color: $light !important;
+      }
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px $background inset !important;
+      }
+    }
+  }
+  .error_div {
+    color: red;
+    width: 400px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: -20px;
+    width: 100%;
+    justify-content: center;
+  }
+  .error {
+    border-color: red;
+    background-color: rgb(160, 14, 14);
+  }
+}

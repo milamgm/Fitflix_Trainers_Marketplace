@@ -1,0 +1,74 @@
+@use "../abstracts" as *;
+.itemCard {
+  border: solid 1px rgb(241, 241, 241);
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  width: 350px;
+  height: auto;
+  margin: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 100ms ease-in;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+  .img_div {
+    width: 100%;
+    overflow: hidden;
+    img {
+      width: 100%;
+      margin: auto;
+    }
+  }
+
+  .info {
+    text-align: center;
+    margin-top: -9px;
+    border-radius: 10px;
+    padding: 20px;
+    padding-top: 20px;
+    border: 1;
+    .description {
+      margin: 20px 0px;
+      height: 40px;
+      overflow: hidden;
+    }
+    .categories_badge {
+      margin: 10px 0px;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      .category_badge {
+        margin: 5px;
+        width: fit-content;
+        height: auto;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 0.9rem;
+        color: white;
+        background-color: $touch;
+      }
+    }
+    h2 {
+      font-size: 25px;
+      font-weight: 600;
+      color: $dark;
+    }
+    .price_badge {
+      background-color: $great;
+      margin: auto;
+      width: fit-content;
+      height: auto;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 0.9rem;
+      h3 {
+        color: white;
+        font-weight: 500;
+      }
+    }
+  }
+}

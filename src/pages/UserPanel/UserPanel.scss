@@ -1,0 +1,31 @@
+@use "../../styles/abstracts/" as *;
+@use "../../styles/components/Card.scss" as *;
+
+nav {
+  z-index: 10;
+  position: fixed;
+  width: 100%;
+  background-color: $secondary;
+  text-align: center;
+  padding: 10px;
+  .menu_btn {
+    color: $light;
+    text-transform: uppercase;
+    background-color: transparent;
+    text-decoration: none;
+    box-shadow: none;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 10px;
+    padding: 0px;
+    transition: color 0.5s ease;
+    cursor: pointer;
+    &:hover {
+      color: $terciary;
+    }
+  }
+
+  .active_btn {
+    color: $terciary;
+  }
+}

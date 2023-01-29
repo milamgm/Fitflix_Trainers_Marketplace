@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap");
+
+//-----COLORS
+$colors: (
+  "primary": #2375f8,
+  "secondary": #086788,
+  "terciary": #00FFB3,
+  "disabled": rgb(203, 203, 203),
+  "success": rgb(15, 172, 9),
+  "danger": #a30000,
+  "warning": #f1d302,
+  "info": #2081c3,
+  "light": #edfffa,
+  "dark": #070707,
+
+  "touch": #ef2d56,
+  "item": #037171,
+  "great": #68b80e,
+  "cozy": #023436,
+
+  "background": rgb(0, 25, 45)
+);
+
+$primary: map-get($colors, "primary");
+$secondary: map-get($colors, "secondary");
+$terciary: map-get($colors, "terciary");
+$success: map-get($colors, "success");
+$danger: map-get($colors, "danger");
+$warning: map-get($colors, "warning");
+$info: map-get($colors, "info");
+$light: map-get($colors, "light");
+$dark: map-get($colors, "dark");
+$touch: map-get($colors, "touch");
+$item: map-get($colors, "item");
+$great: map-get($colors, "great");
+$cozy: map-get($colors, "cozy");
+$background: map-get($colors, "background");
+
+$backgroundColorUserMenu: mix(rgb(4, 145, 169), $secondary, 60%);
+
+//----- FONTS
+$mainFont: "Inter", sans-serif;
+
+//-----SIZES
+
+$headerHeight: 60px;
+$userMenuHeigh: 30px;

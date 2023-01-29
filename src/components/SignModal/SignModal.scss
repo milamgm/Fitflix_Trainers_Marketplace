@@ -1,0 +1,81 @@
+@use "../../styles/abstracts/" as *;
+
+.sign_modal {
+  position: absolute;
+  width: 40%;
+  min-width: 400px;
+  max-width: 900px;
+  height: fit-content;
+  padding-bottom: 60px;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  color: $background;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  background-color: $background;
+  border-radius: 20px;
+  @include box-shadow;
+  outline: none;
+  overflow: hidden;
+
+  .header {
+    text-align: center;
+    color: rgb(135, 135, 135);
+    display: flex;
+    .tab {
+      padding: 15px;
+      width: 100%;
+      background-color: mix($background, black, 50%);
+      color: rgb(115, 115, 115);
+      cursor: pointer;
+    }
+    .active {
+      background-color: $background;
+      color: $light;
+    }
+  }
+
+  .body {
+    text-align: center;
+
+    color: $light;
+    .title {
+      padding: 30px 0px 10px 0px;
+    }
+
+    form {
+      margin-top: 5%;
+      padding: 0px 80px;
+      input {
+        &::placeholder {
+          color: grey;
+        }
+        width: 100%;
+        margin: 5px;
+        border-bottom: solid 1px mix($background, white, 60%);
+        color: $light;
+      }
+      input:-webkit-autofill {
+        -webkit-text-fill-color: $light !important;
+      }
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px $background inset !important;
+      }
+    }
+  }
+  .error_div {
+    color: red;
+line-height: 1.5rem;
+    gap: 10px;
+    margin-bottom: -20px;
+    width: 100%;
+  }
+  .error {
+    border-color: red;
+    background-color: rgb(160, 14, 14);
+  }
+}

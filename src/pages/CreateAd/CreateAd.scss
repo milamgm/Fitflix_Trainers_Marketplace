@@ -1,0 +1,158 @@
+@use "./../../styles/abstracts" as *;
+.step_div {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .step {
+    min-height: auto;
+    padding: 20px;
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .step_title {
+      text-align: center;
+      margin: 30px;
+      span {
+        color: $primary;
+      }
+    }
+    .text_input {
+      text-align: center;
+      margin: 20px;
+      height: 50px;
+      width: 70%;
+      border-bottom: 1px solid gray;
+      background-color: transparent;
+      font-weight: 700;
+      font-size: 1.5rem;
+      &::placeholder {
+        color: $dark;
+      }
+    }
+    .number_input {
+      margin: 20px;
+      height: 70px;
+      width: 20%;
+      text-align: center;
+      border-bottom: 1px solid gray;
+      background-color: transparent;
+      font-weight: 700;
+      font-size: 3rem;
+      &::-webkit-outer-spin-button {
+        appearance: none;
+        margin: 0;
+      }
+      &::-webkit-inner-spin-button {
+        appearance: none;
+        margin: 0;
+      }
+      &::placeholder {
+        color: grey;
+      }
+    }
+    .phone_input {
+      margin: 20px;
+      height: 50px;
+      width: 50%;
+      text-align: center;
+      border-bottom: 1px solid gray;
+      background-color: transparent;
+      font-weight: 700;
+      font-size: 1.5rem;
+      &::-webkit-outer-spin-button {
+        appearance: none;
+        margin: 0;
+      }
+      &::-webkit-inner-spin-button {
+        appearance: none;
+        margin: 0;
+      }
+      &::placeholder {
+        color: grey;
+      }
+    }
+    .textarea_input {
+      padding: 15px;
+      &::placeholder {
+        color: $light;
+      }
+      height: 30vh;
+      width: 50vw;
+      max-width: 80vw;
+      min-width: 400px;
+      min-height: 100px;
+      max-height: 50vh;
+      font-size: 1.2rem;
+      border: none;
+      outline: none;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+
+    .checkbox_div {
+      padding: 20px;
+      height: 30vh;
+      overflow: scroll;
+      width: 50vw;
+      max-width: 800px;
+      margin: 30px;
+
+      .checkbox_card {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        border-radius: 25px;
+        margin: 10px;
+        background-color: mix(white, $primary, 70%);
+        padding: 15px;
+        color: $secondary;
+        font-weight: 700;
+        transition: transform 0.2s ease;
+        cursor: pointer;
+        @include box-shadow;
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+      .selected {
+        background-color: $primary;
+        color: white;
+      }
+    }
+    .selected_categories_div {
+      display: flex;
+      flex-wrap: wrap;
+      max-height: 150px;
+      align-items: center;
+      overflow: scroll;
+      .selected_category {
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+        gap: 20px;
+        border-radius: 25px;
+        margin: 2px;
+        background-color: $secondary;
+        padding: 15px;
+        color: $light;
+        @include box-shadow;
+        .remove_category {
+          cursor: pointer;
+        }
+      }
+    }
+    .photo_div {
+      width: 200px;
+      height: 200px;
+    }
+  }
+}

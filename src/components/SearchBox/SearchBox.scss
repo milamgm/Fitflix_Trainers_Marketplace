@@ -1,0 +1,38 @@
+@use "../../styles/abstracts/" as *;
+
+.searchbox {
+  margin: 60px;
+  border-radius: 50px;
+  background-color: white;
+  box-shadow: rgba(255, 255, 255, 0.381) 0px 8px 24px;
+  height: 60px;
+  @media screen and (max-width: 819px) {
+    display: none;
+
+  }
+}
+.searchbox__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+} 
+
+.button {
+  margin-right: -10px;
+  width: 170px;
+  height: 60px;
+  background-color: $primary;
+  border-radius: 0% 50% 50% 0%;
+  @include center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  .searchbox__button__icon {
+    font-size: 40px;
+    color: aliceblue;
+  }
+  &:hover {
+    font-size: 45px;
+    background-color: mix($primary, white, 90%);
+  }
+}

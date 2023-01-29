@@ -1,0 +1,16 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/components/Card.scss" as * ;
+
+.myaccount {
+    max-width: 1000px;
+    padding: 60px;
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    flex-wrap: wrap;
+    .half_card {
+      width: 40%;
+      @include card;
+    }
+  }
+  

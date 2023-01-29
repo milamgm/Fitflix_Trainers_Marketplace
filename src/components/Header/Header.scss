@@ -1,0 +1,50 @@
+@use "../../styles/abstracts" as *;
+
+header {
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  background-color: rgb(0, 25, 45);
+  @include box-shadow;
+  top: 0;
+  height: $headerHeight;
+  z-index: 20;
+  .logo {
+    object-fit: contain;
+    height: 50px;
+    margin-left: 20px;
+    cursor: pointer;
+    transition: filter 100ms ease-in;
+  }
+  .right_div {
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+    .avatar_wrapper {
+      background-color: $primary;
+      width: 60px;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 25px;
+      padding: 5px 10px;
+      cursor: pointer;
+      transition: background-color, color 0.5s ease;
+      &:hover {
+        background-color: $secondary;
+        color: $light;
+      }
+      .avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+      }
+    }
+  }
+  
+}
+
+
