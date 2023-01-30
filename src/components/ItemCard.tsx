@@ -20,9 +20,8 @@ const ItemCard = ({
   const navigate = useNavigate();
   const [trainerName, setTrainerName] = useState("");
   const [trainerUid, setTrainerUid] = useState("");
-console.log(price)
 
-   useEffect(() => {
+  useEffect(() => {
     const getUserData = async (uid: string) => {
       const docRef = doc(db, "user_data", uid);
       onSnapshot(docRef, (doc) => {
