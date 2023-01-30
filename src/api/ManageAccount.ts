@@ -10,16 +10,17 @@ import { addToDB } from "./AddToDB";
 export const registerAccount = (name, email, password) => {
   
   createUserWithEmailAndPassword(auth, email, password);
-  updateProfile(auth.currentUser, {
+  updateProfile(auth.currentUser!, {
     displayName: name,
     photoURL: "",
   });
   const userData = {
+    uid: auth.currentUser!.uid,
     name: name,
     profilePic: "",
-    postedAds: {},
+    email: email
   };
-  addToDB("user_data", email, userData);
+  addToDB("user_data", auth.currentUser!.uid, userData);
 };
 
 export const LogOut = () => {
