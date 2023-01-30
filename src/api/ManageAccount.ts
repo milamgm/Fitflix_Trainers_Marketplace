@@ -20,7 +20,6 @@ export const registerAccount = async (name, email, password) => {
     name: name,
     email: email,
     profilePic: "",
-    email: email
   };
   addToDB("user_data", auth.currentUser!.uid, userData);
 };
