@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { setAdToAdsCollection, setAdToUserDoc } from "../../api/QueryFromDB";
+import { setAdToAdsCollection, setAdToUserDoc } from "../../utilities/utils";
 import { useAppContext } from "../../context/AppContext";
 import { useMultistepForm } from "../../hooks/useMultistepForm";
 import { IAdData } from "../../types/types";
@@ -14,34 +14,35 @@ import Step5Location from "./Step5Location";
 import Step6Price from "./Step6Price";
 import Step7Phone from "./Step7Phone";
 import Step8Photo from "./Step8Photo";
+import { v4 } from "uuid";
 
 interface ICreateAdProps {
   editDataParams: { editData: IAdData };
 }
 
-const INITIAL_DATA: IAdData = {
-  id: "",
-  title: "",
-  categories: [],
-  description: "",
-  about: "",
-  location: "",
-  available: [],
-  price: 0,
-  phone: 0,
-  photo: "",
-  time: 0,
-};
+
 
 const CreateAd = ({ editDataParams }: ICreateAdProps) => {
+  const { user, userData } = useAppContext();
   const editDataC = editDataParams?.editData;
+  const INITIAL_DATA: IAdData = {
+    aid: "",
+    uid: user!.uid,
+    title: "",
+    categories: [],
+    description: "",
+    about: "",
+    location: "",
+    available: [],
+    price: 0,
+    phone: 0,
+    photo: "",
+  };
   const [data, setData] = useState(
     editDataC !== undefined ? editDataC : INITIAL_DATA
   );
   const [activeNextBtn, setActiveNextBtn] = useState(false);
-  const { user, userData } = useAppContext();
-  const date = new Date();
-  const time = date.getTime();
+ 
   const navigate = useNavigate();
   function updateFields(fields: { [key: string]: string | number | string[] }) {
     setData((prev) => {
@@ -99,7 +100,7 @@ const CreateAd = ({ editDataParams }: ICreateAdProps) => {
     if (!isLastStep) {
       return next();
     } else {
-      setAdToUserDoc(user.email, data, userData.postedAds);
+      setAdToUserDoc(data);
       setAdToAdsCollection(data.location, data);
       toast.success("Ihre Anzeige wurder erfolgreich ");
       navigate("/benutzerpanel");
@@ -107,8 +108,7 @@ const CreateAd = ({ editDataParams }: ICreateAdProps) => {
   }
   useEffect(() => {
     if (isLastStep && editDataParams === undefined) {
-      updateFields({ id: `${(user.email + time).replace(".", "%2E")}` });
-      updateFields({ time: time });
+      updateFields({ aid: v4() });
     }
   }, [isLastStep]);
 

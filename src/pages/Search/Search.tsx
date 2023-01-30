@@ -2,7 +2,14 @@ import { useEffect } from "react";
 import { Map, Card } from "../../utilities/utils";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
-import { doc, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import "./Search.scss";
 import { IAdData } from "../../types/types";
@@ -17,16 +24,21 @@ const Search = () => {
 
   useEffect(() => {
     const getAdsData = async (zone: string, category: string) => {
-      const locality = zone.split(",").slice(-2)[0];
-      const docRef = doc(db, "ads_collection", locality);
-      onSnapshot(docRef, (doc) => {
-        const data = doc.data();
-        const adsArr = data !== undefined ? Object.values(data) : [];
+      const location = zone.split(",").slice(-2)[0];
 
-        const adsWithCategory = adsArr.filter((ad) =>
-          ad.categories.includes(category)
-        );
-        setAdsData(adsWithCategory);
+      const citiesRef = collection(db, "ads_collection");
+      const q = query(
+        citiesRef,
+        where("location", "==", location),
+        where("categories", "array-contains", category)
+      );
+      const querySnapshot = await getDocs(q);
+      setAdsData([]);
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        const adsArr = doc.data();
+
+        setAdsData((prev) => [...prev, adsArr]);
       });
     };
     getAdsData(searchResults.zone, searchResults.category);
@@ -48,7 +60,7 @@ const Search = () => {
         </div>
         <section className="results">
           {adsData.length >= 1 &&
-            adsData.map((data) => <Card key={data.id} {...data} />)}
+            adsData.map((data) => <Card key={data.aid} {...data} />)}
         </section>
       </div>
     </div>

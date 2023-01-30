@@ -5,12 +5,12 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebaseConfig";
-import { addToDB } from "./AddToDB";
+import { addToDB } from "./DBqueries";
 
-export const registerAccount = (name, email, password) => {
+export const registerAccount = async (name, email, password) => {
   
-  createUserWithEmailAndPassword(auth, email, password);
-  updateProfile(auth.currentUser!, {
+  await createUserWithEmailAndPassword(auth, email, password);
+  await updateProfile(auth.currentUser!, {
     displayName: name,
     photoURL: "",
   });

@@ -29,7 +29,6 @@ const AppProvider = ({ children }: IAppProviderProps) => {
     });
     return authState;
   }, []);
-console.log(user)
   useEffect(() => {
     const getUserData = async (uid: string) => {
       const docRef = doc(db, "user_data", uid);

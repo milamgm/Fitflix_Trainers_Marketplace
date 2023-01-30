@@ -10,7 +10,11 @@ import { useAppContext } from "../context/AppContext";
 import PhotoField from "../components/PhotoField";
 import Map from "../components/Map";
 import DeleteAccountModal from "../components/DeleteAccountModal";
-import { getUserData } from "../api/QueryFromDB";
+import {
+  getUserData,
+  setAdToAdsCollection,
+  setAdToUserDoc,
+} from "../api/DBqueries";
 import ReauthModal from "../components/ReauthModal/ReauthModal";
 import PersonalInfoWidget from "../components/PersonalInfoForm";
 import MessagesWidget from "../components/MessagesWidget";
@@ -27,6 +31,8 @@ export {
   AiFillFacebook,
   AiFillInstagram,
   SlSocialTwitter,
+  setAdToAdsCollection,
+  setAdToUserDoc,
   Card,
   MessagesWidget,
   PersonalInfoWidget,

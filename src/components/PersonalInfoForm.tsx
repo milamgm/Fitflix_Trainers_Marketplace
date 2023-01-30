@@ -4,9 +4,11 @@ import { auth } from "../firebaseConfig";
 import { useAppContext } from "../context/AppContext";
 import ReauthModal from "./ReauthModal/ReauthModal";
 import toast from "react-hot-toast";
-import { addToDB } from "../api/AddToDB";
+import { addToDB } from "../api/DBqueries";
 import { validateEmail } from "../utilities/formValidation";
 import { IPersonalInfoForm } from "../types/types";
+import {FaUserAlt} from "react-icons/fa"
+import {BsFillTelephoneFill} from "react-icons/bs"
 
 const personalInfoFormFields = [
   {
@@ -14,19 +16,21 @@ const personalInfoFormFields = [
     type: "text",
     required: true,
     keyValue: "input_name",
+    icon: <FaUserAlt/>
   },
   {
     inputName: "Telefon",
     type: "text",
     required: false,
     keyValue: "input_phoneNumber",
+    icon: <BsFillTelephoneFill/>
   },
 ];
 
 const PersonalInfoForm = () => {
   const { user, setUser, userData } = useAppContext();
   const [openReauthModal, setOpenReauthModal] = useState(false);
-  const { email } = user;
+  const { uid } = user;
   const { name, phoneNumber } = userData;
   const [values, setValues] = useState<IPersonalInfoForm>({
     input_name: name,
@@ -48,7 +52,7 @@ const PersonalInfoForm = () => {
         name: input_name,
         phoneNumber: input_phoneNumber,
       };
-      addToDB("user_data", email, userUpdatedData);
+      addToDB("user_data", uid, userUpdatedData);
       toast.success("Daten wurden erfolgreich aktualisiert");
       setUser(user);
     } catch (err) {
@@ -59,8 +63,9 @@ const PersonalInfoForm = () => {
     <div>
       <form>
         {personalInfoFormFields.map(
-          ({ inputName, type, required, keyValue }) => (
+          ({ inputName, type, required, keyValue, icon }) => (
             <div className="form__field" key={keyValue}>
+              {icon}&nbsp;
               <input
                 type={type}
                 name={keyValue}

@@ -16,7 +16,7 @@ export interface IUserData {
 }
 
 export interface IAdData {
-  id: string;
+  aid: string;
   title: string;
   categories: string[];
   description: string;
