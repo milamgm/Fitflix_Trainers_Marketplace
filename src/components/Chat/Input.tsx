@@ -1,4 +1,4 @@
-import { addToDB } from "../../api/AddToDB";
+import { addToDB } from "../../api/DBqueries";
 const Input = () => {
   const handleSend = () =>{
     addToDB("hola", "quetal" , {})

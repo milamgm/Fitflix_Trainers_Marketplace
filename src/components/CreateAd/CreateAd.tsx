@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { setAdToAdsCollection, setAdToUserDoc } from "../../api/QueryFromDB";
+import { setAdToAdsCollection, setAdToUserDoc } from "../../api/DBqueries";
 import { useAppContext } from "../../context/AppContext";
 import { useMultistepForm } from "../../hooks/useMultistepForm";
 import { IAdData } from "../../types/types";

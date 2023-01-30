@@ -10,7 +10,6 @@ import { useAppContext } from "../context/AppContext";
 import PhotoField from "../components/PhotoField";
 import Map from "../components/Map";
 import DeleteAccountModal from "../components/DeleteAccountModal";
-import { getUserData } from "../api/QueryFromDB";
 import ReauthModal from "../components/ReauthModal/ReauthModal";
 import PersonalInfoWidget from "../components/PersonalInfoForm";
 import MessagesWidget from "../components/MessagesWidget";
@@ -31,7 +30,6 @@ export {
   MessagesWidget,
   PersonalInfoWidget,
   ReauthModal,
-  getUserData,
   DeleteAccountModal,
   Map,
   PhotoField,

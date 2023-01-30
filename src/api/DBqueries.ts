@@ -1,5 +1,9 @@
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { setDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
+
+export const addToDB = async (folder, id, data) => {
+  await setDoc(doc(db, folder, id), data);
+};
 
 export const getUserData = async (email) => {
   const docRef = doc(db, "user_data", email);

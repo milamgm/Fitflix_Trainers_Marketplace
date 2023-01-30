@@ -3,7 +3,7 @@ import { ref, uploadBytes, getStorage } from "firebase/storage";
 import { v4 } from "uuid";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
-import { addToDB } from "../api/AddToDB";
+import { addToDB } from "../api/DBqueries";
 import { useAppContext } from "../context/AppContext";
 import "./../styles/components/Card.scss";
 import { TUpdateFields } from "../types/types";
