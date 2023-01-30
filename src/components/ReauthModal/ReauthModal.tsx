@@ -40,7 +40,7 @@ const ReauthModal = ({
           toast.success("Ihr Email wurde erfolgreich aktualisiert");
         } else {
           deleteUser(auth.currentUser!);
-          deleteDoc(doc(db, "user_data", auth.currentUser!.email!));
+          deleteDoc(doc(db, "user_data", auth.currentUser!.uid!));
           toast.success("Ihr Konto wurde erfolgreich gelösch");
         }
         setOpenReauthModal(false);

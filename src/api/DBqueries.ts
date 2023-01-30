@@ -1,4 +1,10 @@
-import { setDoc, doc, updateDoc } from "firebase/firestore";
+import {
+  setDoc,
+  doc,
+  updateDoc,
+  getDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
 export const addToDB = async (folder, id, data) => {
@@ -14,17 +20,24 @@ export const getUserData = async (email) => {
 };
 
 // sets ad into user_data/postedAds
-export const setAdToUserDoc = (email, data, rest) => {
-  const docRef = doc(db, "user_data", email);
-  updateDoc(docRef, {
-    postedAds: { ...rest, [data.id]: data },
-  });
+export const setAdToUserDoc = (data) => {
+  const docRef = doc(db, "user_ads", data.uid);
+  setDoc(
+    docRef,
+    {
+      [data.aid]: {
+        aid: data.aid,
+        uid: data.uid,
+        location: data.location,
+        timeStamp: serverTimestamp(),
+      },
+    },
+    { merge: true }
+  );
 };
 
 // sets ad into ads_collection
 export const setAdToAdsCollection = (location, data) => {
-  const locality = location.split(",").slice(-2)[0];
-  const docRef = doc(db, "ads_collection", locality);
-  setDoc(docRef, { [data.id]: data }, { merge: true });
+  const docRef = doc(db, "ads_collection", data.aid);
+  setDoc(docRef, data , { merge: true });
 };
-

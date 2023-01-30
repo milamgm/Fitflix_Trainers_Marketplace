@@ -29,10 +29,9 @@ const AppProvider = ({ children }: IAppProviderProps) => {
     });
     return authState;
   }, []);
-
   useEffect(() => {
-    const getUserData = async (email: string) => {
-      const docRef = doc(db, "user_data", email);
+    const getUserData = async (uid: string) => {
+      const docRef = doc(db, "user_data", uid);
       onSnapshot(docRef, (doc) => {
         if (doc.data()) {
           const data = doc.data() as IUserData;
@@ -40,7 +39,7 @@ const AppProvider = ({ children }: IAppProviderProps) => {
         }
       });
     };
-    if (user?.email) getUserData(user.email);
+    if (user?.uid) getUserData(user.uid);
   }, [user]);
 
   const values = {

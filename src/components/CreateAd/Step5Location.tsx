@@ -29,12 +29,11 @@ const Step5Location = ({
     }
   };
   useEffect(() => {
-    console.log("sdsf" + zone);
     updateFields({
-      location: zone,
+      location: zone.split(",").slice(-2)[0],
     });
   }, [zone]);
-  console.log(zone);
+ 
   useEffect(() => {
     const valid = zone !== "" && available[0] !== undefined;
     setActiveNextBtn(zone !== "" && available[0] !== undefined);

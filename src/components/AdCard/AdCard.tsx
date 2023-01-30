@@ -13,8 +13,9 @@ interface IAdCardProps {
 const AdCard = ({ data, isListed }: IAdCardProps) => {
   const { user, userData } = useAppContext();
   const navigate = useNavigate();
-  const { id, photo, title, categories, price, description, location, about } =
+  const { aid, photo, title, categories, price, description, location, about } =
     data;
+    console.log(title)
   const email = user.email;
   const trainerName = userData.name;
 
@@ -24,11 +25,11 @@ const AdCard = ({ data, isListed }: IAdCardProps) => {
   };
 
   //Deletes Ad
-  const handleDelete = () => {
+/*   const handleDelete = () => {
     // Delete from user document
-    const docRef = doc(db, "user_data", user.email);
+    const docRef = doc(db, "user_ads", user!.uid);
     const postsArr = Object.values(userData.postedAds).filter(
-      (el) => el.id !== id
+      (el) => el.aid !== aid
     );
     const updatedPosts = { ...postsArr };
     updateDoc(docRef, { postedAds: updatedPosts });
@@ -41,7 +42,7 @@ const AdCard = ({ data, isListed }: IAdCardProps) => {
     updateDoc(adsCollectionRef, {
       [data.id]: deleteField(),
     });
-  };
+  }; */
 
   //Navigates to Ad page
   const goToAd = () => {
@@ -93,9 +94,9 @@ const AdCard = ({ data, isListed }: IAdCardProps) => {
             <button className="card_info_btn" onClick={goToAd}>
               Zur Anzeige gehen
             </button>
-            <button className="card_danger_btn" onClick={handleDelete}>
+       {/*      <button className="card_danger_btn" onClick={handleDelete}>
               Loschen
-            </button>
+            </button> */}
           </>
         )}
       </div>

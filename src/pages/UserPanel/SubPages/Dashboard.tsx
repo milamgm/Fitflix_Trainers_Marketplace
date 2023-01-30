@@ -7,19 +7,44 @@ import {
 import { useNavigate } from "react-router-dom";
 import defaultUserPic from "../../../../public/user.svg";
 import "./Dashboard.scss";
+import { useEffect, useState } from "react";
+import {
+  collection,
+  doc,
+  getDocs,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
+import { db } from "../../../firebaseConfig";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const { user, userData } = useAppContext();
   const { photoURL, email } = user;
-  const { name, postedAds, phoneNumber } = userData;
+  const { name, phoneNumber } = userData;
+  const [postedAds, setpostedAds] = useState([]);
 
-  let postedAdsArr = postedAds !== undefined ? Object.values(postedAds) : [];
-  const adsArePosted = postedAdsArr.length >= 1;
+  useEffect(() => {
+    const fetchAds = async () => {
+      const citiesRef = collection(db, "ads_collection");
+      const q = query(citiesRef, where("uid", "==", user!.uid));
+      const querySnapshot = await getDocs(q);
+      setpostedAds([]);
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        const adsArr = doc.data();
+
+        setpostedAds((prev) => [...prev, adsArr]);
+      });
+    };
+
+    fetchAds();
+  }, []);
 
   return (
     <div className="dashboard">
-      {!adsArePosted && (
+      {postedAds.length === 0 && (
         <div className="post_tip">
           <h3>
             Sie haben noch keine Anzeige aufgegeben, geben Sie jetzt eine auf!
@@ -51,12 +76,12 @@ const Dashboard = () => {
         </div>
       </section>
 
-      {adsArePosted && (
+      {postedAds.length >= 1 && (
         <div className="ads">
           <h2>Meine Anzeigen</h2>
-          {postedAdsArr.map((data) => (
-            <AdCard data={data} key={data.id} isListed={true} />
-          ))}
+           {postedAds.map((data) => (
+            <AdCard data={data} key={data.aid} isListed={true} />
+          ))} 
         </div>
       )}
     </div>

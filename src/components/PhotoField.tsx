@@ -34,24 +34,23 @@ const PhotoField = ({ img, imgType, updateFields }: IPhotoFieldProps) => {
         extension === "jpg" || extension === "png" || extension === "jpeg";
       if (validExtention) {
         const imgName = file.name + v4();
-        const imgRef = ref(storage, `user__data/${user.email}/${imgName}`);
-        console.log(file);
+        const imgRef = ref(storage, `user__data/${user.uid}/${imgName}`);
         uploadBytes(imgRef, file);
 
         path = `${
-          import.meta.env.VITE_REACT_APP_PATH_URL + user.email
+          import.meta.env.VITE_REACT_APP_PATH_URL + user.uid
         }%2F${imgName}?alt=media`;
         try {
           if (imgType === "userPic") {
             updateProfile(user, {
               photoURL: path,
             });
-            addToDB("user_data", user.email, {
+            addToDB("user_data", user.uid, {
               ...userData,
               profilePic: path,
             });
           } else if (imgType === "userPersId") {
-            addToDB("user_data", user.email, {
+            addToDB("user_data", user.uid, {
               ...userData,
               userPersId: path,
             });

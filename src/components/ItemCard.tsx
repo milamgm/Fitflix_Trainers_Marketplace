@@ -6,7 +6,8 @@ import { IAdData } from "../types/types";
 import defaultPhoto from "../../public/logo.svg";
 
 const ItemCard = ({
-  id,
+  uid,
+  email,
   title,
   photo,
   categories,
@@ -17,17 +18,19 @@ const ItemCard = ({
   location,
 }: IAdData) => {
   const navigate = useNavigate();
-  const email = id.replace("%2E", ".").replace(time.toString(), "");
   const [trainerName, setTrainerName] = useState("");
+  const [trainerUid, setTrainerUid] = useState("");
+console.log(price)
 
-  useEffect(() => {
-    const getUserData = async (email: string) => {
-      const docRef = doc(db, "user_data", email);
+   useEffect(() => {
+    const getUserData = async (uid: string) => {
+      const docRef = doc(db, "user_data", uid);
       onSnapshot(docRef, (doc) => {
         setTrainerName(doc.data()!.name);
+        setTrainerUid(doc.data()!.uid);
       });
     };
-    getUserData(email);
+    getUserData(uid);
   }, []);
 
   return (
@@ -38,7 +41,7 @@ const ItemCard = ({
           replace: true,
           state: {
             title,
-            email,
+            trainerUid,
             trainerName,
             photo,
             categories,
