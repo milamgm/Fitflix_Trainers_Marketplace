@@ -4,7 +4,7 @@ import { Link, Outlet } from "react-router-dom";
 
 const UserPanel = () => {
   const [active, setActive] = useState("Dashboard");
-
+  console.log(active)
   return (
     <>
       <nav>
@@ -30,9 +30,8 @@ const UserPanel = () => {
           Meine Konto
         </Link>
       </nav>
-
       <div className="page_body">
-        <h2>{active}</h2>
+        <h1>{active}</h1>
         <Outlet />
       </div>
     </>

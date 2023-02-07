@@ -1,4 +1,5 @@
-import { deleteField, doc, updateDoc } from "firebase/firestore";
+import { deleteDoc, deleteField, doc, updateDoc } from "firebase/firestore";
+import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
 import { db } from "../../firebaseConfig";
@@ -10,12 +11,21 @@ interface IAdCardProps {
   isListed: boolean;
 }
 
-const AdCard = ({ data, isListed }: IAdCardProps) => {
+const AdCard = ({ data }: IAdCardProps) => {
   const { user, userData } = useAppContext();
   const navigate = useNavigate();
-  const { aid, photo, title, categories, price, description, location, about } =
-    data;
-    console.log(title)
+  const {
+    aid,
+    uid,
+    photo,
+    title,
+    categories,
+    price,
+    description,
+    location,
+    about,
+  } = data;
+
   const email = user.email;
   const trainerName = userData.name;
 
@@ -24,31 +34,13 @@ const AdCard = ({ data, isListed }: IAdCardProps) => {
     navigate("/anzeigeaufgeben", { replace: true, state: { editData } });
   };
 
-  //Deletes Ad
-/*   const handleDelete = () => {
-    // Delete from user document
-    const docRef = doc(db, "user_ads", user!.uid);
-    const postsArr = Object.values(userData.postedAds).filter(
-      (el) => el.aid !== aid
-    );
-    const updatedPosts = { ...postsArr };
-    updateDoc(docRef, { postedAds: updatedPosts });
-    // Delete from ads_collection
-    const adsCollectionRef = doc(
-      db,
-      "ads_collection",
-      location.split(",").slice(-2)[0]
-    );
-    updateDoc(adsCollectionRef, {
-      [data.id]: deleteField(),
-    });
-  }; */
-
   //Navigates to Ad page
   const goToAd = () => {
     navigate("/trainer", {
       replace: true,
       state: {
+        aid,
+        uid,
         title,
         email,
         trainerName,
@@ -61,7 +53,21 @@ const AdCard = ({ data, isListed }: IAdCardProps) => {
       },
     });
   };
-
+  //Deletes Ad
+  const handleDelete = async () => {
+    try {
+      // Delete from user_ads
+      const useradsRef = doc(db, "user_ads", uid);
+      await updateDoc(useradsRef, {
+        [aid]: deleteField(),
+      });
+      // Delete from ads_collection
+      await deleteDoc(doc(db, "ads_collection", aid));
+      toast.success("Ihrer Anzeige wurde erfolgreich gelöscht");
+    } catch (err) {
+      toast.error("Fehler. Bitte probieren Sie noch Mal.");
+    }
+  };
   return (
     <div className="adCard">
       <img src={photo} alt="" width={200} />
@@ -86,19 +92,17 @@ const AdCard = ({ data, isListed }: IAdCardProps) => {
         </div>
       </div>
       <div className="btn_area">
-        {isListed && (
-          <>
-            <button className="card_info_btn" onClick={handleEdit}>
-              Bearbeiten
-            </button>
-            <button className="card_info_btn" onClick={goToAd}>
-              Zur Anzeige gehen
-            </button>
-       {/*      <button className="card_danger_btn" onClick={handleDelete}>
-              Loschen
-            </button> */}
-          </>
-        )}
+        <>
+          <button className="card_info_btn" onClick={handleEdit}>
+            Bearbeiten
+          </button>
+          <button className="card_info_btn" onClick={goToAd}>
+            Zur Anzeige gehen
+          </button>
+          <button className="card_danger_btn" onClick={handleDelete}>
+            Loschen
+          </button>
+        </>
       </div>
     </div>
   );

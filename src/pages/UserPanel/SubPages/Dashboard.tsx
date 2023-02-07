@@ -40,7 +40,7 @@ const Dashboard = () => {
     };
 
     fetchAds();
-  }, []);
+  }, [postedAds]);
 
   return (
     <div className="dashboard">
@@ -61,7 +61,6 @@ const Dashboard = () => {
           </div>
 
           <h2 className="username">{name}</h2>
-          <hr />
           <p>{email}</p>
           <p>{phoneNumber}</p>
           <button onClick={() => navigate("/benutzerpanel/meinekonto")}>

@@ -20,14 +20,12 @@ interface ICreateAdProps {
   editDataParams: { editData: IAdData };
 }
 
-
-
 const CreateAd = ({ editDataParams }: ICreateAdProps) => {
-  const { user, userData } = useAppContext();
+  const { user } = useAppContext();
   const editDataC = editDataParams?.editData;
   const INITIAL_DATA: IAdData = {
     aid: "",
-    uid: user!.uid,
+    uid: "",
     title: "",
     categories: [],
     description: "",
@@ -42,7 +40,7 @@ const CreateAd = ({ editDataParams }: ICreateAdProps) => {
     editDataC !== undefined ? editDataC : INITIAL_DATA
   );
   const [activeNextBtn, setActiveNextBtn] = useState(false);
- 
+
   const navigate = useNavigate();
   function updateFields(fields: { [key: string]: string | number | string[] }) {
     setData((prev) => {
@@ -102,13 +100,13 @@ const CreateAd = ({ editDataParams }: ICreateAdProps) => {
     } else {
       setAdToUserDoc(data);
       setAdToAdsCollection(data.location, data);
-      toast.success("Ihre Anzeige wurder erfolgreich ");
+      toast.success("Ihre Anzeige wurde erfolgreich veröffentlicht.");
       navigate("/benutzerpanel");
     }
   }
   useEffect(() => {
     if (isLastStep && editDataParams === undefined) {
-      updateFields({ aid: v4() });
+      updateFields({ uid : user!.uid, aid: v4() });
     }
   }, [isLastStep]);
 

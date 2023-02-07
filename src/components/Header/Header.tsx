@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ProfileMenu from "../ProfileMenu";
+import ProfileMenu from "./ProfileMenu";
 import { useNavigate } from "react-router-dom";
 import "./Header.scss";
 import { useAppContext } from "../../context/AppContext";

@@ -17,6 +17,7 @@ export interface IUserData {
 
 export interface IAdData {
   aid: string;
+  uid: string;
   title: string;
   categories: string[];
   description: string;
@@ -26,7 +27,6 @@ export interface IAdData {
   price: number;
   phone: number;
   photo: string;
-  time: number;
 }
 
 export type TUpdateFields = (fields: { [key: string]: string | number | string[] }) => void;

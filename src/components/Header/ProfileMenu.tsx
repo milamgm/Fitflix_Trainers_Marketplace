@@ -1,9 +1,7 @@
 import { signOut } from "firebase/auth";
-import { auth } from "../firebaseConfig";
+import { auth } from "../../firebaseConfig";
 import { Link, useNavigate } from "react-router-dom";
-import { useClickOutside } from "../hooks/useOnClickOutside";
-import "../styles/components/Menus.scss";
-
+import { useClickOutside } from "../../hooks/useOnClickOutside";
 interface IProfileMenuProps {
   setOpenProfileMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -22,7 +20,7 @@ const ProfileMenu = ({ setOpenProfileMenu }: IProfileMenuProps) => {
     { name: "Nachtrichten", path: "benutzerpanel/nachrichten" },
   ];
   return (
-    <div className="profile__menu box-shadow" ref={domNode}>
+    <div className="profile_menu box-shadow" ref={domNode}>
       {menuItems.map(({ name, path }, ind) => (
         <Link
           key={path}
@@ -30,12 +28,12 @@ const ProfileMenu = ({ setOpenProfileMenu }: IProfileMenuProps) => {
           to={path}
           onClick={() => setOpenProfileMenu(false)}
         >
-          <div className="profile__menu__item" key={ind}>
+          <div className="item" key={ind}>
             {name}
           </div>
         </Link>
       ))}
-      <div className="profile__menu__item logout" onClick={logOut}>
+      <div className="item logout" onClick={logOut}>
         Log Out
       </div>
     </div>

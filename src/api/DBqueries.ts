@@ -20,9 +20,9 @@ export const getUserData = async (email) => {
 };
 
 // sets ad into user_data/postedAds
-export const setAdToUserDoc = (data) => {
+export const setAdToUserDoc = async (data) => {
   const docRef = doc(db, "user_ads", data.uid);
-  setDoc(
+  await setDoc(
     docRef,
     {
       [data.aid]: {
@@ -37,7 +37,7 @@ export const setAdToUserDoc = (data) => {
 };
 
 // sets ad into ads_collection
-export const setAdToAdsCollection = (location, data) => {
+export const setAdToAdsCollection = async (location, data) => {
   const docRef = doc(db, "ads_collection", data.aid);
-  setDoc(docRef, data , { merge: true });
+  await setDoc(docRef, data, { merge: true });
 };

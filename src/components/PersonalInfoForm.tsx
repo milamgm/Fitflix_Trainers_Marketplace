@@ -7,8 +7,8 @@ import toast from "react-hot-toast";
 import { addToDB } from "../api/DBqueries";
 import { validateEmail } from "../utilities/formValidation";
 import { IPersonalInfoForm } from "../types/types";
-import {FaUserAlt} from "react-icons/fa"
-import {BsFillTelephoneFill} from "react-icons/bs"
+import { FaUserAlt } from "react-icons/fa";
+import { BsFillTelephoneFill } from "react-icons/bs";
 
 const personalInfoFormFields = [
   {
@@ -16,14 +16,14 @@ const personalInfoFormFields = [
     type: "text",
     required: true,
     keyValue: "input_name",
-    icon: <FaUserAlt/>
+    icon: <FaUserAlt />,
   },
   {
     inputName: "Telefon",
     type: "text",
     required: false,
     keyValue: "input_phoneNumber",
-    icon: <BsFillTelephoneFill/>
+    icon: <BsFillTelephoneFill />,
   },
 ];
 
@@ -40,7 +40,7 @@ const PersonalInfoForm = () => {
   const { input_name, input_phoneNumber } = values;
   const activeSubmitBtn =
     JSON.stringify([input_name, input_phoneNumber]) !==
-    JSON.stringify([user.displayName,  user.phoneNumber]);
+    JSON.stringify([name, phoneNumber]);
 
   const handleSubmit = async () => {
     try {
@@ -88,7 +88,7 @@ const PersonalInfoForm = () => {
         disabled={!activeSubmitBtn}
         onClick={handleSubmit}
       >
-        Senden
+        Aktualisieren
       </button>
     </div>
   );

@@ -5,7 +5,7 @@ import {
   PersonalInfoWidget,
   PhotoField,
 } from "../../../utilities/utils";
-import persId from "../../../../public/id.png";
+import persId from "../../../../public/certification.png";
 import "./MyAccount.scss"
 
 const MyAccount = () => {
@@ -20,10 +20,10 @@ const MyAccount = () => {
       content: <PersonalInfoWidget />,
     },
     {
-      id: "identitätsnachweis",
-      title: "Identitätsnachweis",
+      id: "zwischenzeugnis",
+      title: "Arbeitszeugnis / Zwischenzeugnis",
       content: (
-        <PhotoField img={userData.userPersId ?? persId} imgType="userPersId" />
+        <PhotoField img={userData!.userPersId ?? persId} imgType="userPersId" />
       ),
     },
     {

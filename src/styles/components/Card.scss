@@ -1,3 +1,5 @@
+@use "../abstracts/" as *;
+
 @mixin card {
   background-color: rgb(255, 255, 255);
   padding: 60px 30px;
@@ -8,8 +10,10 @@
   justify-content: center;
   border-radius: 25px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  color: mix($secondary, black, 20%);
   h2{
     margin-bottom: 40px;
+    color: $secondary;
   }
   .content {
     text-align: center;

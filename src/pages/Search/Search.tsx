@@ -35,7 +35,6 @@ const Search = () => {
       const querySnapshot = await getDocs(q);
       setAdsData([]);
       querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
         const adsArr = doc.data();
 
         setAdsData((prev) => [...prev, adsArr]);

@@ -29,3 +29,7 @@ nav {
     color: $terciary;
   }
 }
+
+h1 {
+  color: mix($secondary, black, 80%);
+}

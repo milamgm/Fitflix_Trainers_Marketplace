@@ -59,7 +59,7 @@ const ReauthModal = ({
           </div>
           <div className="body">
             <p>
-              Wiederholen Sie Ihr Passwort, um Ihre E-Mail zu aktualisieren.
+              Wiederholen Sie Ihr Passwort, um Ihre Konto zu löschen.
             </p>
             <form>
               <input

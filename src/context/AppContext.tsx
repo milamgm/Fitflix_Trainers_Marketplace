@@ -24,10 +24,10 @@ const AppProvider = ({ children }: IAppProviderProps) => {
     language: "de",
   });
   useEffect(() => {
-    const authState = onAuthStateChanged(auth, (currentUser) => {
+    const unsub = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser !== undefined) setUser(currentUser);
     });
-    return authState;
+    return unsub;
   }, []);
   useEffect(() => {
     const getUserData = async (uid: string) => {

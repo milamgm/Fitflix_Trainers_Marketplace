@@ -20,13 +20,17 @@ const ItemCard = ({
   const navigate = useNavigate();
   const [trainerName, setTrainerName] = useState("");
   const [trainerUid, setTrainerUid] = useState("");
-
+  const [trainerPic, setTrainerPic] = useState("");
+  const [trainerPhone, setTrainerPhone] = useState("");
+  console.log(description)
   useEffect(() => {
     const getUserData = async (uid: string) => {
       const docRef = doc(db, "user_data", uid);
       onSnapshot(docRef, (doc) => {
         setTrainerName(doc.data()!.name);
         setTrainerUid(doc.data()!.uid);
+        setTrainerPic(doc.data()!.profilePic);
+        setTrainerPhone(doc.data()!.phoneNumber);
       });
     };
     getUserData(uid);
@@ -42,6 +46,8 @@ const ItemCard = ({
             title,
             trainerUid,
             trainerName,
+            trainerPhone,
+            trainerPic,
             photo,
             categories,
             description,
