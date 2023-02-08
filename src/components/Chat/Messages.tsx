@@ -5,12 +5,7 @@ const Messages = ({ messages }) => {
   const { user } = useAppContext();
   return (
     <div className="messages">
-      {messages.length >= 1 &&
-        messages.map((msg) => (
-         
-            <Message {...msg} />
-         
-        ))}
+      {messages.length >= 1 && messages.map((msg) => <Message key={msg.id} {...msg} />)}
     </div>
   );
 };

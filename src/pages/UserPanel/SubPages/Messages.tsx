@@ -20,7 +20,7 @@ const Messages = () => {
 
   return (
     <div className="container">
-      <Sidebar setActiveChat={setActiveChat} />
+      <Sidebar setActiveChat={setActiveChat} activeChat={activeChat}/>
       {partnertsData.length >= 1 && <Chat activeChat={activeChat} />}
     </div>
   );

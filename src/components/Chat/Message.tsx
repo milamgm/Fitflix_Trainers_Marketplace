@@ -1,12 +1,22 @@
+import {useEffect, useRef } from "react";
 import { useAppContext } from "../../context/AppContext";
 
 const Message = ({ id, message, date, sender_uid }) => {
   const timestamp = date.toDate().toLocaleString("de-De");
   const { user } = useAppContext();
-  console.log(sender_uid)
+  const lastMessageRef = useRef();
+
+  useEffect(() => {
+    lastMessageRef.current?.scrollIntoView({behavior: "smooth"})
+  }, [message])
   return (
     <>
-      <div key={id} className={`${sender_uid === user!.uid ? "currentUser" : "partner"} message`}>
+      <div
+        ref={lastMessageRef}
+        className={`${
+          sender_uid === user!.uid ? "currentUser" : "partner"
+        } message`}
+      >
         <div className="messageContent">
           <p>{message}</p>
           {/*     {image && (

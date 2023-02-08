@@ -73,9 +73,9 @@ const Trainer = () => {
         },
         { merge: true }
       );
-      const chatsRef = doc(db, "chats", chatid);
+      const messagesRef = doc(db, "chats", chatid);
       await setDoc(
-        chatsRef,
+        messagesRef,
         {
           messages: arrayUnion({
             id: v4(),
@@ -95,7 +95,7 @@ const Trainer = () => {
       toast.error("Fehler. Bitte probieren Sie noch Mal.");
     }
   };
-  console.log(trainerPhone)
+
   return (
     <>
       <div className="ad_image">

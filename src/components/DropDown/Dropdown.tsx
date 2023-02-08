@@ -20,7 +20,11 @@ const Dropdown = ({ value, setValue, listDB }: IDropdownProps) => {
   useEffect(() => {
     list.length === 0 ? setActive(false) : setActive(true);
     if (value !== "") {
-      setList(listDB.filter((valueA) => valueA.toLowerCase().includes(value)));
+      setList(
+        listDB.filter((valueA) =>
+          valueA.toLowerCase().includes(value.toLowerCase())
+        )
+      );
       setActive(true);
     } else {
       setActive(false);

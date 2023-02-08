@@ -1,11 +1,49 @@
+import {
+  arrayUnion,
+  doc,
+  onSnapshot,
+  setDoc,
+  Timestamp,
+} from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { v4 } from "uuid";
 import { addToDB } from "../../api/DBqueries";
-const Input = () => {
-  const handleSend = () =>{
-    addToDB("hola", "quetal" , {})
-  }
+import { useAppContext } from "../../context/AppContext";
+import { db } from "../../firebaseConfig";
+const Input = ({ chatid }) => {
+  const { user } = useAppContext();
+  const [message, setMessage] = useState("");
+
+  const handleSend = async (e) => {
+    e.preventDefault();
+    if (message !== "") {
+      const messagesRef = doc(db, "chats", chatid);
+      await setDoc(
+        messagesRef,
+        {
+          messages: arrayUnion({
+            id: v4(),
+            message,
+            sender_uid: user!.uid,
+            date: Timestamp.now(),
+          }),
+        },
+        { merge: true }
+      );
+    }
+    setMessage("");
+  };
   return (
     <div className="input">
-      <input type="text" placeholder="Schreiben Sie etwas..." />
+      <input
+        type="text"
+        placeholder="Schreiben Sie etwas..."
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") handleSend(e);
+        }}
+      />
       <div className="send">
         <img src="/image.svg" alt="" />
         <input type="file" style={{ display: "none" }} name="" id="" />

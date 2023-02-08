@@ -17,7 +17,7 @@ const Chat = ({ activeChat }) => {
     onSnapshot(doc(db, "chats", chatid), (doc) => {
       setMessages(doc.data().messages);
     });
-  }, []);
+  }, [activeChat]);
 
   return (
     <div className="chat">
@@ -28,7 +28,7 @@ const Chat = ({ activeChat }) => {
         </div>
       </div>
       <Messages messages={messages} />
-      <Input />
+      <Input chatid={chatid}/>
     </div>
   );
 };
