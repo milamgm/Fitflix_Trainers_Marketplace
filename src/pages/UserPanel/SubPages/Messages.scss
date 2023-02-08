@@ -91,24 +91,17 @@
       padding: 10px;
       height: calc(100% - 160px);
       overflow-y: scroll;
-
+      .currentUser {
+        display: flex;
+        justify-content: end;
+      }
       .message {
         display: flex;
         gap: 20px;
         margin-bottom: 20px;
 
-        .messageInfo {
-          display: flex;
-          flex-direction: column;
-          color: gray;
-          font-weight: 300;
-
-          img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-          }
+        small {
+          color: grey;
         }
         .messageContent {
           max-width: 80%;

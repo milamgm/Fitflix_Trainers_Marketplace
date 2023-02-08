@@ -1,18 +1,16 @@
+import { useAppContext } from "../../context/AppContext";
 import Message from "./Message";
 
-const Messages = ({ activeChat }) => {
-  const activeChatCopy = structuredClone(activeChat);
-  delete activeChatCopy.name;
-  delete activeChatCopy.email;
-  delete activeChatCopy.userPic;
-  const messagesArr = Object.values(activeChatCopy);
-  const messagesByTime = [...messagesArr].sort((a, b) => {
-    return Number(new Date(a.time)) - Number(new Date(b.time));
-  });
-  console.log(messagesArr);
+const Messages = ({ messages }) => {
+  const { user } = useAppContext();
   return (
     <div className="messages">
-      <Message messagesByTime={messagesByTime} />
+      {messages.length >= 1 &&
+        messages.map((msg) => (
+         
+            <Message {...msg} />
+         
+        ))}
     </div>
   );
 };

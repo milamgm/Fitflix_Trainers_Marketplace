@@ -7,6 +7,7 @@ import defaultPhoto from "../../public/logo.svg";
 
 const ItemCard = ({
   uid,
+  aid,
   email,
   title,
   photo,
@@ -14,7 +15,6 @@ const ItemCard = ({
   description,
   about,
   price,
-  time,
   location,
 }: IAdData) => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const ItemCard = ({
   const [trainerUid, setTrainerUid] = useState("");
   const [trainerPic, setTrainerPic] = useState("");
   const [trainerPhone, setTrainerPhone] = useState("");
-  console.log(description)
+  console.log(aid)
   useEffect(() => {
     const getUserData = async (uid: string) => {
       const docRef = doc(db, "user_data", uid);
@@ -43,7 +43,9 @@ const ItemCard = ({
         navigate("/trainer", {
           replace: true,
           state: {
+            aid,
             title,
+            email,
             trainerUid,
             trainerName,
             trainerPhone,

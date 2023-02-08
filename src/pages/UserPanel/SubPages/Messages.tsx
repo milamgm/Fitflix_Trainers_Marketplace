@@ -9,35 +9,19 @@ import {
 import { useEffect, useState } from "react";
 import { db } from "../../../firebaseConfig";
 import { Sidebar, Chat, useAppContext } from "../../../utilities/utils";
+import { useChatContext } from "../../../context/ChatContext";
 
 const Messages = () => {
-  const { user } = useAppContext();
-  const [userChats, setUserChats] = useState([]);
-  const [activeChat, setActiveChat] = useState({});
-  useEffect(() => {
-    const getChats = async () => {
-      const q = query(collection(db, "user_data", user.email, "user_chats"));
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((docc) => {
-        let data = docc.data();
-        const userRef = doc(db, "user_data", data.email);
-        onSnapshot(userRef, (user) => {
-          const userName = user.data().name;
-          const userPic = user.data().profilePic;
-          setUserChats((prev) => [
-            ...prev,
-            { ...data, name: userName, userPic: userPic },
-          ]);
-        });
-      });
-    };
-    getChats();
-  }, []);
+  const { partnertsData } = useChatContext();
+  //TODO: in case no chats, set activechat
+  const [activeChat, setActiveChat] = useState(
+    partnertsData.length >= 1 ? partnertsData[0] : []
+  );
 
   return (
     <div className="container">
-      <Sidebar userChats={userChats} setActiveChat={setActiveChat} />
-      <Chat activeChat={activeChat} />
+      <Sidebar setActiveChat={setActiveChat} />
+      {partnertsData.length >= 1 && <Chat activeChat={activeChat} />}
     </div>
   );
 };
