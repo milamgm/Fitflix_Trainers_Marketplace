@@ -15,7 +15,6 @@ import {
 } from "../api/ManageDB";
 import ReauthModal from "../components/ReauthModal/ReauthModal";
 import PersonalInfoWidget from "../components/PersonalInfoForm";
-import MessagesWidget from "../components/MessagesWidget";
 import Card from "../components/ItemCard";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { AiFillFacebook, AiFillInstagram } from "react-icons/ai";
@@ -31,7 +30,6 @@ export {
   SlSocialTwitter,
   setAdToAdsCollection,
   Card,
-  MessagesWidget,
   PersonalInfoWidget,
   ReauthModal,
   DeleteAccountModal,

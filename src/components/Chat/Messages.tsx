@@ -1,4 +1,3 @@
-import { useAppContext } from "../../context/AppContext";
 import { IMessage } from "../../types/types";
 import Message from "./Message";
 

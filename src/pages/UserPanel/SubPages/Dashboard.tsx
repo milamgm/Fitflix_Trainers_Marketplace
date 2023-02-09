@@ -1,30 +1,26 @@
-import {
-  AdCard,
-  useAppContext,
-  PhotoField,
-  MessagesWidget,
-} from "../../../utilities/utils";
+import { AdCard, useAppContext, PhotoField } from "../../../utilities/utils";
 import { useNavigate } from "react-router-dom";
 import defaultUserPic from "../../../../public/user.svg";
 import "./Dashboard.scss";
 import { useEffect, useState } from "react";
 import {
   collection,
-  doc,
-  getDocs,
   onSnapshot,
   query,
   where,
 } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
+import { useChatContext } from "../../../context/ChatContext";
+import MessageCard from "../../../components/MessageCard";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const { user, userData } = useAppContext();
+  const { partnertsData } = useChatContext();
   const { photoURL, email } = user;
   const { name, phoneNumber } = userData;
   const [postedAds, setpostedAds] = useState([]);
-
+  console.log(partnertsData);
   useEffect(() => {
     const q = query(
       collection(db, "ads_collection"),
@@ -69,8 +65,15 @@ const Dashboard = () => {
 
         <div className="messages_card">
           <h2>Meine Nachtrichten</h2>
-          <p>Sie haben keine neuen Nachrichten</p>
-          <MessagesWidget />
+          {partnertsData.length === 0 && (
+            <p>Sie haben keine neuen Nachrichten</p>
+          )}
+          <div className="content">
+            {partnertsData.length >= 1 &&
+              partnertsData.map((chat) => (
+                <MessageCard key={chat.partnerUid} {...chat} />
+              ))}
+          </div>
         </div>
       </section>
 

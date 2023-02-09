@@ -1,0 +1,25 @@
+@use "../../styles/abstracts/" as *;
+
+.message_card {
+  background-color: $terciary;
+  cursor: pointer;
+  width: 60%;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15px 0px;
+  transition: transform 0.2s ease;
+  &:hover {
+    transform: scale(1.05);
+  }
+  h3 {
+    color: $secondary;
+  }
+  img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 100%;
+  }
+}
