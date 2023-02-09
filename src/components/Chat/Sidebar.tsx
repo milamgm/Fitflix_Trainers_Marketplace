@@ -3,12 +3,8 @@ import { useChatContext } from "../../context/ChatContext";
 import profilePicDefault from "../../../public/user.svg";
 import { IPartnertData } from "../../types/types";
 
-interface ISidebarProps {
-  setActiveChat: React.Dispatch<React.SetStateAction<IPartnertData>>;
-  activeChat: IPartnertData;
-}
-const Sidebar = ({ setActiveChat, activeChat }: ISidebarProps) => {
-  const { partnertsData } = useChatContext();
+const Sidebar = () => {
+  const { partnertsData,  setActiveChat, activeChat } = useChatContext();
   const [searchInput, setSearchInput] = useState("");
   const [displayChatsArr, setDisplayChatsArr] = useState<IPartnertData[]>([]);
 

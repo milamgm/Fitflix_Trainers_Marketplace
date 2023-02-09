@@ -10,6 +10,8 @@ export interface IAppContext {
 export interface IChatContext {
   partnertsData: IPartnertData[];
   userChats: IUserChat[];
+  activeChat: IPartnertData;
+  setActiveChat: React.Dispatch<React.SetStateAction<IPartnertData>>;
 }
 export interface IUserData {
   name: string;
@@ -55,7 +57,7 @@ export interface IUserChat {
 }
 export interface IMessage {
   id: string;
-  date: any
+  date: any;
   message: string;
   sender_uid: string;
 }

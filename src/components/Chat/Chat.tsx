@@ -4,14 +4,9 @@ import { useEffect, useState } from "react";
 import { useChatContext } from "../../context/ChatContext";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
-import { IPartnertsData } from "../../types/types";
 
-interface IChatProps {
-  activeChat: IPartnertsData;
-}
-
-const Chat = ({ activeChat }: IChatProps) => {
-  const { userChats } = useChatContext();
+const Chat = () => {
+  const { userChats, activeChat } = useChatContext();
   const [messages, setMessages] = useState([]);
 
   const chatid = userChats.find(
