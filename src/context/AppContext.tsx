@@ -4,6 +4,7 @@ import { auth, db } from "../firebaseConfig";
 import { doc, onSnapshot } from "firebase/firestore";
 import { IAppContext, IUserData } from "../types/types";
 import { useLoadScript, LoadScriptProps } from "@react-google-maps/api";
+import defaultUserPic from "../../public/user.svg";
 const AppContext = createContext({} as IAppContext);
 export const useAppContext = () => {
   return useContext(AppContext);
@@ -35,7 +36,11 @@ const AppProvider = ({ children }: IAppProviderProps) => {
       onSnapshot(docRef, (doc) => {
         if (doc.data()) {
           const data = doc.data() as IUserData;
-          setUserData(data);
+          setUserData(
+            data.profilePic !== ""
+              ? data
+              : { ...data, profilePic: defaultUserPic }
+          );
         }
       });
     };

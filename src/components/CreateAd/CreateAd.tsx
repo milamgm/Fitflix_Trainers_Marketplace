@@ -124,7 +124,7 @@ const CreateAd = ({ editDataParams }: ICreateAdProps) => {
             disabled={!activeNextBtn}
             className={`${!activeNextBtn && "disabled"}`}
           >
-            {isLastStep ? "Beenden" : "Fortfahren"}
+            {isLastStep ? "Anzeige Stellen" : "Fortfahren"}
           </button>
         </div>
       </form>

@@ -7,6 +7,7 @@ import { addToDB } from "../api/ManageDB";
 import { useAppContext } from "../context/AppContext";
 import "./../styles/components/Card.scss";
 import { TUpdateFields } from "../types/types";
+import spinnersvg from "../../public/spinner.svg";
 
 interface IPhotoFieldProps {
   img: string;
@@ -19,23 +20,25 @@ const PhotoField = ({ img, imgType, updateFields }: IPhotoFieldProps) => {
   let path = "";
   const inputRef = useRef<HTMLInputElement>(null);
   const [prevPhoto, setPrevPhoto] = useState("");
+  const [showPhoto, setShowPhoto] = useState(img);
 
   const handlePhoto = () => {
     inputRef.current!.click();
   };
 
-  const handleUploadPhoto = async (e : React.BaseSyntheticEvent) => {
+  const handleUploadPhoto = async (e: React.BaseSyntheticEvent) => {
     if (e.target.files[0] !== undefined) {
       const file = e.target.files[0];
       const splitFileName = file.name.split(".");
       const extension = splitFileName[splitFileName.length - 1];
-      console.log(extension);
       const validExtention =
-        extension === "jpg" || extension === "png" || extension === "jpeg";
+        (extension === "jpg" || extension === "png" || extension === "jpeg") &&
+        file.size / 1000 <= 500;
       if (validExtention) {
+        setShowPhoto("");
         const imgName = file.name + v4();
         const imgRef = ref(storage, `user__data/${user.uid}/${imgName}`);
-        uploadBytes(imgRef, file);
+        await uploadBytes(imgRef, file);
 
         path = `${
           import.meta.env.VITE_REACT_APP_PATH_URL + user.uid
@@ -64,11 +67,10 @@ const PhotoField = ({ img, imgType, updateFields }: IPhotoFieldProps) => {
           toast.error("Fehler! :( Bitte nochmal probieren");
         }
       } else {
-        toast.error("Bitte nur .jpg, .jpeg, .png hochladen");
+        toast.error("Bitte nur .jpg, .jpeg, .png mit maximal 500kB hochladen.");
       }
     }
   };
-
   return (
     <>
       <input
@@ -77,11 +79,14 @@ const PhotoField = ({ img, imgType, updateFields }: IPhotoFieldProps) => {
         type="file"
         onChange={(e) => handleUploadPhoto(e)}
       />
-      <img
-        className={imgType === "userPic" ? "avatar_photo" : "object_pic"}
-        onClick={handlePhoto}
-        src={prevPhoto !== "" ? prevPhoto : img}
-      />
+      {showPhoto && (
+        <img
+          className={imgType === "userPic" ? "avatar_photo" : "object_pic"}
+          onClick={handlePhoto}
+          src={prevPhoto !== "" ? prevPhoto : showPhoto}
+        />
+      )}
+      {!showPhoto && <img className="spinner" src={spinnersvg} />}
     </>
   );
 };

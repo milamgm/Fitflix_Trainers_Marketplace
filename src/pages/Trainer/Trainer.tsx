@@ -26,7 +26,7 @@ import { toast } from "react-hot-toast";
 
 const Trainer = () => {
   const Routerlocation = useLocation();
-  const { user } = useAppContext();
+  const { user, userData } = useAppContext();
   const [openModal, setOpenModal] = useState(false);
   const [message, setMessage] = useState("");
   const [contacted, setContacted] = useState(false);
@@ -95,7 +95,7 @@ const Trainer = () => {
       toast.error("Fehler. Bitte probieren Sie noch Mal.");
     }
   };
-
+  console.log(trainerPic);
   return (
     <>
       <div className="ad_image">
@@ -127,10 +127,9 @@ const Trainer = () => {
           <div className="second_div">
             <img
               className="avatar_photo"
-              src={trainerPic !== "" ? trainerPic : defaultUserAvatar}
+              src={trainerPic !== undefined ? trainerPic : userData!.profilePic}
               alt={trainerName}
             />
-
             <h3>{trainerName}</h3>
             {trainerPhone !== undefined && (
               <div className="phone_div">
@@ -145,39 +144,42 @@ const Trainer = () => {
               <SlSocialTwitter className="icon" />
             </div>
             <hr />
-            <div className="chat_widget">
-              {!contacted && (
-                <>
-                  <h3>Jetzt Buchen!</h3>
-                  <p>
-                    Jetzt {trainerName} kontaktieren und berraten zu lassen.
-                  </p>
-                  {user && (
-                    <form onSubmit={(e) => handleSend(e)}>
-                      <textarea
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        placeholder={`Schreiben Sie Ihre Nachricht für ${
-                          trainerName.split(" ")[0]
-                        }.`}
-                      ></textarea>
-                      <button type="submit">Senden</button>
-                    </form>
-                  )}
-                  {!user && (
-                    <button onClick={() => setOpenModal(true)}>
-                      Jetzt Trainer kontaktieren
-                    </button>
-                  )}
-                </>
-              )}
-              {contacted && (
-                <div className="message_sent">
-                  <img src={done} alt="" />
-                  Ihre Nachricht wurde erfolgreich gesendet. Sie können in Ihrem persönlichen Nachrichtenbereich nachsehen.
-                </div>
-              )}
-            </div>
+            {trainerUid && (
+              <div className="chat_widget">
+                {!contacted && (
+                  <>
+                    <h3>Jetzt Buchen!</h3>
+                    <p>
+                      Jetzt {trainerName} kontaktieren und berraten zu lassen.
+                    </p>
+                    {user && (
+                      <form onSubmit={(e) => handleSend(e)}>
+                        <textarea
+                          value={message}
+                          onChange={(e) => setMessage(e.target.value)}
+                          placeholder={`Schreiben Sie Ihre Nachricht für ${
+                            trainerName.split(" ")[0]
+                          }.`}
+                        ></textarea>
+                        <button type="submit">Senden</button>
+                      </form>
+                    )}
+                    {!user && (
+                      <button onClick={() => setOpenModal(true)}>
+                        Jetzt Trainer kontaktieren
+                      </button>
+                    )}
+                  </>
+                )}
+                {contacted && (
+                  <div className="message_sent">
+                    <img src={done} alt="" />
+                    Ihre Nachricht wurde erfolgreich gesendet. Sie können in
+                    Ihrem persönlichen Nachrichtenbereich nachsehen.
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
 

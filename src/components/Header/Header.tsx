@@ -4,23 +4,22 @@ import { useNavigate } from "react-router-dom";
 import "./Header.scss";
 import { useAppContext } from "../../context/AppContext";
 import SignModal from "../SignModal";
-import { UserInfo } from "firebase/auth";
 import logo from "../../../public/logo.svg";
 import addIcon from "../../../public/add.svg";
-import defaultUserAvatar from "../../../public/user.svg";
+import { IUserData } from "../../types/types";
 
 interface IAvatarWrapperProps {
-  user: UserInfo;
+  userData: IUserData;
 }
 
 const Header = () => {
   const navigate = useNavigate();
-  const { user } = useAppContext();
+  const { user, userData } = useAppContext();
   const [openModal, setOpenModal] = useState(false);
 
   const rightDiv = () => {
-    if (user) {
-      return <AvatarWrapper user={user} />;
+    if (user && userData) {
+      return <AvatarWrapper userData={userData} />;
     } else {
       return <button onClick={() => setOpenModal(true)}>Einloggen</button>;
     }
@@ -43,7 +42,7 @@ const Header = () => {
 
 export default Header;
 
-const AvatarWrapper = ({ user }: IAvatarWrapperProps) => {
+const AvatarWrapper = ({ userData }: IAvatarWrapperProps) => {
   const [openProfileMenu, setOpenProfileMenu] = useState(false);
   const navigate = useNavigate();
   return (
@@ -58,11 +57,7 @@ const AvatarWrapper = ({ user }: IAvatarWrapperProps) => {
         onClick={() => setOpenProfileMenu((prev) => !prev)}
       >
         {openProfileMenu ? <h3>&#x2715;</h3> : <h3>&#9776;</h3>}
-        <img
-          className="avatar"
-          src={user.photoURL! ?? defaultUserAvatar}
-          alt={user.displayName!}
-        />
+        <img className="avatar" src={userData.profilePic} alt={userData.name} />
       </div>
       {openProfileMenu && (
         <ProfileMenu setOpenProfileMenu={setOpenProfileMenu} />

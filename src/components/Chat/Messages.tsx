@@ -9,6 +9,7 @@ const Messages = ({ messages }: IMessagesPorps) => {
     <div className="messages">
       {messages.length >= 1 &&
         messages.map((msg) => <Message key={msg.id} {...msg} />)}
+      {messages.length === 0 && <h2>Wird geladen...</h2>}
     </div>
   );
 };

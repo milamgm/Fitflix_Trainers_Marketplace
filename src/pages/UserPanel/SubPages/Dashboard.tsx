@@ -1,6 +1,5 @@
 import { AdCard, useAppContext, PhotoField } from "../../../utilities/utils";
 import { useNavigate } from "react-router-dom";
-import defaultUserPic from "../../../../public/user.svg";
 import "./Dashboard.scss";
 import { useEffect, useState } from "react";
 import {
@@ -17,7 +16,6 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { user, userData } = useAppContext();
   const { partnertsData } = useChatContext();
-  const { photoURL, email } = user;
   const { name, phoneNumber } = userData;
   const [postedAds, setpostedAds] = useState([]);
   
@@ -52,11 +50,11 @@ const Dashboard = () => {
       <section>
         <div className="profile_card">
           <div className="content">
-            <PhotoField img={photoURL ?? defaultUserPic} imgType="userPic" />
+            <PhotoField img={userData!.profilePic} imgType="userPic" />
           </div>
 
           <h2 className="username">{name}</h2>
-          <p>{email}</p>
+          <p>{userData!.email}</p>
           <p>{phoneNumber}</p>
           <button onClick={() => navigate("/benutzerpanel/konto")}>
             Daten Verarbeiten
@@ -81,7 +79,7 @@ const Dashboard = () => {
         <div className="ads">
           <h2>Meine Anzeigen</h2>
           {postedAds.map((data) => (
-            <AdCard data={data} key={data.aid} isListed={true} />
+            <AdCard data={data} key={data.aid} />
           ))}
         </div>
       )}

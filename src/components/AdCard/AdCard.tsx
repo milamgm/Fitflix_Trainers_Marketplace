@@ -8,7 +8,6 @@ import "./AdCard.scss";
 
 interface IAdCardProps {
   data: IAdData;
-  isListed: boolean;
 }
 
 const AdCard = ({ data }: IAdCardProps) => {
