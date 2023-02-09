@@ -20,7 +20,7 @@ const Dashboard = () => {
   const { photoURL, email } = user;
   const { name, phoneNumber } = userData;
   const [postedAds, setpostedAds] = useState([]);
-  console.log(partnertsData);
+  
   useEffect(() => {
     const q = query(
       collection(db, "ads_collection"),

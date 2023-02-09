@@ -2,7 +2,12 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { createContext, useContext } from "react";
 import { db } from "../firebaseConfig";
-import { IChatContext, IPartnertsData, IUserChats } from "../types/types";
+import {
+  IChatContext,
+  IPartnertData,
+  IPartnertsData,
+  IUserChats,
+} from "../types/types";
 import { useAppContext } from "./AppContext";
 
 const ChatContext = createContext({} as IChatContext);
@@ -17,7 +22,7 @@ const ChatProvider = ({ children }: IChatProviderProps) => {
   const { user } = useAppContext();
   const [userChats, setUserChats] = useState<IUserChats[]>([]);
   const [partnertsData, setPartnertsData] = useState<IPartnertsData[]>([]);
-
+  const [activeChat, setActiveChat] = useState<IPartnertData>(partnertDataEmpty);
   useEffect(() => {
     const getChats = async () => {
       const userChatsRef = doc(db, "user_chats", user!.uid);
@@ -45,6 +50,12 @@ const ChatProvider = ({ children }: IChatProviderProps) => {
                 partnerPic: res!.profilePic,
               },
             ]);
+            if (activeChat?.partnerName === "")
+              setActiveChat({
+                partnerUid: res!.uid,
+                partnerName: res!.name,
+                partnerPic: res!.profilePic,
+              });
           });
         });
       }
@@ -55,8 +66,14 @@ const ChatProvider = ({ children }: IChatProviderProps) => {
     };
   }, [userChats]);
 
-  const values = { partnertsData, userChats };
+  const values = { partnertsData, userChats, activeChat, setActiveChat };
   return <ChatContext.Provider value={values}>{children}</ChatContext.Provider>;
 };
 
 export default ChatProvider;
+
+const partnertDataEmpty = {
+  partnerName: "",
+  partnerPic: "",
+  partnerUid: "",
+};

@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./UserPanel.scss";
 import { Link, Outlet } from "react-router-dom";
 
 const UserPanel = () => {
   const [active, setActive] = useState("Dashboard");
-
+  const url = window.location.href;
   useEffect(() => {
-    const getCurrentURL = () => {
-      return window.location.href;
-    };
-    const url = getCurrentURL().split("/");
+    const urlArr = url.split("/");
     const page =
-      url[url.length - 1].charAt(0).toUpperCase() +
-      url[url.length - 1].slice(1);
+      urlArr[urlArr.length - 1].charAt(0).toUpperCase() +
+      urlArr[urlArr.length - 1].slice(1);
     setActive(page);
   }, []);
 
