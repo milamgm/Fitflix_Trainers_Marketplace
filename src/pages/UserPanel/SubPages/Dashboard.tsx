@@ -26,21 +26,20 @@ const Dashboard = () => {
   const [postedAds, setpostedAds] = useState([]);
 
   useEffect(() => {
-    const fetchAds = async () => {
-      const citiesRef = collection(db, "ads_collection");
-      const q = query(citiesRef, where("uid", "==", user!.uid));
-      const querySnapshot = await getDocs(q);
+    const q = query(
+      collection(db, "ads_collection"),
+      where("uid", "==", user!.uid)
+    );
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
       setpostedAds([]);
       querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        const adsArr = doc.data();
-
-        setpostedAds((prev) => [...prev, adsArr]);
+        const adRes = doc.data();
+        setpostedAds((prev) => [...prev, adRes]);
       });
-    };
+    });
 
-    fetchAds();
-  }, [postedAds]);
+    return unsubscribe;
+  }, []);
 
   return (
     <div className="dashboard">
@@ -63,7 +62,7 @@ const Dashboard = () => {
           <h2 className="username">{name}</h2>
           <p>{email}</p>
           <p>{phoneNumber}</p>
-          <button onClick={() => navigate("/benutzerpanel/meinekonto")}>
+          <button onClick={() => navigate("/benutzerpanel/konto")}>
             Daten Verarbeiten
           </button>
         </div>
@@ -78,9 +77,9 @@ const Dashboard = () => {
       {postedAds.length >= 1 && (
         <div className="ads">
           <h2>Meine Anzeigen</h2>
-           {postedAds.map((data) => (
+          {postedAds.map((data) => (
             <AdCard data={data} key={data.aid} isListed={true} />
-          ))} 
+          ))}
         </div>
       )}
     </div>

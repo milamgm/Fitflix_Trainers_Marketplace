@@ -1,10 +1,4 @@
-import {
-  setDoc,
-  doc,
-  updateDoc,
-  getDoc,
-  serverTimestamp,
-} from "firebase/firestore";
+import { setDoc, doc, getDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
 export const addToDB = async (folder, id, data) => {
@@ -37,7 +31,7 @@ export const setAdToUserDoc = async (data) => {
 };
 
 // sets ad into ads_collection
-export const setAdToAdsCollection = async (location, data) => {
+export const setAdToAdsCollection = async (data) => {
   const docRef = doc(db, "ads_collection", data.aid);
   await setDoc(docRef, data, { merge: true });
 };

@@ -1,33 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./UserPanel.scss";
 import { Link, Outlet } from "react-router-dom";
 
 const UserPanel = () => {
   const [active, setActive] = useState("Dashboard");
-  console.log(active)
+
+  useEffect(() => {
+    const getCurrentURL = () => {
+      return window.location.href;
+    };
+    const url = getCurrentURL().split("/");
+    const page =
+      url[url.length - 1].charAt(0).toUpperCase() +
+      url[url.length - 1].slice(1);
+    setActive(page);
+  }, []);
+
   return (
     <>
       <nav>
         <Link
-          className={`menu_btn ${active === "Dashboard" ? "active_btn" : "" }`}
+          className={`menu_btn ${active === "Dashboard" ? "active_btn" : ""}`}
           to="dashboard"
           onClick={() => setActive("Dashboard")}
         >
           Dashboard
         </Link>
         <Link
-         className={`menu_btn ${active === "Nachrichten" ? "active_btn" : "" }`}
+          className={`menu_btn ${active === "Nachrichten" ? "active_btn" : ""}`}
           to="nachrichten"
-          onClick={() => setActive("Nachtrichten")}
+          onClick={() => setActive("Nachrichten")}
         >
           Nachrichten
         </Link>
         <Link
-         className={`menu_btn ${active === "Meine Konto" ? "active_btn" : "" }`}
-          to="meinekonto"
-          onClick={() => setActive("Meine Konto")}
+          className={`menu_btn ${active === "Konto" ? "active_btn" : ""}`}
+          to="konto"
+          onClick={() => setActive("Konto")}
         >
-          Meine Konto
+          Konto
         </Link>
       </nav>
       <div className="page_body">

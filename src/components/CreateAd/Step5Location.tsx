@@ -10,7 +10,6 @@ interface IStep5LocationProps {
 }
 
 const Step5Location = ({
-  location,
   available,
   updateFields,
   setActiveNextBtn,
@@ -33,9 +32,8 @@ const Step5Location = ({
       location: zone.split(",").slice(-2)[0],
     });
   }, [zone]);
- 
+
   useEffect(() => {
-    const valid = zone !== "" && available[0] !== undefined;
     setActiveNextBtn(zone !== "" && available[0] !== undefined);
   }, [available[0], zone]);
 
@@ -47,7 +45,9 @@ const Step5Location = ({
         </h1>
         <p>(mindestens 40 Wörter)</p>
       </div>
-      <PlacesAutocomplete setZone={setZone} />
+      <div className="location_input">
+        <PlacesAutocomplete setZone={setZone} />
+      </div>
       <div className="checkbox_div">
         {options.map((option) => (
           <div

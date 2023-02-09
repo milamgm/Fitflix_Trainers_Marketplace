@@ -15,7 +15,7 @@ const Step7Phone = ({
     const value = Number(e.target.value);
     updateFields({ phone: value });
   };
-  console.log(phone.toString().length);
+
   useEffect(() => {
     const valid = phone.toString().length >= 5 && phone.toString().length <= 20;
     setActiveNextBtn(valid);

@@ -46,7 +46,7 @@ function App() {
         >
           <Route index element={<Dashboard />} />
           <Route path="nachrichten" element={<Messages />} />
-          <Route path="meinekonto" element={<MyAccount />} />
+          <Route path="konto" element={<MyAccount />} />
           <Route path="*" element={<Dashboard />} />
         </Route>
         <Route path="/anzeigeaufgeben" element={<CreateAd />} />

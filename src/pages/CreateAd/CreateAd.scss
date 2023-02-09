@@ -1,11 +1,10 @@
 @use "./../../styles/abstracts" as *;
 .step_div {
-  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  height: 50vh;
   form {
     display: flex;
     flex-direction: column;
@@ -38,6 +37,13 @@
       &::placeholder {
         color: $dark;
       }
+    }
+    .location_input {
+      height: 100px;
+      width: 60%;
+      border-bottom: solid 1px grey;
+      display: flex;
+      justify-content: center;
     }
     .number_input {
       margin: 20px;

@@ -99,7 +99,7 @@ const CreateAd = ({ editDataParams }: ICreateAdProps) => {
       return next();
     } else {
       setAdToUserDoc(data);
-      setAdToAdsCollection(data.location, data);
+      setAdToAdsCollection(data);
       toast.success("Ihre Anzeige wurde erfolgreich veröffentlicht.");
       navigate("/benutzerpanel");
     }
