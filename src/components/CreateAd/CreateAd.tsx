@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { setAdToAdsCollection, setAdToUserDoc } from "../../utilities/utils";
+import { setAdToAdsCollection } from "../../utilities/utils";
 import { useAppContext } from "../../context/AppContext";
 import { useMultistepForm } from "../../hooks/useMultistepForm";
 import { IAdData } from "../../types/types";
@@ -98,7 +98,6 @@ const CreateAd = ({ editDataParams }: ICreateAdProps) => {
     if (!isLastStep) {
       return next();
     } else {
-      setAdToUserDoc(data);
       setAdToAdsCollection(data);
       toast.success("Ihre Anzeige wurde erfolgreich veröffentlicht.");
       navigate("/benutzerpanel");

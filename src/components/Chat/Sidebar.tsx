@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { useChatContext } from "../../context/ChatContext";
 import profilePicDefault from "../../../public/user.svg";
+import { IPartnertData } from "../../types/types";
 
-const Sidebar = ({ setActiveChat, activeChat }) => {
+interface ISidebarProps {
+  setActiveChat: React.Dispatch<React.SetStateAction<IPartnertData>>;
+  activeChat: IPartnertData;
+}
+const Sidebar = ({ setActiveChat, activeChat }: ISidebarProps) => {
   const { partnertsData } = useChatContext();
   const [searchInput, setSearchInput] = useState("");
-  const [displayChatsArr, setDisplayChatsArr] = useState([]);
+  const [displayChatsArr, setDisplayChatsArr] = useState<IPartnertData[]>([]);
 
   useEffect(() => {
     const searchResult = partnertsData.filter((chat) =>
@@ -38,11 +43,10 @@ const Sidebar = ({ setActiveChat, activeChat }) => {
           >
             <img
               src={user.partnerPic !== "" ? user.partnerPic : profilePicDefault}
-              alt={user.uid}
+              alt={user.partnerUid}
             />
             <div className="userChatInfo">
               <span>{user.partnerName}</span>
-              <p>{user.time}</p>
             </div>
           </div>
         ))}

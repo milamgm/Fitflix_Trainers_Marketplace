@@ -26,8 +26,8 @@ const AdCard = ({ data }: IAdCardProps) => {
     about,
   } = data;
 
-  const email = user.email;
-  const trainerName = userData.name;
+  const email = user!.email;
+  const trainerName = userData!.name;
 
   const handleEdit = () => {
     const editData = data;
@@ -56,11 +56,6 @@ const AdCard = ({ data }: IAdCardProps) => {
   //Deletes Ad
   const handleDelete = async () => {
     try {
-      // Delete from user_ads
-      const useradsRef = doc(db, "user_ads", uid);
-      await updateDoc(useradsRef, {
-        [aid]: deleteField(),
-      });
       // Delete from ads_collection
       await deleteDoc(doc(db, "ads_collection", aid));
       toast.success("Ihrer Anzeige wurde erfolgreich gelöscht");

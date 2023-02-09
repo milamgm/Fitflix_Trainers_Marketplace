@@ -1,14 +1,20 @@
-import {useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useAppContext } from "../../context/AppContext";
 
-const Message = ({ id, message, date, sender_uid }) => {
+interface IMessageProps {
+  message: string;
+  date: any;
+  sender_uid: string;
+}
+
+const Message = ({ message, date, sender_uid }: IMessageProps) => {
   const timestamp = date.toDate().toLocaleString("de-De");
   const { user } = useAppContext();
-  const lastMessageRef = useRef();
+  const lastMessageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    lastMessageRef.current?.scrollIntoView({behavior: "smooth"})
-  }, [message])
+    lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [message]);
   return (
     <>
       <div

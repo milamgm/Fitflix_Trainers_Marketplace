@@ -5,10 +5,13 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebaseConfig";
-import { addToDB } from "./DBqueries";
+import { addToDB } from "./ManageDB";
 
-export const registerAccount = async (name, email, password) => {
-  
+export const registerAccount = async (
+  name: string,
+  email: string,
+  password: string
+) => {
   await createUserWithEmailAndPassword(auth, email, password);
   await updateProfile(auth.currentUser!, {
     displayName: name,

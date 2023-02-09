@@ -2,14 +2,12 @@ import React, { useEffect } from "react";
 import { TUpdateFields } from "../../types/types";
 
 interface IStep3DescripProps {
-  id: string;
   description: string;
   updateFields: TUpdateFields;
   setActiveNextBtn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Step3Descrip = ({
-  id,
   description,
   updateFields,
   setActiveNextBtn,

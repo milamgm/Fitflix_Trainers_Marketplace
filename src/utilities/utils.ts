@@ -11,10 +11,8 @@ import PhotoField from "../components/PhotoField";
 import Map from "../components/Map";
 import DeleteAccountModal from "../components/DeleteAccountModal";
 import {
-  getUserData,
   setAdToAdsCollection,
-  setAdToUserDoc,
-} from "../api/DBqueries";
+} from "../api/ManageDB";
 import ReauthModal from "../components/ReauthModal/ReauthModal";
 import PersonalInfoWidget from "../components/PersonalInfoForm";
 import MessagesWidget from "../components/MessagesWidget";
@@ -29,11 +27,9 @@ export {
   PlacesAutocomplete,
   BsFillTelephoneFill,
   AiFillFacebook,
-  getUserData,
   AiFillInstagram,
   SlSocialTwitter,
   setAdToAdsCollection,
-  setAdToUserDoc,
   Card,
   MessagesWidget,
   PersonalInfoWidget,

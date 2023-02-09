@@ -4,7 +4,7 @@ import { auth } from "../firebaseConfig";
 import { useAppContext } from "../context/AppContext";
 import ReauthModal from "./ReauthModal/ReauthModal";
 import toast from "react-hot-toast";
-import { addToDB } from "../api/DBqueries";
+import { addToDB } from "../api/ManageDB";
 import { validateEmail } from "../utilities/formValidation";
 import { IPersonalInfoForm } from "../types/types";
 import { FaUserAlt } from "react-icons/fa";

@@ -4,19 +4,26 @@ import { useEffect, useState } from "react";
 import { useChatContext } from "../../context/ChatContext";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
+import { IPartnertsData } from "../../types/types";
 
-const Chat = ({ activeChat }) => {
+interface IChatProps {
+  activeChat: IPartnertsData;
+}
+
+const Chat = ({ activeChat }: IChatProps) => {
   const { userChats } = useChatContext();
   const [messages, setMessages] = useState([]);
 
   const chatid = userChats.find(
     (chat) => chat.partner_uid === activeChat.partnerUid
-  ).chat_id;
-  
+  )!.chat_id;
+
   useEffect(() => {
-    onSnapshot(doc(db, "chats", chatid), (doc) => {
-      setMessages(doc.data().messages);
+   const unsub =  onSnapshot(doc(db, "chats", chatid), (doc) => {
+      setMessages(doc.data()!.messages);
     });
+
+    return unsub
   }, [activeChat]);
 
   return (
@@ -28,7 +35,7 @@ const Chat = ({ activeChat }) => {
         </div>
       </div>
       <Messages messages={messages} />
-      <Input chatid={chatid}/>
+      <Input chatid={chatid} />
     </div>
   );
 };

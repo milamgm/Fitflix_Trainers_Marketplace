@@ -1,11 +1,15 @@
 import { useAppContext } from "../../context/AppContext";
+import { IMessage } from "../../types/types";
 import Message from "./Message";
 
-const Messages = ({ messages }) => {
-  const { user } = useAppContext();
+interface IMessagesPorps {
+  messages: IMessage[];
+}
+const Messages = ({ messages }: IMessagesPorps) => {
   return (
     <div className="messages">
-      {messages.length >= 1 && messages.map((msg) => <Message key={msg.id} {...msg} />)}
+      {messages.length >= 1 &&
+        messages.map((msg) => <Message key={msg.id} {...msg} />)}
     </div>
   );
 };

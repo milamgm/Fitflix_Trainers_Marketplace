@@ -7,14 +7,19 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { v4 } from "uuid";
-import { addToDB } from "../../api/DBqueries";
+import { addToDB } from "../../api/ManageDB";
 import { useAppContext } from "../../context/AppContext";
 import { db } from "../../firebaseConfig";
-const Input = ({ chatid }) => {
+
+interface IInputProps {
+  chatid: string;
+}
+
+const Input = ({ chatid }: IInputProps) => {
   const { user } = useAppContext();
   const [message, setMessage] = useState("");
 
-  const handleSend = async (e) => {
+  const handleSend = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (message !== "") {
       const messagesRef = doc(db, "chats", chatid);
