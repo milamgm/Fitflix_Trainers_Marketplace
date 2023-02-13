@@ -13,10 +13,11 @@ const Dropdown = ({ value, setValue, listDB }: IDropdownProps) => {
   const [active, setActive] = useState(false);
   const [list, setList] = useState(listDB);
 
+  //Closes dropdown when user clicks outside it
   let domNode = useClickOutside(() => {
     setActive(false);
   });
-
+//Searchs input value in dropdown list and displays it in case it exists
   useEffect(() => {
     list.length === 0 ? setActive(false) : setActive(true);
     if (value !== "") {
@@ -30,6 +31,7 @@ const Dropdown = ({ value, setValue, listDB }: IDropdownProps) => {
       setActive(false);
     }
   }, [value]);
+
   useEffect(() => {
     list.length === 0 ? setActive(false) : value !== "" ?? setActive(true);
   }, [list]);

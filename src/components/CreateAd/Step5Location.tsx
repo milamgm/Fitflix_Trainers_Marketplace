@@ -16,6 +16,8 @@ const Step5Location = ({
 }: IStep5LocationProps) => {
   const options = ["Bei Dir zu Hause", "Du bist mobil (20km)", "Online"];
   const [zone, setZone] = useState("");
+
+  //Adds or removes opition in array
   const handleSelect = (option: string) => {
     if (!available.includes(option)) {
       updateFields({
@@ -27,12 +29,13 @@ const Step5Location = ({
       });
     }
   };
+  //Extracts the city of the selected location
   useEffect(() => {
     updateFields({
       location: zone.split(",").slice(-2)[0],
     });
   }, [zone]);
-
+//Activates forward button when location and at least one option are selected.
   useEffect(() => {
     setActiveNextBtn(zone !== "" && available[0] !== undefined);
   }, [available[0], zone]);

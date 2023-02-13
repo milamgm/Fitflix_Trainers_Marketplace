@@ -11,14 +11,16 @@ import {
 import { db } from "../../../firebaseConfig";
 import { useChatContext } from "../../../context/ChatContext";
 import MessageCard from "../../../components/MessageCard";
+import { IAdData } from "../../../types/types";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const { user, userData } = useAppContext();
   const { partnertsData } = useChatContext();
-  const { name, phoneNumber } = userData;
-  const [postedAds, setpostedAds] = useState([]);
-  
+  const { name, phoneNumber } = userData!;
+  const [postedAds, setpostedAds] = useState<IAdData[]>([]);
+
+  //Fetches user's posted ads
   useEffect(() => {
     const q = query(
       collection(db, "ads_collection"),
@@ -27,7 +29,7 @@ const Dashboard = () => {
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       setpostedAds([]);
       querySnapshot.forEach((doc) => {
-        const adRes = doc.data();
+        const adRes = doc.data() as IAdData;
         setpostedAds((prev) => [...prev, adRes]);
       });
     });
@@ -78,7 +80,7 @@ const Dashboard = () => {
       {postedAds.length >= 1 && (
         <div className="ads">
           <h2>Meine Anzeigen</h2>
-          {postedAds.map((data) => (
+          {postedAds.map((data: IAdData) => (
             <AdCard data={data} key={data.aid} />
           ))}
         </div>

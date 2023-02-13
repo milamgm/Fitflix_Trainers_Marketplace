@@ -12,6 +12,7 @@ const Step3Descrip = ({
   updateFields,
   setActiveNextBtn,
 }: IStep3DescripProps) => {
+    //Activates forward button when input value meets the specified requirements.
   useEffect(() => {
     const valid =
       description.split(" ").filter((word) => word !== "").length >= 20;

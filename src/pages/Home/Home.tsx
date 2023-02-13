@@ -8,16 +8,16 @@ import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
-  const { user, userData } = useAppContext();
   const revealRefs = useRef<HTMLDivElement[]>([]);
   revealRefs.current = [];
 
+  //Adds multiple refs to an array
   const addToRefs = (el: HTMLDivElement) => {
     if (el && !revealRefs.current.includes(el)) {
       revealRefs.current.push(el);
     }
   };
-
+  //Sets a fade-in effect to each ref
   useEffect(() => {
     revealRefs.current.forEach((el, index) => {
       gsap.fromTo(

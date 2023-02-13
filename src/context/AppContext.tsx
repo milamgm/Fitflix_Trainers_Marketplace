@@ -17,6 +17,8 @@ const AppProvider = ({ children }: IAppProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [userData, setUserData] = useState<IUserData | null>(null);
   //   const [places] = useState<string[]>(["places"]);
+
+  //Loads Google Maps API
   const googleMapsLibraries: LoadScriptProps["libraries"] = ["places"];
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: import.meta.env.VITE_REACT_PUBLIC_GOOGLE_MAPS_API_KEY,
@@ -24,12 +26,14 @@ const AppProvider = ({ children }: IAppProviderProps) => {
     region: "de",
     language: "de",
   });
+  //Fetches user log from firebase auth
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser !== undefined) setUser(currentUser);
     });
     return unsub;
   }, []);
+  //Fethes user data from "user_data" table
   useEffect(() => {
     const getUserData = async (uid: string) => {
       const docRef = doc(db, "user_data", uid);

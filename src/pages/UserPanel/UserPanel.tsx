@@ -4,6 +4,8 @@ import { Link, Outlet } from "react-router-dom";
 
 const UserPanel = () => {
   const [active, setActive] = useState("Dashboard");
+
+  //Gets url page and sets it as active in the nav
   const url = window.location.href;
   useEffect(() => {
     const urlArr = url.split("/");
@@ -39,7 +41,7 @@ const UserPanel = () => {
         </Link>
       </nav>
       <div className="page_body">
-        <h1>{active}</h1>
+        {active !== "Nachrichten" && <h1>{active}</h1>}
         <Outlet />
       </div>
     </>

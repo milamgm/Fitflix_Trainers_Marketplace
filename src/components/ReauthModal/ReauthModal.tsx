@@ -26,6 +26,7 @@ const ReauthModal = ({
 }: IReauthModalProps) => {
   const [authPass, setAuthPass] = useState("");
 
+  //Reauthenticates account and proceeds to email update or account deletion as appropriate
   const handleAuth = async (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
 

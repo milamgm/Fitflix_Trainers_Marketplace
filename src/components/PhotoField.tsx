@@ -19,9 +19,10 @@ const PhotoField = ({ img, imgType, updateFields }: IPhotoFieldProps) => {
   const storage = getStorage();
   let path = "";
   const inputRef = useRef<HTMLInputElement>(null);
-  const [prevPhoto, setPrevPhoto] = useState("");
+  const [previewPhoto, setPreviewPhoto] = useState("");
   const [showPhoto, setShowPhoto] = useState(img);
 
+//References an invisible file input
   const handlePhoto = () => {
     inputRef.current!.click();
   };
@@ -30,37 +31,41 @@ const PhotoField = ({ img, imgType, updateFields }: IPhotoFieldProps) => {
     if (e.target.files[0] !== undefined) {
       const file = e.target.files[0];
       const splitFileName = file.name.split(".");
+      //Verifies that it is an image file
       const extension = splitFileName[splitFileName.length - 1];
       const validExtention =
         (extension === "jpg" || extension === "png" || extension === "jpeg") &&
         file.size / 1000 <= 500;
       if (validExtention) {
         setShowPhoto("");
+        //Sets image file in firestore
         const imgName = file.name + v4();
-        const imgRef = ref(storage, `user__data/${user.uid}/${imgName}`);
+        const imgRef = ref(storage, `user__data/${user!.uid}/${imgName}`);
         await uploadBytes(imgRef, file);
 
-        path = `${
-          import.meta.env.VITE_REACT_APP_PATH_URL + user.uid
-        }%2F${imgName}?alt=media`;
+        path = `${import.meta.env.VITE_REACT_APP_PATH_URL + user!.uid
+          }%2F${imgName}?alt=media`;
         try {
           if (imgType === "userPic") {
-            updateProfile(user, {
+            //if is a profile image, sets it in firebase auth as well as in "user_data" table
+            updateProfile(user!, {
               photoURL: path,
             });
-            addToDB("user_data", user.uid, {
+            addToDB("user_data", user!.uid, {
               ...userData,
               profilePic: path,
             });
           } else if (imgType === "userPersId") {
-            addToDB("user_data", user.uid, {
+            //if is a certification, sets it in "user_data" table
+            addToDB("user_data", user!.uid, {
               ...userData,
               userPersId: path,
             });
           } else if (imgType === "adPhoto") {
+            //if is an ad image, creates a preview url and updates ad data state
             const imgFile = e.target.files[0];
             const localURL = URL.createObjectURL(imgFile);
-            setPrevPhoto(localURL);
+            setPreviewPhoto(localURL);
             updateFields!({ photo: path });
           }
         } catch (err) {
@@ -83,7 +88,7 @@ const PhotoField = ({ img, imgType, updateFields }: IPhotoFieldProps) => {
         <img
           className={imgType === "userPic" ? "avatar_photo" : "object_pic"}
           onClick={handlePhoto}
-          src={prevPhoto !== "" ? prevPhoto : showPhoto}
+          src={previewPhoto !== "" ? previewPhoto : showPhoto}
         />
       )}
       {!showPhoto && <img className="spinner" src={spinnersvg} />}

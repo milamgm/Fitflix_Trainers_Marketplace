@@ -10,12 +10,14 @@ import { useAppContext } from "../context/AppContext";
 import PhotoField from "../components/PhotoField";
 import Map from "../components/Map";
 import DeleteAccountModal from "../components/DeleteAccountModal";
+import Footer from "../components/Footer";
+import MobileSearch from "../components/MobileSearch";
 import {
   setAdToAdsCollection,
 } from "../api/ManageDB";
 import ReauthModal from "../components/ReauthModal/ReauthModal";
 import PersonalInfoWidget from "../components/PersonalInfoForm";
-import Card from "../components/ItemCard";
+import Card from "../components/ItemCard/ItemCard";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { AiFillFacebook, AiFillInstagram } from "react-icons/ai";
 import { SlSocialTwitter } from "react-icons/sl";
@@ -33,6 +35,8 @@ export {
   PersonalInfoWidget,
   ReauthModal,
   DeleteAccountModal,
+  MobileSearch,
+  Footer,
   Map,
   PhotoField,
   Sidebar,

@@ -10,9 +10,7 @@ import "./MyAccount.scss"
 
 const MyAccount = () => {
   const [openReauthModal, setOpenReauthModal] = useState(false);
-
   const { userData } = useAppContext();
- 
   const userCards = [
     {
       id: "personalangaben",

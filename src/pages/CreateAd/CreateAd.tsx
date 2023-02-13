@@ -5,6 +5,8 @@ import "./CreateAd.scss"
 const CreatePost = () => {
   const location = useLocation();
   let editData;
+
+  //Checks if an ad is being created or edited by checking if there is data in location.state of react router
   if (location.state !== null) {
     editData = location.state;
   }

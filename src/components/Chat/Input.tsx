@@ -1,13 +1,11 @@
 import {
   arrayUnion,
   doc,
-  onSnapshot,
   setDoc,
   Timestamp,
 } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { v4 } from "uuid";
-import { addToDB } from "../../api/ManageDB";
 import { useAppContext } from "../../context/AppContext";
 import { db } from "../../firebaseConfig";
 
@@ -19,6 +17,7 @@ const Input = ({ chatid }: IInputProps) => {
   const { user } = useAppContext();
   const [message, setMessage] = useState("");
 
+  //Sets the input message in the database
   const handleSend = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (message !== "") {
@@ -38,6 +37,7 @@ const Input = ({ chatid }: IInputProps) => {
     }
     setMessage("");
   };
+
   return (
     <div className="input">
       <input

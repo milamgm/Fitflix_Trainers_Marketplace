@@ -4,9 +4,7 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import {
   collection,
-  doc,
   getDocs,
-  onSnapshot,
   query,
   where,
 } from "firebase/firestore";
@@ -22,6 +20,7 @@ const Search = () => {
       : location.state.searchResults;
   const [adsData, setAdsData] = useState<IAdData[]>([]);
 
+  //Fetches ads that meet the probinient information from location.state of react router
   useEffect(() => {
     const getAdsData = async (zone: string, category: string) => {
       const location = zone.split(",").slice(-2)[0];
@@ -35,9 +34,9 @@ const Search = () => {
       const querySnapshot = await getDocs(q);
       setAdsData([]);
       querySnapshot.forEach((doc) => {
-        const adsArr = doc.data();
+        const adDataRes = doc.data() as IAdData;
 
-        setAdsData((prev) => [...prev, adsArr]);
+        setAdsData((prev) => [...prev, adDataRes]);
       });
     };
     getAdsData(searchResults.zone, searchResults.category);

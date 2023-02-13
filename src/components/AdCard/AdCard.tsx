@@ -1,4 +1,4 @@
-import { deleteDoc, deleteField, doc, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc } from "firebase/firestore";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
@@ -27,7 +27,7 @@ const AdCard = ({ data }: IAdCardProps) => {
 
   const email = user!.email;
   const trainerName = userData!.name;
-
+  //Navigates to Ad page to edit it
   const handleEdit = () => {
     const editData = data;
     navigate("/anzeigeaufgeben", { replace: true, state: { editData } });
@@ -52,10 +52,10 @@ const AdCard = ({ data }: IAdCardProps) => {
       },
     });
   };
-  //Deletes Ad
+  //Deletes Ad from database
   const handleDelete = async () => {
     try {
-      // Delete from ads_collection
+      // Delete from "ads_collection" document
       await deleteDoc(doc(db, "ads_collection", aid));
       toast.success("Ihrer Anzeige wurde erfolgreich gelöscht");
     } catch (err) {

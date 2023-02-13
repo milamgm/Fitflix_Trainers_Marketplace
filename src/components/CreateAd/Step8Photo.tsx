@@ -12,6 +12,7 @@ const Step8Photo = ({
   updateFields,
   setActiveNextBtn,
 }: IStep8PhotoProps) => {
+  //Activates forward button when an image has been selected
   useEffect(() => {
     setActiveNextBtn(photo !== "");
   }, [photo]);

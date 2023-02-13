@@ -7,9 +7,11 @@ interface IProfileMenuProps {
 }
 const ProfileMenu = ({ setOpenProfileMenu }: IProfileMenuProps) => {
   const navigate = useNavigate();
+  //Closes menu when user clicks outside it
   let domNode = useClickOutside(() => {
     setOpenProfileMenu(false);
   });
+  
   const logOut = () => {
     navigate("/");
     signOut(auth);

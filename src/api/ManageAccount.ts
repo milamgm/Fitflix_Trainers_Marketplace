@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../firebaseConfig";
 import { addToDB } from "./ManageDB";
 
+//Registers account with Firebase Auth
 export const registerAccount = async (
   name: string,
   email: string,
@@ -27,6 +28,7 @@ export const registerAccount = async (
   addToDB("user_data", auth.currentUser!.uid, userData);
 };
 
+//Logs out with Firebase Auth
 export const LogOut = () => {
   const navigate = useNavigate();
   navigate("/");

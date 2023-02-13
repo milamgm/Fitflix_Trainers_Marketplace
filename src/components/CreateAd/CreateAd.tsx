@@ -40,8 +40,9 @@ const CreateAd = ({ editDataParams }: ICreateAdProps) => {
     editDataC !== undefined ? editDataC : INITIAL_DATA
   );
   const [activeNextBtn, setActiveNextBtn] = useState(false);
-
   const navigate = useNavigate();
+
+  //Updates ad information information in the state
   function updateFields(fields: { [key: string]: string | number | string[] }) {
     setData((prev) => {
       return { ...prev, ...fields };
@@ -93,6 +94,7 @@ const CreateAd = ({ editDataParams }: ICreateAdProps) => {
       <AdConfirmation data={data} />,
     ]);
 
+  //When submit, if is not the last step, continues to the next one if so, sets the new ad into the database and navigates to user panel
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!isLastStep) {
@@ -103,9 +105,11 @@ const CreateAd = ({ editDataParams }: ICreateAdProps) => {
       navigate("/benutzerpanel");
     }
   }
+  
+  //Ads uid and a new aid (if it does not exists yet) to the state
   useEffect(() => {
     if (isLastStep && editDataParams === undefined) {
-      updateFields({ uid : user!.uid, aid: v4() });
+      updateFields({ uid: user!.uid, aid: v4() });
     }
   }, [isLastStep]);
 

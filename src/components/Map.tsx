@@ -23,6 +23,7 @@ export default Map;
 const RunMap = ({ zone }: IMapProps) => {
   const [geocords, setGeocords] = useState<LatLng | undefined>();
 
+  //Gets latitude and longitude from the specified location
   useEffect(() => {
     const getgeo = async () => {
       const results = await getGeocode({ address: zone });

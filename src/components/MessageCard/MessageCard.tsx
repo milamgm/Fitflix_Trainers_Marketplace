@@ -4,6 +4,7 @@ import { useChatContext } from "../../context/ChatContext";
 import { useNavigate } from "react-router-dom";
 
 interface IMessageCardProps {
+  partnerUid: string,
   partnerName: string;
   partnerPic: string;
 }

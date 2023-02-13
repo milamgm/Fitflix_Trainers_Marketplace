@@ -10,15 +10,11 @@ import {
 import { useState } from "react";
 import done from "../../../public/done.svg";
 import "./Trainer.scss";
-
-import defaultUserAvatar from "../../../public/user.svg";
 import {
   arrayUnion,
   doc,
-  getDocs,
   setDoc,
   Timestamp,
-  updateDoc,
 } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import { v4 } from "uuid";
@@ -44,11 +40,15 @@ const Trainer = () => {
     price,
     location,
   } = Routerlocation.state;
-  const handleSend = async (e) => {
+
+  const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    //Creates a chat id combining uids of both participants
     const chatid =
       user!.uid > trainerUid ? user!.uid + trainerUid : trainerUid + user!.uid;
     try {
+      //Sets the partnert´s uid as well as chat id and ad id in the current user's "user_chats" table.
       const userchatsRef = doc(db, "user_chats", user!.uid);
       await setDoc(
         userchatsRef,
@@ -61,6 +61,7 @@ const Trainer = () => {
         },
         { merge: true }
       );
+      //Sets the current user's uid as well as chat id and ad id in the partnerts's "user_chats" table.
       const trainerchatsRef = doc(db, "user_chats", trainerUid);
       await setDoc(
         trainerchatsRef,
@@ -73,6 +74,7 @@ const Trainer = () => {
         },
         { merge: true }
       );
+      //Sets chat information in "chats" table
       const messagesRef = doc(db, "chats", chatid);
       await setDoc(
         messagesRef,
@@ -95,7 +97,7 @@ const Trainer = () => {
       toast.error("Fehler. Bitte probieren Sie noch Mal.");
     }
   };
-  console.log(trainerPic);
+
   return (
     <>
       <div className="ad_image">
@@ -157,9 +159,8 @@ const Trainer = () => {
                         <textarea
                           value={message}
                           onChange={(e) => setMessage(e.target.value)}
-                          placeholder={`Schreiben Sie Ihre Nachricht für ${
-                            trainerName.split(" ")[0]
-                          }.`}
+                          placeholder={`Schreiben Sie Ihre Nachricht für ${trainerName.split(" ")[0]
+                            }.`}
                         ></textarea>
                         <button type="submit">Senden</button>
                       </form>

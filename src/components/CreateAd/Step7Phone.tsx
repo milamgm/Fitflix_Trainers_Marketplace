@@ -11,11 +11,12 @@ const Step7Phone = ({
   updateFields,
   setActiveNextBtn,
 }: IStep7PhoneProps) => {
+  //Adds inut to state
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
     updateFields({ phone: value });
   };
-
+  //Activates forward button when the input value meets the specified requirements.
   useEffect(() => {
     const valid = phone.toString().length >= 5 && phone.toString().length <= 20;
     setActiveNextBtn(valid);

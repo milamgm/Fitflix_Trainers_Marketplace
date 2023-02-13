@@ -12,6 +12,7 @@ const Step4About = ({
   updateFields,
   setActiveNextBtn,
 }: IStep4AboutProps) => {
+    //Activates forward button when input value meets the specified requirements.
   useEffect(() => {
     const valid = about.split(" ").filter((word) => word !== "").length >= 20;
     setActiveNextBtn(valid);

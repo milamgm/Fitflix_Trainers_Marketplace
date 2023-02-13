@@ -12,6 +12,8 @@ const Step1AdTitle = ({
   updateFields,
   setActiveNextBtn,
 }: IStep1AdTitleProps) => {
+
+   //Activates forward button when input value meets the specified requirements.
   useEffect(() => {
     const wordsCount = title.split(" ").filter((word) => word !== "").length;
     const valid = wordsCount >= 5 && wordsCount <= 30;

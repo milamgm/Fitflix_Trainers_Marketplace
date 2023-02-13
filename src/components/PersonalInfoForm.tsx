@@ -30,8 +30,8 @@ const personalInfoFormFields = [
 const PersonalInfoForm = () => {
   const { user, setUser, userData } = useAppContext();
   const [openReauthModal, setOpenReauthModal] = useState(false);
-  const { uid } = user;
-  const { name, phoneNumber } = userData;
+  const { uid } = user!;
+  const { name, phoneNumber } = userData!;
   const [values, setValues] = useState<IPersonalInfoForm>({
     input_name: name,
     input_phoneNumber: phoneNumber,
@@ -41,7 +41,8 @@ const PersonalInfoForm = () => {
   const activeSubmitBtn =
     JSON.stringify([input_name, input_phoneNumber]) !==
     JSON.stringify([name, phoneNumber]);
-
+    
+//Updates user information in firebase auth as well as in user_data table
   const handleSubmit = async () => {
     try {
       updateProfile(auth.currentUser!, {

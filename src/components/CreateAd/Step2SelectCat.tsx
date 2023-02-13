@@ -14,12 +14,13 @@ const Step2SelectCat = ({
   updateFields,
   setActiveNextBtn,
 }: IStep2SelectCatProps) => {
+  //Removes category from category array
   const removeCategory = (newCategory: string) => {
     updateFields({
       categories: categories.filter((category) => category !== newCategory),
     });
   };
-
+//Adds or removes a category in the array
   const handleSelect = (newCategory: string) => {
     if (!categories.includes(newCategory)) {
       updateFields({
@@ -29,7 +30,7 @@ const Step2SelectCat = ({
       removeCategory(newCategory);
     }
   };
-
+//Activates forward button when at least one category is selected
   useEffect(() => {
     setActiveNextBtn(categories[0] !== undefined);
   }, [categories[0]]);

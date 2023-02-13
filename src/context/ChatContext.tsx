@@ -5,8 +5,7 @@ import { db } from "../firebaseConfig";
 import {
   IChatContext,
   IPartnertData,
-  IPartnertsData,
-  IUserChats,
+  IUserChat,
 } from "../types/types";
 import { useAppContext } from "./AppContext";
 
@@ -20,9 +19,11 @@ interface IChatProviderProps {
 
 const ChatProvider = ({ children }: IChatProviderProps) => {
   const { user } = useAppContext();
-  const [userChats, setUserChats] = useState<IUserChats[]>([]);
-  const [partnertsData, setPartnertsData] = useState<IPartnertsData[]>([]);
+  const [userChats, setUserChats] = useState<IUserChat[]>([]);
+  const [partnertsData, setPartnertsData] = useState<IPartnertData[]>([]);
   const [activeChat, setActiveChat] = useState<IPartnertData>(partnertDataEmpty);
+
+  //Fetches user chats
   useEffect(() => {
     const getChats = async () => {
       const userChatsRef = doc(db, "user_chats", user!.uid);
@@ -34,7 +35,8 @@ const ChatProvider = ({ children }: IChatProviderProps) => {
 
     if (user !== null) getChats();
   }, [user]);
-
+  
+  //Fetches messages from a chat
   useEffect(() => {
     const unsub = async () => {
       if (userChats.length >= 1) {

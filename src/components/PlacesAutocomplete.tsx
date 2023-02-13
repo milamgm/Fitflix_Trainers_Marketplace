@@ -1,4 +1,3 @@
-import { useLoadScript } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
 import usePlacesAutocomplete from "use-places-autocomplete";
 
@@ -15,7 +14,7 @@ const PlacesAutocomplete = ({ setZone }: IPlacesAutocompleteProps) => {
   } = usePlacesAutocomplete();
   const [active, setActive] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
-
+  //Open it closes dropdown if an option has been selected or if this exists or not
   useEffect(() => {
     if (isSelected) {
       setActive(false);

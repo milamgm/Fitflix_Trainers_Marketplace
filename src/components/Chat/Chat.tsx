@@ -9,15 +9,16 @@ const Chat = () => {
   const { userChats, activeChat } = useChatContext();
   const [messages, setMessages] = useState([]);
 
+  //Creates a chat id combining the uids from both participants
   const chatid = userChats.find(
     (chat) => chat.partner_uid === activeChat.partnerUid
   )!.chat_id;
 
+  //Fetches messages of the specified chat
   useEffect(() => {
    const unsub =  onSnapshot(doc(db, "chats", chatid), (doc) => {
       setMessages(doc.data()!.messages);
     });
-
     return unsub
   }, [activeChat]);
 

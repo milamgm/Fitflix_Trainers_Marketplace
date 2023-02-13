@@ -8,6 +8,7 @@ const Sidebar = () => {
   const [searchInput, setSearchInput] = useState("");
   const [displayChatsArr, setDisplayChatsArr] = useState<IPartnertData[]>([]);
 
+  //Searchs the input string in partnertsData array
   useEffect(() => {
     const searchResult = partnertsData.filter((chat) =>
       chat.partnerName.toLowerCase().includes(searchInput.toLowerCase())
@@ -39,7 +40,7 @@ const Sidebar = () => {
           >
             <img
               src={user.partnerPic !== "" ? user.partnerPic : profilePicDefault}
-              alt={user.partnerUid}
+              alt={user.partnerName}
             />
             <div className="userChatInfo">
               <span>{user.partnerName}</span>

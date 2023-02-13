@@ -1,9 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { useState } from "react";
 import "./styles/App.scss";
 import "./styles/Effects.scss";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import { Header, Footer } from "./utilities/utils"
 import { useAppContext } from "./context/AppContext";
 import CreateAd from "./pages/CreateAd";
 import Home from "./pages/Home";

@@ -15,6 +15,7 @@ const MobileSearch = ({ setOpenSearchMenu }: IMobileSearchProps) => {
   const [zone, setZone] = useState("");
   const navigate = useNavigate();
 
+  //Switches between desktop and mobile search menu
   useEffect(() => {
     function handleWindowResize() {
       setOpenSearchMenu(getWindowSize().innerWidth <= 819);

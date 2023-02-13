@@ -12,9 +12,11 @@ const Message = ({ message, date, sender_uid }: IMessageProps) => {
   const { user } = useAppContext();
   const lastMessageRef = useRef<HTMLDivElement>(null);
 
+  //Scrolls to the latest message
   useEffect(() => {
     lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [message]);
+
   return (
     <>
       <div

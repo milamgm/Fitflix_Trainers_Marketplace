@@ -17,6 +17,7 @@ const Header = () => {
   const { user, userData } = useAppContext();
   const [openModal, setOpenModal] = useState(false);
 
+  //Displays user wrapper in case is logged or a loging button if not
   const rightDiv = () => {
     if (user && userData) {
       return <AvatarWrapper userData={userData} />;

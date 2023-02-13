@@ -14,7 +14,9 @@ export interface IChatContext {
   setActiveChat: React.Dispatch<React.SetStateAction<IPartnertData>>;
 }
 export interface IUserData {
+  uid: string,
   name: string;
+  email: string;
   phoneNumber: string;
   postedAds: { [key: string]: IAdData };
   profilePic: string;

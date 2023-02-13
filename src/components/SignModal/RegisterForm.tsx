@@ -9,10 +9,11 @@ interface IRegisterFormProps {
 }
 
 const RegisterForm = ({ setOpenModal }: IRegisterFormProps) => {
-  //TODO: VALIDATE INPUTS
+
   const [error, setError] = useState(false);
   const [validationMessages, setValidationMessages] = useState<string[]>([]);
 
+  //Validates form and registers account in case validation is successfull
   const handleSubmit = async (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
     const name: string = e.target[0].value;
@@ -35,7 +36,7 @@ const RegisterForm = ({ setOpenModal }: IRegisterFormProps) => {
       setError(true);
     }
   };
-  useEffect(() => {}, []);
+
   return (
     <form onSubmit={handleSubmit}>
       <input

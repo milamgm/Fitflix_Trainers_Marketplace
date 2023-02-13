@@ -12,6 +12,7 @@ interface ISignModalProps {
 const SignModal = ({ openModal, setOpenModal }: ISignModalProps) => {
   const [signup, setSignup] = useState(false);
 
+  //Switches between login and register form
   const showForm = () => {
     if (signup) {
       return <RegisterForm setOpenModal={setOpenModal} />;

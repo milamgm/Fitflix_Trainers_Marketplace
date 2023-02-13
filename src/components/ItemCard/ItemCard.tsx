@@ -1,14 +1,14 @@
 import { doc, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { db } from "../firebaseConfig";
-import { IAdData } from "../types/types";
-import defaultPhoto from "../../public/logo.svg";
+import { db } from "../../firebaseConfig";
+import { IAdData } from "../../types/types";
+import defaultPhoto from "../../../public/logo.svg";
+import "./ItemCard.scss"
 
 const ItemCard = ({
   uid,
   aid,
-  email,
   title,
   photo,
   categories,
@@ -22,7 +22,8 @@ const ItemCard = ({
   const [trainerUid, setTrainerUid] = useState("");
   const [trainerPic, setTrainerPic] = useState("");
   const [trainerPhone, setTrainerPhone] = useState("");
-  console.log(aid)
+
+  //Fetches information from the advertiser user
   useEffect(() => {
     const getUserData = async (uid: string) => {
       const docRef = doc(db, "user_data", uid);
@@ -45,7 +46,6 @@ const ItemCard = ({
           state: {
             aid,
             title,
-            email,
             trainerUid,
             trainerName,
             trainerPhone,

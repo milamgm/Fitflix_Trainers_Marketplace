@@ -12,15 +12,17 @@ const Step6Price = ({
   updateFields,
   setActiveNextBtn,
 }: IStep6PriceProps) => {
+  //Adds inut to state
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
     updateFields({ price: value });
   };
-  console.log(price)
+//Activates forward button when the input value meets the specified requirements.
   useEffect(() => {
     const valid = price >= 1 && price <= 200;
     setActiveNextBtn(valid);
   }, [price]);
+
   return (
     <div className="step">
       <div className="step_title">
