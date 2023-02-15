@@ -1,13 +1,9 @@
-import {
-  arrayUnion,
-  doc,
-  setDoc,
-  Timestamp,
-} from "firebase/firestore";
+import { arrayUnion, doc, setDoc, Timestamp } from "firebase/firestore";
 import { useState } from "react";
 import { v4 } from "uuid";
 import { useAppContext } from "../../context/AppContext";
 import { db } from "../../firebaseConfig";
+import sendImg from "../../../public/send.svg";
 
 interface IInputProps {
   chatid: string;
@@ -50,12 +46,7 @@ const Input = ({ chatid }: IInputProps) => {
         }}
       />
       <div className="send">
-        <img src="/image.svg" alt="" />
-        <input type="file" style={{ display: "none" }} name="" id="" />
-        <label htmlFor="file">
-          <img src="/attach.svg" alt="" />
-        </label>
-        <img className="send_btn" onClick={handleSend} src="/send.svg" alt="" />
+        <img className="send_btn" onClick={handleSend} src={sendImg} alt="" />
       </div>
     </div>
   );

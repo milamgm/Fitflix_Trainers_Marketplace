@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import PhotoField from "../PhotoField";
 import { TUpdateFields } from "../../types/types";
+import addPhoto from "../../../public/addPhoto.png";
 
 interface IStep8PhotoProps {
   photo: string;
@@ -31,7 +32,7 @@ const Step8Photo = ({
       </div>
       <div className="photo_div">
         <PhotoField
-          img={photo ? photo : "./addPhoto.png"}
+          img={photo ? photo : addPhoto}
           imgType="adPhoto"
           updateFields={updateFields}
         />

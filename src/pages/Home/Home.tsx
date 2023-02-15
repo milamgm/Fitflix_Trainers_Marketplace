@@ -1,9 +1,13 @@
-import { Banner, useAppContext } from "../../utilities/utils";
+import { Banner } from "../../utilities/utils";
 import "./Home.scss";
-import steps from "../../data/home_steps.json";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import image16 from "../../../public/image16.jpg";
+import image17 from "../../../public/image17.jpg";
+import searchIcon from "../../../public/search.svg";
+import messageIcon from "../../../public/message.svg";
+import calendarIcon from "../../../public/calendar.svg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,7 +70,7 @@ const Home = () => {
           <h1 className="section__title" ref={addToRefs}>
             Lernen war noch nie so einfach!
           </h1>
-          {steps.map(({ title, desc, img, desc_position }) =>
+          {demo_steps.map(({ title, desc, img, desc_position }) =>
             desc_position === "left" ? (
               <div className="step__div" key={title} ref={addToRefs}>
                 <div className="step__description">
@@ -102,7 +106,7 @@ const Home = () => {
           </h1>
           <div className="comment" ref={addToRefs}>
             <div className="header">
-              <img className="avatar" src="./image17.jpg" alt="" />
+              <img className="avatar" src={image17} alt="" />
               <div className="info">
                 <h4>Athina B.</h4>
                 <h6>Januar 2023 </h6>
@@ -131,7 +135,7 @@ const Home = () => {
           </div>
           <div className="comment" ref={addToRefs}>
             <div className="header">
-              <img className="avatar" src="./image16.jpg" alt="" />
+              <img className="avatar" src={image16} alt="" />
               <div className="info">
                 <h4>Martin G.</h4>
                 <h6>Dezember 2022</h6>
@@ -159,3 +163,24 @@ const Home = () => {
 };
 
 export default Home;
+
+const demo_steps = [
+  {
+    title: "1. Suchen",
+    desc: "Schau Dir beliebig viele Profile an und kontaktiere die Lehrkräfte, die Deinen persönlichen Kriterien (Preis, Ausbildung, Bewertung, Unterrichtsform etc.) am besten entsprechen.",
+    img: searchIcon,
+    desc_position: "left",
+  },
+  {
+    title: "2. Kontaktieren",
+    desc: "Die Lehrkräfte antworten blitzschnell innerhalb weniger Stunden! Und falls Du Schwierigkeiten haben solltest, die passende Lehrkraft zu finden, hilft Dir unser Support-Team gerne weiter.",
+    img: messageIcon,
+    desc_position: "right",
+  },
+  {
+    title: "3. Unterricht planen",
+    desc: "Tausche Dich mit Deiner Lehrkraft oder Deinem Coach aus und plant eure Kurse selbstständig über Euren Messenger.        ",
+    img: calendarIcon,
+    desc_position: "left",
+  },
+];

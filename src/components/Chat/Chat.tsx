@@ -16,19 +16,16 @@ const Chat = () => {
 
   //Fetches messages of the specified chat
   useEffect(() => {
-   const unsub =  onSnapshot(doc(db, "chats", chatid), (doc) => {
+    const unsub = onSnapshot(doc(db, "chats", chatid), (doc) => {
       setMessages(doc.data()!.messages);
     });
-    return unsub
+    return unsub;
   }, [activeChat]);
 
   return (
     <div className="chat">
       <div className="chatInfo">
         <h4>{activeChat.partnerName}</h4>
-        <div className="chatIcons">
-          <img src="/more.svg" alt="more" />
-        </div>
       </div>
       <Messages messages={messages} />
       <Input chatid={chatid} />
