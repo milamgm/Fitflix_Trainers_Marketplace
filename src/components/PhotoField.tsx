@@ -19,7 +19,6 @@ const PhotoField = ({ img, imgType, updateFields }: IPhotoFieldProps) => {
   const storage = getStorage();
   let path = "";
   const inputRef = useRef<HTMLInputElement>(null);
-  const [previewPhoto, setPreviewPhoto] = useState("");
   const [showPhoto, setShowPhoto] = useState(img);
 
 //References an invisible file input
@@ -47,7 +46,7 @@ const PhotoField = ({ img, imgType, updateFields }: IPhotoFieldProps) => {
           }%2F${imgName}?alt=media`;
         try {
           if (imgType === "userPic") {
-            //if is a profile image, sets it in firebase auth as well as in "user_data" table
+            //if it is a profile image, sets it in firebase auth as well as in "user_data" table
             updateProfile(user!, {
               photoURL: path,
             });
@@ -56,13 +55,13 @@ const PhotoField = ({ img, imgType, updateFields }: IPhotoFieldProps) => {
               profilePic: path,
             });
           } else if (imgType === "userPersId") {
-            //if is a certification, sets it in "user_data" table
+            //if it is a certification, sets it in "user_data" table
             addToDB("user_data", user!.uid, {
               ...userData,
               userPersId: path,
             });
           } else if (imgType === "adPhoto") {
-            //if is an ad image, creates a preview url and updates ad data state
+            //if it is an ad image, creates a preview url and updates ad data state
             const imgFile = e.target.files[0];
             const localURL = URL.createObjectURL(imgFile);
             setShowPhoto(localURL);
