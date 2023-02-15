@@ -65,7 +65,7 @@ const PhotoField = ({ img, imgType, updateFields }: IPhotoFieldProps) => {
             //if is an ad image, creates a preview url and updates ad data state
             const imgFile = e.target.files[0];
             const localURL = URL.createObjectURL(imgFile);
-            setPreviewPhoto(localURL);
+            setShowPhoto(localURL);
             updateFields!({ photo: path });
           }
         } catch (err) {
@@ -88,7 +88,7 @@ const PhotoField = ({ img, imgType, updateFields }: IPhotoFieldProps) => {
         <img
           className={imgType === "userPic" ? "avatar_photo" : "object_pic"}
           onClick={handlePhoto}
-          src={previewPhoto !== "" ? previewPhoto : showPhoto}
+          src={showPhoto}
         />
       )}
       {!showPhoto && <img className="spinner" src={spinnersvg} />}
