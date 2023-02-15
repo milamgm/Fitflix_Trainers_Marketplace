@@ -1,5 +1,4 @@
 {
-  "homepage": "https://milamgm.github.io/Fitflix_Trainers_Marketplace/",
   "name": "fitflix",
   "private": true,
   "version": "0.0.0",
@@ -8,8 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
