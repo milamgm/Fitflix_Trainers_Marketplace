@@ -7,7 +7,7 @@ import ChatProvider from "./context/ChatContext";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/fitflix-trainers-marketplace/">
       <AppProvider>
         <ChatProvider>
           <App />

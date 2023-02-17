@@ -17,24 +17,18 @@ const Dropdown = ({ value, setValue, listDB }: IDropdownProps) => {
   let domNode = useClickOutside(() => {
     setActive(false);
   });
-//Searchs input value in dropdown list and displays it in case it exists
-  useEffect(() => {
-    list.length === 0 ? setActive(false) : setActive(true);
+  //Searchs input value in dropdown list and displays it in case it exists
+  const handleSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setValue(value);
     if (value !== "") {
-      setList(
-        listDB.filter((valueA) =>
-          valueA.toLowerCase().includes(value.toLowerCase())
-        )
+      const list = listDB.filter((valueA) =>
+        valueA.toLowerCase().includes(value.toLowerCase())
       );
-      setActive(true);
-    } else {
-      setActive(false);
+      setList(list);
+      setActive(list.length >= 1);
     }
-  }, [value]);
-
-  useEffect(() => {
-    list.length === 0 ? setActive(false) : value !== "" ?? setActive(true);
-  }, [list]);
+  };
 
   return (
     <div className="dropdown" ref={domNode}>
@@ -44,7 +38,7 @@ const Dropdown = ({ value, setValue, listDB }: IDropdownProps) => {
           placeholder="Sportart wählen"
           className="form__input"
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={(e) => handleSelect(e)}
         />
         <ExpandMoreIcon
           className="dropdown__icon"
