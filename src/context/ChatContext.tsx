@@ -2,11 +2,7 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { createContext, useContext } from "react";
 import { db } from "../firebaseConfig";
-import {
-  IChatContext,
-  IPartnertData,
-  IUserChat,
-} from "../types/types";
+import { IChatContext, IPartnertData, IUserChat } from "../types/types";
 import { useAppContext } from "./AppContext";
 
 const ChatContext = createContext({} as IChatContext);
@@ -21,54 +17,58 @@ const ChatProvider = ({ children }: IChatProviderProps) => {
   const { user } = useAppContext();
   const [userChats, setUserChats] = useState<IUserChat[]>([]);
   const [partnertsData, setPartnertsData] = useState<IPartnertData[]>([]);
-  const [activeChat, setActiveChat] = useState<IPartnertData>(partnertDataEmpty);
+  const [activeChat, setActiveChat] =
+    useState<IPartnertData>(partnertDataEmpty);
 
   //Fetches user chats
   useEffect(() => {
     const getChats = async () => {
       const userChatsRef = doc(db, "user_chats", user!.uid);
-      onSnapshot(userChatsRef, (doc) => {
+      const unsub = onSnapshot(userChatsRef, (doc) => {
         const res = doc.data();
-        if (res) setUserChats(Object.values(res));
+        if (res) {
+          setUserChats(Object.values(res));
+        }
       });
+      return () => {
+        unsub();
+      };
     };
 
-    if (user !== null) getChats();
-  }, [user]);
-  
-  //Fetches messages from a chat
+    user?.uid && getChats();
+  }, [user?.uid]);
+
+  //Fetches information from chat partnerts and sets the first one as active by default.
   useEffect(() => {
-    const unsub = async () => {
-      if (userChats.length >= 1) {
-        userChats.forEach((chat) => {
-          const userRef = doc(db, "user_data", chat.partner_uid);
-          onSnapshot(userRef, (user) => {
-            const res = user.data();
-            setPartnertsData((prev) => [
-              ...prev,
-              {
-                partnerUid: res!.uid,
-                partnerName: res!.name,
-                partnerPic: res!.profilePic,
-              },
-            ]);
-            if (activeChat?.partnerName === "")
-              setActiveChat({
-                partnerUid: res!.uid,
-                partnerName: res!.name,
-                partnerPic: res!.profilePic,
-              });
+    if (userChats.length >= 1) {
+      const arr: IPartnertData[] = [];
+      userChats.forEach((chat) => {
+        const userRef = doc(db, "user_data", chat.partner_uid);
+        const unsub = onSnapshot(userRef, (user) => {
+          const res = user.data();
+          arr.push({
+            partnerUid: res!.uid,
+            partnerName: res!.name,
+            partnerPic: res!.profilePic,
           });
+          setPartnertsData(arr);
+          setActiveChat(arr[0]);
         });
-      }
-    };
-    unsub();
-    return () => {
-      unsub();
-    };
+
+        return () => {
+          unsub();
+        };
+      });
+    }
   }, [userChats]);
 
-  const values = { partnertsData, userChats, activeChat, setActiveChat };
+  const values = {
+    partnertsData,
+    userChats,
+    setUserChats,
+    activeChat,
+    setActiveChat,
+  };
   return <ChatContext.Provider value={values}>{children}</ChatContext.Provider>;
 };
 
