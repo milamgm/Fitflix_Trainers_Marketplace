@@ -17,10 +17,10 @@ const Chat = () => {
   //Fetches messages of the specified chat
   useEffect(() => {
     const unsub = onSnapshot(doc(db, "chats", chatid), (doc) => {
-      setMessages(doc.data()!.messages);
+      doc.exists() && setMessages(doc.data()!.messages);
     });
     return unsub;
-  }, [activeChat]);
+  }, [activeChat.partnerUid]);
 
   return (
     <div className="chat">

@@ -51,7 +51,7 @@ const PersonalInfoForm = () => {
       const userUpdatedData = {
         ...userData,
         name: input_name,
-        phoneNumber: input_phoneNumber,
+        phoneNumber: input_phoneNumber !== null ? input_phoneNumber : "",
       };
       addToDB("user_data", uid, userUpdatedData);
       toast.success("Daten wurden erfolgreich aktualisiert");

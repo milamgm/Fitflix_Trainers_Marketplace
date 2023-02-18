@@ -31,13 +31,15 @@ const AppProvider = ({ children }: IAppProviderProps) => {
     const unsub = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser !== undefined) setUser(currentUser);
     });
-    return unsub;
+    return () => {
+      unsub();
+    };
   }, []);
   //Fethes user data from "user_data" table
   useEffect(() => {
     const getUserData = async (uid: string) => {
       const docRef = doc(db, "user_data", uid);
-      onSnapshot(docRef, (doc) => {
+      const unsub = onSnapshot(docRef, (doc) => {
         if (doc.data()) {
           const data = doc.data() as IUserData;
           setUserData(
@@ -47,9 +49,13 @@ const AppProvider = ({ children }: IAppProviderProps) => {
           );
         }
       });
+
+      return () => {
+        unsub();
+      };
     };
-    if (user?.uid) getUserData(user.uid);
-  }, [user]);
+    user?.uid && getUserData(user.uid);
+  }, [user?.uid]);
 
   const values = {
     user,
