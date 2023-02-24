@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { CreateAd } from "../../utilities/utils";
+import { CreateAd } from "../../common/utilities/utils";
 import "./CreateAd.scss"
 
 const CreatePost = () => {

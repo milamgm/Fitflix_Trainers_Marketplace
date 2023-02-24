@@ -1,4 +1,4 @@
-import { Banner } from "../../utilities/utils";
+import { Banner } from "../../common/utilities/utils";
 import "./Home.scss";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";

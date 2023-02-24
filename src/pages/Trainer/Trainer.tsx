@@ -6,17 +6,12 @@ import {
   AiFillFacebook,
   AiFillInstagram,
   SlSocialTwitter,
-} from "../../utilities/utils";
+  db,
+} from "../../common/utilities/utils";
 import { useState } from "react";
 import done from "../../../public/done.svg";
 import "./Trainer.scss";
-import {
-  arrayUnion,
-  doc,
-  setDoc,
-  Timestamp,
-} from "firebase/firestore";
-import { db } from "../../firebaseConfig";
+import { arrayUnion, doc, setDoc, Timestamp } from "firebase/firestore";
 import { v4 } from "uuid";
 import { toast } from "react-hot-toast";
 
@@ -45,56 +40,60 @@ const Trainer = () => {
     e.preventDefault();
 
     //Creates a chat id combining uids of both participants
-    const chatid =
-      user!.uid > trainerUid ? user!.uid + trainerUid : trainerUid + user!.uid;
-    try {
-      //Sets the partnert´s uid as well as chat id and ad id in the current user's "user_chats" table.
-      const userchatsRef = doc(db, "user_chats", user!.uid);
-      await setDoc(
-        userchatsRef,
-        {
-          [trainerUid]: {
-            chat_id: chatid,
-            partner_uid: trainerUid,
-            aid: aid,
+    if (message !== "") {
+      const chatid =
+        user!.uid > trainerUid
+          ? user!.uid + trainerUid
+          : trainerUid + user!.uid;
+      try {
+        //Sets the partnert´s uid as well as chat id and ad id in the current user's "user_chats" table.
+        const userchatsRef = doc(db, "user_chats", user!.uid);
+        await setDoc(
+          userchatsRef,
+          {
+            [trainerUid]: {
+              chat_id: chatid,
+              partner_uid: trainerUid,
+              aid: aid,
+            },
           },
-        },
-        { merge: true }
-      );
-      //Sets the current user's uid as well as chat id and ad id in the partnerts's "user_chats" table.
-      const trainerchatsRef = doc(db, "user_chats", trainerUid);
-      await setDoc(
-        trainerchatsRef,
-        {
-          [user!.uid]: {
-            chat_id: chatid,
-            partner_uid: user!.uid,
-            aid: aid,
+          { merge: true }
+        );
+        //Sets the current user's uid as well as chat id and ad id in the partnerts's "user_chats" table.
+        const trainerchatsRef = doc(db, "user_chats", trainerUid);
+        await setDoc(
+          trainerchatsRef,
+          {
+            [user!.uid]: {
+              chat_id: chatid,
+              partner_uid: user!.uid,
+              aid: aid,
+            },
           },
-        },
-        { merge: true }
-      );
-      //Sets chat information in "chats" table
-      const messagesRef = doc(db, "chats", chatid);
-      await setDoc(
-        messagesRef,
-        {
-          messages: arrayUnion({
-            id: v4(),
-            message,
-            sender_uid: user!.uid,
-            date: Timestamp.now(),
-          }),
-        },
-        { merge: true }
-      );
-      setMessage("");
-      toast.success("Ihre Nachricht wurde erfolgreich gesendet.", {
-        duration: 3000,
-      });
-      setContacted(true);
-    } catch (error) {
-      toast.error("Fehler. Bitte probieren Sie noch Mal.");
+          { merge: true }
+        );
+        //Sets chat information in "chats" table
+        const messagesRef = doc(db, "chats", chatid);
+        await setDoc(
+          messagesRef,
+          {
+            messages: arrayUnion({
+              id: v4(),
+              message,
+              sender_uid: user!.uid,
+              date: Timestamp.now(),
+            }),
+          },
+          { merge: true }
+        );
+        setMessage("");
+        toast.success("Ihre Nachricht wurde erfolgreich gesendet.", {
+          duration: 3000,
+        });
+        setContacted(true);
+      } catch (error) {
+        toast.error("Fehler. Bitte probieren Sie noch Mal.");
+      }
     }
   };
 
@@ -159,8 +158,9 @@ const Trainer = () => {
                         <textarea
                           value={message}
                           onChange={(e) => setMessage(e.target.value)}
-                          placeholder={`Schreiben Sie Ihre Nachricht für ${trainerName.split(" ")[0]
-                            }.`}
+                          placeholder={`Schreiben Sie Ihre Nachricht für ${
+                            trainerName.split(" ")[0]
+                          }.`}
                         ></textarea>
                         <button type="submit">Senden</button>
                       </form>

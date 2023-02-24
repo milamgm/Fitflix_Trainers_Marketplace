@@ -1,6 +1,5 @@
 import "./Messages.scss";
-import { Sidebar, Chat } from "../../../utilities/utils";
-import { useChatContext } from "../../../context/ChatContext";
+import { Sidebar, Chat, useChatContext } from "../../../common/utilities/utils";
 
 const Messages = () => {
   const { partnertsData } = useChatContext();

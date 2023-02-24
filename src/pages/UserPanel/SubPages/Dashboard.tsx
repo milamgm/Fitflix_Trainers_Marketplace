@@ -1,17 +1,16 @@
-import { AdCard, useAppContext, PhotoField } from "../../../utilities/utils";
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.scss";
 import { useEffect, useState } from "react";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import {
-  collection,
-  onSnapshot,
-  query,
-  where,
-} from "firebase/firestore";
-import { db } from "../../../firebaseConfig";
-import { useChatContext } from "../../../context/ChatContext";
-import MessageCard from "../../../components/MessageCard";
-import { IAdData } from "../../../types/types";
+  useChatContext,
+  MessageCard,
+  db,
+  AdCard,
+  useAppContext,
+  PhotoField,
+} from "../../../common/utilities/utils";
+import { IAdData } from "../../../common/types/types";
 
 const Dashboard = () => {
   const navigate = useNavigate();

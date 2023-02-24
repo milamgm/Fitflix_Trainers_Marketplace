@@ -4,7 +4,7 @@ import {
   ReauthModal,
   PersonalInfoWidget,
   PhotoField,
-} from "../../../utilities/utils";
+} from "../../../common/utilities/utils";
 import persId from "../../../../public/certification.png";
 import "./MyAccount.scss"
 

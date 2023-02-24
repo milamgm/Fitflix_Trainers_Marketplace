@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Map, Card } from "../../utilities/utils";
+import { Map, Card, db } from "../../common/utilities/utils";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import {
@@ -8,9 +8,8 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { db } from "../../firebaseConfig";
 import "./Search.scss";
-import { IAdData } from "../../types/types";
+import { IAdData } from "../../common/types/types";
 
 const Search = () => {
   const location = useLocation();
