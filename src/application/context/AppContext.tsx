@@ -5,6 +5,7 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { IAppContext, IUserData } from "../../common/types/types";
 import useMapsAPILoader from '../../common/hooks/useMapsApiLoader';
 import defaultUserPic from "../../../public/user.svg";
+import { useTranslation} from "react-i18next"
 
 const AppContext = createContext({} as IAppContext);
 
@@ -18,6 +19,7 @@ interface IAppProviderProps {
 const AppProvider = ({ children }: IAppProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [userData, setUserData] = useState<IUserData | null>(null);
+  const [t, i18n] = useTranslation("global")
   //   const [places] = useState<string[]>(["places"]);
 
   //Loads Google Maps API
@@ -58,6 +60,7 @@ const AppProvider = ({ children }: IAppProviderProps) => {
     setUser,
     userData,
     isLoaded,
+    t
   };
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
 };

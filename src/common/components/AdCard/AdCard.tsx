@@ -10,7 +10,7 @@ interface Props {
 }
 
 const AdCard = ({ data }: Props) => {
-  const { user, userData } = useAppContext();
+  const { user, userData, t } = useAppContext();
   const navigate = useNavigate();
   const {
     aid,
@@ -56,14 +56,14 @@ const AdCard = ({ data }: Props) => {
     try {
       // Delete from "ads_collection" document
       await deleteDoc(doc(db, "ads_collection", aid));
-      toast.success(t('deleteAction.sucessMessage'));
+      toast.success(t('adCard.toastSuccess'));
     } catch (err) {
       toast.error("Fehler. Bitte probieren Sie noch Mal.");
     }
   };
   return (
     <div className="adCard">
-      <img src={photo} alt="" width={200} />
+      <img src={photo} alt={title} width={200} />
       <div className="description">
         <h3>
           <b>{title}</b>

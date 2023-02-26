@@ -1,11 +1,13 @@
 import { User } from "firebase/auth";
 import React from "react";
+import { TFunction } from "i18next";
 
 export interface IAppContext {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   userData: IUserData | null;
   isLoaded: boolean;
+  t: TFunction
 }
 export interface IChatContext {
   partnertsData: IPartnertData[];

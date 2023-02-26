@@ -18,6 +18,7 @@ import {
   Step8Photo,
 } from "./Steps";
 import { v4 } from "uuid";
+import AdConfirmation from "./AdConfirmation";
 
 interface ICreateAdProps {
   editDataParams: { editData: IAdData };
