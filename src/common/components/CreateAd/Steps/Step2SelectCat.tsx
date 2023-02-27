@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import categoriesJSON from "../../../data/categories.json";
 import { AiOutlineClose } from "react-icons/ai";
 import { TUpdateFields } from "../../../types/types";
+import { useAppContext } from "../../../utilities/utils";
 
 interface IStep2SelectCatProps {
   categories: string[];
@@ -14,13 +15,15 @@ const Step2SelectCat = ({
   updateFields,
   setActiveNextBtn,
 }: IStep2SelectCatProps) => {
+  const { t } = useAppContext();
+
   //Removes category from category array
   const removeCategory = (newCategory: string) => {
     updateFields({
       categories: categories.filter((category) => category !== newCategory),
     });
   };
-//Adds or removes a category in the array
+  //Adds or removes a category in the array
   const handleSelect = (newCategory: string) => {
     if (!categories.includes(newCategory)) {
       updateFields({
@@ -30,7 +33,7 @@ const Step2SelectCat = ({
       removeCategory(newCategory);
     }
   };
-//Activates forward button when at least one category is selected
+  //Activates forward button when at least one category is selected
   useEffect(() => {
     setActiveNextBtn(categories[0] !== undefined);
   }, [categories[0]]);
@@ -39,8 +42,9 @@ const Step2SelectCat = ({
     <div className="step">
       <div className="step_title">
         <h1>
-          Welche <span>Fächer </span>
-          unterrichtest Du?
+          {t("steps.step2.title.other1")}
+          <span>{t("steps.step2.title.span")}</span>
+          {t("steps.step2.title.other2")}
         </h1>
       </div>
       <div className="selected_categories_div">

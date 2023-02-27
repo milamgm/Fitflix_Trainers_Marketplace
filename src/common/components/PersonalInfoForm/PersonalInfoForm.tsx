@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
-import { validateEmail, ReauthModal, addToDB, auth, useAppContext } from "../../../common/utilities/utils";
+import {
+  validateEmail,
+  ReauthModal,
+  addToDB,
+  auth,
+  useAppContext,
+} from "../../../common/utilities/utils";
 import { IPersonalInfoForm } from "../../types/types";
 import { FaUserAlt } from "react-icons/fa";
 import { BsFillTelephoneFill } from "react-icons/bs";
@@ -24,7 +30,7 @@ const personalInfoFormFields = [
 ];
 
 const PersonalInfoForm = () => {
-  const { user, setUser, userData } = useAppContext();
+  const { user, setUser, userData, t } = useAppContext();
   const [openReauthModal, setOpenReauthModal] = useState(false);
   const { uid } = user!;
   const { name, phoneNumber } = userData!;
@@ -37,8 +43,8 @@ const PersonalInfoForm = () => {
   const activeSubmitBtn =
     JSON.stringify([input_name, input_phoneNumber]) !==
     JSON.stringify([name, phoneNumber]);
-    
-//Updates user information in firebase auth as well as in user_data table
+
+  //Updates user information in firebase auth as well as in user_data table
   const handleSubmit = async () => {
     try {
       updateProfile(auth.currentUser!, {
@@ -85,7 +91,7 @@ const PersonalInfoForm = () => {
         disabled={!activeSubmitBtn}
         onClick={handleSubmit}
       >
-        Aktualisieren
+        {t("global.update")}
       </button>
     </div>
   );

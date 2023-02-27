@@ -17,6 +17,7 @@ const Dropdown = ({ value, setValue, listDB }: IDropdownProps) => {
   let domNode = useClickOutside(() => {
     setActive(false);
   });
+  
   //Searchs input value in dropdown list and displays it in case it exists
   const handleSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;

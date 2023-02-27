@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { PhotoField, addPhoto } from "../../../utilities/utils";
+import { PhotoField, addPhoto, useAppContext } from "../../../utilities/utils";
 import { TUpdateFields } from "../../../types/types";
 
 interface IStep8PhotoProps {
@@ -12,6 +12,8 @@ const Step8Photo = ({
   updateFields,
   setActiveNextBtn,
 }: IStep8PhotoProps) => {
+  const { t } = useAppContext();
+
   //Activates forward button when an image has been selected
   useEffect(() => {
     setActiveNextBtn(photo !== "");
@@ -20,13 +22,13 @@ const Step8Photo = ({
     <div className="step">
       <div className="step_title">
         <h1>
-          <span>Profil</span> Foto
+          <span>{t("steps.step8.title.span")} </span>{" "}
+          {t("steps.step8.title.other")}
         </h1>
-        <p>Dieses Foto wird auf all Deinen Anzeigen zu sehen sein.</p>
+        <p>{t("steps.step8.description")} </p>
         <small>
-          Format: <b>JPEG oder PNG</b>
-          Dimensionen:<b>500minimum px</b>
-          Größe: <b>LIMIT@Maximal mb</b>
+          {t("steps.step8.small1")} <b> {t("steps.step8.bold1")} </b> <br />
+          {t("steps.step8.small2")} <b> {t("steps.step8.bold2")} </b>
         </small>
       </div>
       <div className="photo_div">

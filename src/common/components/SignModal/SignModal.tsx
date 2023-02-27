@@ -2,7 +2,7 @@ import { Modal } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import "./SignModal.scss";
-import {LoginForm, RegisterForm} from "../../../common/utilities/utils";
+import {LoginForm, RegisterForm, useAppContext} from "../../../common/utilities/utils";
 
 interface ISignModalProps {
   openModal: boolean;
@@ -10,6 +10,7 @@ interface ISignModalProps {
 }
 
 const SignModal = ({ openModal, setOpenModal }: ISignModalProps) => {
+  const {t} = useAppContext()
   const [signup, setSignup] = useState(false);
 
   //Switches between login and register form
@@ -35,7 +36,7 @@ const SignModal = ({ openModal, setOpenModal }: ISignModalProps) => {
        
               onClick={() => setSignup(false)}
             >
-              Log In
+              {t("signModal.login")}
             </div>
             <div
               className={`tab ${signup ? "active" : ""}`}
@@ -43,7 +44,7 @@ const SignModal = ({ openModal, setOpenModal }: ISignModalProps) => {
          
               onClick={() => setSignup(true)}
             >
-              Sign Up
+              {t("signModal.signup")}
             </div>
           </div>
           <div className="body">

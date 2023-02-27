@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { TUpdateFields } from "../../../types/types";
+import { useAppContext } from "../../../utilities/utils";
 
 interface IStep4AboutProps {
   about: string;
@@ -12,7 +13,9 @@ const Step4About = ({
   updateFields,
   setActiveNextBtn,
 }: IStep4AboutProps) => {
-    //Activates forward button when input value meets the specified requirements.
+  const { t } = useAppContext();
+
+  //Activates forward button when input value meets the specified requirements.
   useEffect(() => {
     const valid = about.split(" ").filter((word) => word !== "").length >= 20;
     setActiveNextBtn(valid);
@@ -22,13 +25,14 @@ const Step4About = ({
     <div className="step">
       <div className="step_title">
         <h1>
-          Über <span>Dich</span>
+          {t("steps.step4.title.other")}
+          <span>{t("steps.step4.title.span")}</span>
         </h1>
-        <p>(mindestens 20 Wörter)</p>
+        <p>{t("steps.step4.description")}</p>
       </div>
       <textarea
         className="textarea_input"
-        placeholder="Dies ist die Möglichkeit, um Deine zukünftigen Schülerinnen & Schüler davon zu überzeugen, dass Deine Methode einzigartig ist!"
+        placeholder={t("steps.step4.placeholder")!}
         value={about}
         onChange={(e) => updateFields({ about: e.target.value })}
       />

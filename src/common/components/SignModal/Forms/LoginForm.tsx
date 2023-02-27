@@ -1,5 +1,5 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../utilities/utils";
+import { auth, useAppContext } from "../../../utilities/utils";
 import React, { useState } from "react";
 
 interface ILoginFormProps {
@@ -7,6 +7,7 @@ interface ILoginFormProps {
 }
 
 const LoginForm = ({ setOpenModal }: ILoginFormProps) => {
+  const { t } = useAppContext();
   const [error, setError] = useState(false);
 
   //TODO: VALIDATION MESSAGES
@@ -24,10 +25,14 @@ const LoginForm = ({ setOpenModal }: ILoginFormProps) => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <input key="email" type="email" placeholder="Email" />
-      <input key="password" type="password" placeholder="Passwort" />
-      <button>Einloggen</button>
-      {error && <span>Something went wrong</span>}
+      <input key="email" type="email" placeholder={t("signModal.email")!} />
+      <input
+        key="password"
+        type="password"
+        placeholder={t("signModal.password")!}
+      />
+      <button>{t("signModal.login")}</button>
+      {error && <span>{t("global.toastError")}</span>}
     </form>
   );
 };

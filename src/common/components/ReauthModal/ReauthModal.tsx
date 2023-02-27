@@ -6,7 +6,7 @@ import {
   updateEmail,
   deleteUser,
 } from "firebase/auth";
-import { auth, db } from "../../utilities/utils";
+import { auth, db, useAppContext } from "../../utilities/utils";
 import toast from "react-hot-toast";
 import { deleteDoc, doc } from "firebase/firestore";
 import "./ReauthModal.scss";
@@ -24,6 +24,7 @@ const ReauthModal = ({
   inputEmail,
   deleteAccount,
 }: IReauthModalProps) => {
+  const { t } = useAppContext();
   const [authPass, setAuthPass] = useState("");
 
   //Reauthenticates account and proceeds to email update or account deletion as appropriate
@@ -56,12 +57,10 @@ const ReauthModal = ({
       <Modal open={openReauthModal} onClose={() => setOpenReauthModal(false)}>
         <Box className="reauth_modal box-shadow">
           <div className="header">
-            <h3>Passwort Wiederholen</h3>
+            <h3>{t("reauthModal.title")}</h3>
           </div>
           <div className="body">
-            <p>
-              Wiederholen Sie Ihr Passwort, um Ihre Konto zu löschen.
-            </p>
+            <p>{t("reauthModal.description")} </p>
             <form>
               <input
                 type="password"

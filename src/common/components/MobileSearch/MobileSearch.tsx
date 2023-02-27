@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import categories from "../../data/categories.json";
-import { Dropdown, PlacesAutocomplete, handleSearch } from "../../utilities/utils";
+import { Dropdown, PlacesAutocomplete, handleSearch, useAppContext } from "../../utilities/utils";
 import "./MobileSearch.scss";
 import { useNavigate } from "react-router-dom";
 
@@ -9,6 +9,7 @@ interface IMobileSearchProps {
 }
 
 const MobileSearch = ({ setOpenSearchMenu }: IMobileSearchProps) => {
+  const {t} = useAppContext()
   const [category, setCategory] = useState("");
   const [zone, setZone] = useState("");
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const MobileSearch = ({ setOpenSearchMenu }: IMobileSearchProps) => {
         <Dropdown value={category} setValue={setCategory} listDB={categories} />
         <PlacesAutocomplete setZone={setZone} />
         <button onClick={() => handleSearch(category, zone, navigate)}>
-          Suchen
+          {t("global.search")}
         </button>
       </div>
     </>

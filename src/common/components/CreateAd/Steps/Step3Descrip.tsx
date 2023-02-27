@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { TUpdateFields } from "../../../types/types";
+import { useAppContext } from "../../../utilities/utils";
 
 interface IStep3DescripProps {
   description: string;
@@ -12,7 +13,9 @@ const Step3Descrip = ({
   updateFields,
   setActiveNextBtn,
 }: IStep3DescripProps) => {
-    //Activates forward button when input value meets the specified requirements.
+  const { t } = useAppContext();
+
+  //Activates forward button when input value meets the specified requirements.
   useEffect(() => {
     const valid =
       description.split(" ").filter((word) => word !== "").length >= 20;
@@ -22,13 +25,14 @@ const Step3Descrip = ({
     <div className="step">
       <div className="step_title">
         <h1>
-          Über Deinen <span>Kurs</span>
+          {t("steps.step3.title.other")}
+          <span> {t("steps.step3.title.span")}</span>
         </h1>
-        <p>(mindestens 20 Wörter)</p>
+        <p> {t("steps.step3.description")}</p>
       </div>
       <textarea
         className="textarea_input"
-        placeholder="Dies ist die Möglichkeit, um Deine zukünftigen Schülerinnen & Schüler davon zu überzeugen, dass Deine Methode einzigartig ist!"
+        placeholder={t("steps.step3.placeholder")!}
         value={description}
         onChange={(e) => updateFields({ description: e.target.value })}
       />

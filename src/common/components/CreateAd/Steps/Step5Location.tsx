@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { PlacesAutocomplete } from "../../../utilities/utils";
+import { PlacesAutocomplete, useAppContext } from "../../../utilities/utils";
 import { TUpdateFields } from "../../../types/types";
 
 interface IStep5LocationProps {
@@ -14,7 +14,12 @@ const Step5Location = ({
   updateFields,
   setActiveNextBtn,
 }: IStep5LocationProps) => {
-  const options = ["Bei Dir zu Hause", "Du bist mobil (20km)", "Online"];
+  const { t } = useAppContext();
+  const options = [
+    t("steps.step5.options.option1"),
+    t("steps.step5.options.option2"),
+    t("steps.step5.options.option3"),
+  ];
   const [zone, setZone] = useState("");
 
   //Adds or removes opition in array
@@ -46,7 +51,6 @@ const Step5Location = ({
         <h1>
           <span>Standort </span> des Kurses
         </h1>
-        <p>(mindestens 40 Wörter)</p>
       </div>
       <div className="location_input">
         <PlacesAutocomplete setZone={setZone} />

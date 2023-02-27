@@ -1,7 +1,7 @@
 import { doc, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { db, defaultPhoto } from "../../utilities/utils";
+import { db, defaultPhoto, useAppContext } from "../../utilities/utils";
 import { IAdData } from "../../types/types";
 import "./ItemCard.scss";
 
@@ -16,6 +16,7 @@ const ItemCard = ({
   price,
   location,
 }: IAdData) => {
+  const {t} = useAppContext()
   const navigate = useNavigate();
   const [trainerName, setTrainerName] = useState("");
   const [trainerUid, setTrainerUid] = useState("");
@@ -77,7 +78,7 @@ const ItemCard = ({
         </div>
         <div className="description">{description}</div>
         <div className="price_badge">
-          <h3>{price}€/St.</h3>
+          <h3>{price}{t("global.currencyTime")}</h3>
         </div>
       </div>
     </div>

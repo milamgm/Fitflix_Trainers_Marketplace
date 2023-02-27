@@ -56,9 +56,9 @@ const AdCard = ({ data }: Props) => {
     try {
       // Delete from "ads_collection" document
       await deleteDoc(doc(db, "ads_collection", aid));
-      toast.success(t('adCard.toastSuccess'));
+      toast.success(t("adCard.toastSuccess"));
     } catch (err) {
-      toast.error("Fehler. Bitte probieren Sie noch Mal.");
+      toast.error(t("global.toastError"));
     }
   };
   return (
@@ -87,13 +87,13 @@ const AdCard = ({ data }: Props) => {
       <div className="btn_area">
         <>
           <button className="card_info_btn" onClick={handleEdit}>
-            Bearbeiten
+            {t("adCard.edit")}
           </button>
           <button className="card_info_btn" onClick={goToAd}>
-            Zur Anzeige gehen
+            {t("adCard.goToAd")}
           </button>
           <button className="card_danger_btn" onClick={handleDelete}>
-            Loschen
+            {t("adCard.delete")}
           </button>
         </>
       </div>

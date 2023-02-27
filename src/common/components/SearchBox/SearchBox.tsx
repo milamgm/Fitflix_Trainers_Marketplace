@@ -8,8 +8,8 @@ import "./SearchBox.scss";
 import { useAppContext, handleSearch } from "../../utilities/utils";
 
 const SearchBox = () => {
-  const { isLoaded } = useAppContext();
-  let listDB = categories;
+  const { isLoaded, t } = useAppContext();
+  const listDB = categories;
   const [category, setCategory] = useState("");
   const [zone, setZone] = useState("");
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const SearchBox = () => {
           <PlacesAutocomplete setZone={setZone} />
         ) : (
           <div className="dropdown">
-            <div className="form__field">Wird geladen...</div>
+            <div className="form__field">{t("global.loading")}</div>
           </div>
         )}
         <div

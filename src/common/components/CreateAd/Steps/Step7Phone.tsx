@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { TUpdateFields } from "../../../types/types";
+import { useAppContext } from "../../../utilities/utils";
 
 interface IStep7PhoneProps {
   phone: number;
@@ -11,6 +12,8 @@ const Step7Phone = ({
   updateFields,
   setActiveNextBtn,
 }: IStep7PhoneProps) => {
+const {t} = useAppContext()
+
   //Adds inut to state
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
@@ -25,18 +28,16 @@ const Step7Phone = ({
     <div className="step">
       <div className="step_title">
         <h1>
-          <span>Telefon </span>Nummer
+          <span>{t("steps.step7.title.span")} </span>{t("steps.step7.title.other")}
         </h1>
         <p>
-          Deine Nummer wird nicht auf der Website veröffentlicht, sie wird nur
-          an die Schüler/innen übermittelt, denen Du Unterricht erteilen
-          möchtest.
+        {t("steps.step7.description")}
         </p>
       </div>
       <input
         className="phone_input"
         type="number"
-        placeholder="4901557846484"
+        placeholder={t("steps.step7.placeholder")!}
         value={phone}
         onChange={(e) => handleChange(e)}
       />

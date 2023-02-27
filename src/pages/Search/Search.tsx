@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Map, Card, db } from "../../common/utilities/utils";
+import { Map, Card, db, useAppContext } from "../../common/utilities/utils";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import {
@@ -13,6 +13,7 @@ import { IAdData } from "../../common/types/types";
 
 const Search = () => {
   const location = useLocation();
+  const {t} = useAppContext()
   const searchResults =
     location.state === null
       ? { zone: "Berlin", category: "Badminton" }
@@ -48,13 +49,9 @@ const Search = () => {
       </div>
       <div className="page_body">
         <h1>
-          {adsData.length} {searchResults.category} Trainer in der Nähe von{" "}
+          {adsData.length} {searchResults.category}{t("search.description")}{" "}
           {searchResults.zone}
         </h1>
-        <div className="filter_div">
-          <button>Neueste zuerst</button>
-          <button>Günstigste zuerst</button>
-        </div>
         <section className="results">
           {adsData.length >= 1 &&
             adsData.map((data) => <Card key={data.aid} {...data} />)}

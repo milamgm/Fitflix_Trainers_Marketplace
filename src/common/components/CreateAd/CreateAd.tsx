@@ -25,7 +25,7 @@ interface ICreateAdProps {
 }
 
 const CreateAd = ({ editDataParams }: ICreateAdProps) => {
-  const { user } = useAppContext();
+  const { user, t } = useAppContext();
   const editDataC = editDataParams?.editData;
   const INITIAL_DATA: IAdData = {
     aid: "",
@@ -53,50 +53,49 @@ const CreateAd = ({ editDataParams }: ICreateAdProps) => {
     });
   }
 
-  const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
-    useMultistepForm([
-      <Step1AdTitle
-        {...data}
-        updateFields={updateFields}
-        setActiveNextBtn={setActiveNextBtn}
-      />,
-      <Step2SelectCat
-        {...data}
-        updateFields={updateFields}
-        setActiveNextBtn={setActiveNextBtn}
-      />,
-      <Step3Descrip
-        {...data}
-        updateFields={updateFields}
-        setActiveNextBtn={setActiveNextBtn}
-      />,
-      <Step4About
-        {...data}
-        updateFields={updateFields}
-        setActiveNextBtn={setActiveNextBtn}
-      />,
-      <Step5Location
-        {...data}
-        updateFields={updateFields}
-        setActiveNextBtn={setActiveNextBtn}
-      />,
-      <Step6Price
-        {...data}
-        updateFields={updateFields}
-        setActiveNextBtn={setActiveNextBtn}
-      />,
-      <Step7Phone
-        {...data}
-        updateFields={updateFields}
-        setActiveNextBtn={setActiveNextBtn}
-      />,
-      <Step8Photo
-        {...data}
-        updateFields={updateFields}
-        setActiveNextBtn={setActiveNextBtn}
-      />,
-      <AdConfirmation data={data} />,
-    ]);
+  const { step, isFirstStep, isLastStep, back, next } = useMultistepForm([
+    <Step1AdTitle
+      {...data}
+      updateFields={updateFields}
+      setActiveNextBtn={setActiveNextBtn}
+    />,
+    <Step2SelectCat
+      {...data}
+      updateFields={updateFields}
+      setActiveNextBtn={setActiveNextBtn}
+    />,
+    <Step3Descrip
+      {...data}
+      updateFields={updateFields}
+      setActiveNextBtn={setActiveNextBtn}
+    />,
+    <Step4About
+      {...data}
+      updateFields={updateFields}
+      setActiveNextBtn={setActiveNextBtn}
+    />,
+    <Step5Location
+      {...data}
+      updateFields={updateFields}
+      setActiveNextBtn={setActiveNextBtn}
+    />,
+    <Step6Price
+      {...data}
+      updateFields={updateFields}
+      setActiveNextBtn={setActiveNextBtn}
+    />,
+    <Step7Phone
+      {...data}
+      updateFields={updateFields}
+      setActiveNextBtn={setActiveNextBtn}
+    />,
+    <Step8Photo
+      {...data}
+      updateFields={updateFields}
+      setActiveNextBtn={setActiveNextBtn}
+    />,
+    <AdConfirmation data={data} />,
+  ]);
 
   //When submit, if is not the last step, continues to the next one if so, sets the new ad into the database and navigates to user panel
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -105,7 +104,7 @@ const CreateAd = ({ editDataParams }: ICreateAdProps) => {
       return next();
     } else {
       setAdToAdsCollection(data);
-      toast.success("Ihre Anzeige wurde erfolgreich veröffentlicht.");
+      toast.success(t("createAd.toastSuccess"));
       navigate("/benutzerpanel");
     }
   }
@@ -132,7 +131,7 @@ const CreateAd = ({ editDataParams }: ICreateAdProps) => {
             disabled={!activeNextBtn}
             className={`${!activeNextBtn && "disabled"}`}
           >
-            {isLastStep ? "Anzeige Stellen" : "Fortfahren"}
+            {isLastStep ? t("createAd.postAd") : t("createAd.continue")}
           </button>
         </div>
       </form>

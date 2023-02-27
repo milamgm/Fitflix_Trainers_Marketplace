@@ -1,14 +1,17 @@
-import React, {  useState } from "react";
-import { validateRegister, registerAccount } from "../../../utilities/utils";
+import React, { useState } from "react";
+import {
+  validateRegister,
+  registerAccount,
+  useAppContext,
+} from "../../../utilities/utils";
 import toast from "react-hot-toast";
-
 
 interface IRegisterFormProps {
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const RegisterForm = ({ setOpenModal }: IRegisterFormProps) => {
-
+  const { t } = useAppContext();
   const [error, setError] = useState(false);
   const [validationMessages, setValidationMessages] = useState<string[]>([]);
 
@@ -27,9 +30,7 @@ const RegisterForm = ({ setOpenModal }: IRegisterFormProps) => {
         registerAccount(name, email, password);
         setOpenModal(false);
       } catch (err) {
-        toast.error(
-          "Es ist ein Fehler aufgetreten, bitte versuchen Sie es erneut"
-        );
+        toast.error(t("global.totoastError"));
       }
     } else {
       setError(true);
@@ -46,12 +47,12 @@ const RegisterForm = ({ setOpenModal }: IRegisterFormProps) => {
         }`}
         key="name"
         type="name"
-        placeholder="Name"
+        placeholder={t("signModal.name")!}
       />
       <input
         key="email"
         type="text"
-        placeholder="Email"
+        placeholder={t("signModal.email")!}
         className={`${
           validationMessages.find((item) => item.includes("Email"))
             ? "error"
@@ -61,7 +62,7 @@ const RegisterForm = ({ setOpenModal }: IRegisterFormProps) => {
       <input
         key="password"
         type="password"
-        placeholder="Passwort"
+        placeholder={t("signModal.password")!}
         className={`${
           validationMessages.find((item) => item.includes("Passwort"))
             ? "error"
@@ -71,14 +72,14 @@ const RegisterForm = ({ setOpenModal }: IRegisterFormProps) => {
       <input
         key="repeatPassword"
         type="password"
-        placeholder="Passwort Wiederholen"
+        placeholder={t("signModal.repeatPassword")!}
         className={`${
           validationMessages.find((item) => item.includes("gleich"))
             ? "error"
             : ""
         }`}
       />
-      <button>Anmelden</button>
+      <button>{t("signModal.signup")}</button>
       {error && (
         <div className="error_div">
           {validationMessages &&

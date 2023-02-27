@@ -2,23 +2,23 @@ import { useState } from "react";
 import "./Banner.scss";
 import MobileSearch from "../MobileSearch/MobileSearch";
 import SearchBox from "../SearchBox/SearchBox";
+import { useAppContext } from "../../utilities/utils";
 
 const Banner = () => {
   const [openSearchMenu, setOpenSearchMenu] = useState(false);
+  const { t } = useAppContext();
   return (
     <div className="banner">
       {!openSearchMenu && (
         <div className="content">
-          <h1 className="title">Finden Sie Ihr idealer Lehrer</h1>
-          <h3 className="subtitle">
-            Online oder vor Ort, jetzt Termin vereinbaren!
-          </h3>
+          <h1 className="title">{t("banner.title")}</h1>
+          <h3 className="subtitle">{t("banner.subtitle")} </h3>
           <SearchBox />
           <button
             className="only_mobile"
             onClick={() => setOpenSearchMenu(true)}
           >
-            Jetzt Finden
+            {t("banner.button")}
           </button>
         </div>
       )}

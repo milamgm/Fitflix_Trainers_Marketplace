@@ -1,5 +1,142 @@
 {
+    "global":{
+        "toastError": "Es ist ein Fehler aufgetreten, bitte versuchen Sie es erneut",
+        "loading": "Wird geladen...",
+        "currencyTime": "€/Std.",
+        "search": "Suchen",
+        "update": "Aktualisieren",
+        "delete": "Löschen"
+    },
     "adCard": {
-        "toastSuccess": "Ihre Anzeige wurde erfolgreich gelöscht"
+        "toastSuccess": "Ihre Anzeige wurde erfolgreich gelöscht",
+        "edit": "Bearbeiten",
+        "goToAd": "Zur Anzeige gehen"
+    },
+    "banner": {
+        "title": "Finden Sie Ihr idealer Lehrer",
+        "subtitle": "Online oder vor Ort, jetzt Termin vereinbaren!",
+        "button": "Jetzt Finden"
+    },
+    "createAd": {
+        "toastSuccess" : "Ihre Anzeige wurde erfolgreich veröffentlicht.",
+        "postAd": "Anzeige Stellen",
+        "continue": "Fortfahren"
+    },
+    "adConfirmation": {
+        "confirmation": "Gratulation, Ihre Anzeige ist online!"
+    },
+    "steps" : {
+        "step1": {
+            "title" : {
+                "span": "Titel",
+                "other": " deiner Anzeige"
+            },
+            "description" : "(mindestens 5 Wörter)",
+            "placeholder": "Titel"
+        },
+        "step2": {
+            "title" : {
+                "span": "Fächer ",
+                "other1": " Welche ",
+                "other2": "unterrichtest Du?"
+            },
+            "description" : "(mindestens 5 Wörter)",
+            "placeholder": "Titel"
+        },
+        "step3": {
+            "title" : {
+                "span": "Kurs",
+                "other": "Über Deinen "
+            },
+            "description" : "(mindestens 20 Wörter)",
+            "placeholder": "Dies ist die Möglichkeit, um Deine zukünftigen Schülerinnen & Schüler davon zu überzeugen, dass Deine Methode einzigartig ist!"
+        },
+        "step4": {
+            "title" : {
+                "span": "Dich",
+                "other": "Über "
+            },
+            "description" : "(mindestens 20 Wörter)",
+            "placeholder": "Dies ist die Möglichkeit, um Deine zukünftigen Schülerinnen & Schüler davon zu überzeugen, dass Deine Methode einzigartig ist!"
+        },
+        "step5": {
+            "title" : {
+                "span": "Standort ",
+                "other": " des Kurses"
+            },
+            "options": {
+                "option1": "Bei Dir zu Hause",
+                "option2": "Du bist mobil (20km)",
+                "option3": "Online"
+            }
+        },
+        "step6": {
+            "title" : {
+                "span": "Stundensatz"
+            },
+            "description" : "Der maximale Preis ist 200€.",
+            "placeholder": "21"
+        },
+        "step7": {
+            "title" : {
+                "span": "Telefon ",
+                "other" : "Nummer"
+            },
+            "description" : "Deine Nummer wird nicht auf der Website veröffentlicht, sie wird nur an die Schüler/innen übermittelt, denen Du Unterricht erteilen möchtest.",
+            "placeholder": "017600000000"
+        },
+        "step8": {
+            "title" : {
+                "span": "Profil",
+                "other" : " Foto"
+            },
+            "description" : "Dieses Foto wird auf all Deinen Anzeigen zu sehen sein.",
+            "small1" : "- Format: ",
+            "bold1" : " JPEG oder PNG",
+            "small2" : "- Dimensionen: ",
+            "bold2" : "maximal 500kB "
+       
+    }
+    },
+    "reauthModal": {
+        "title" : "Passwort Wiederholen",
+        "description": " Wiederholen Sie Ihr Passwort, um Ihre Konto zu löschen."
+    },
+    "signModal": {
+        "login": "Einloggen",
+        "signup": "Anmelden",
+        "name": "Name",
+        "email": "Email",
+        "password": "Passwort",
+        "repeatPassword": "Passwort Wiederhölen"
+
+    },
+    "home": {
+        "section1": {
+            "title": "Finde Deine Lehrkraft",
+            "subtitle": "Kraft trainieren, Stärke und Ausdauer steigern, persönlich wachsen mit über 1100 Fitness-Coaches",
+            "description": "Alle unsere Personal Trainer sind hochqualifiziert, intensivgeprüft und teils sogar TÜV zertifiziert! Egal was es ist - unsere Fitness Coaches helfen dir deine Träume endlich anzupacken! In einem Fitnesstudio, unter freiem Himmel, bei dir zuhause oder mit Live Online Personal Training via Bildschirm wo immer du willst."
+        },
+        "section2": {
+            "title": "Lernen war noch nie so einfach!"
+        },
+        "section3": {
+            "title": "Kunden bewerten Personal Trainer",
+            "review1" : {
+                "name":"Athina B.",
+                "date": "Januar 2023",
+                "description": "Ich habe das Training mit Mario angefangen, weil ich sehr unzufrieden mit mir war und dringend etwas an meinem Lebensstil ändern wollte. Nun trainiere ich schon seit 1,5 Jahren mit ihm und bin nicht nur viel fitter sondern auch weitaus glücklicher! Mario kann sehr gut auf jede Person vor ihm individuell eingehen und hat mich im Training immer gefordert und motiviert. Vom Training bei mir zu Hause während der Pandemiezeiten bis heute in dem neuen, modernen Studio war er immer voll dabei und unterstützt mich darin meine Ziele zu erreichen. Das Training mit Mario kann ich nur jedem weiterempfehlen!",
+                "about": "Über den Trainer Mario Schaafstall, Köln"
+            },
+            "review2" : {
+                "name":"Martin G.",
+                "date": "Dezember 2022",
+                "description": " Kalle spricht sein Training mit mir immer ab und passt es meinen persönlichen Wünschen sinnvoll an. Ich trainiere mit ihm schon seit einigen Jahren. Er hat mich fit gemacht wie noch nie , so dass ich wieder Gas geben kann. Mein Dank gilt Kalle!",
+                "about": "Über den Trainer Kalle Janßen, Kreis Viersen"
+            }
+        }
+    },
+    "search": {
+        "description": " Trainer in der Nähe von"
     }
 }

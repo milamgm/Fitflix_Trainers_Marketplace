@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { TUpdateFields } from  "../../../types/types";
+import { TUpdateFields } from "../../../types/types";
+import { useAppContext } from "../../../utilities/utils";
 
 interface IStep1AdTitleProps {
   title: string;
@@ -12,8 +13,8 @@ const Step1AdTitle = ({
   updateFields,
   setActiveNextBtn,
 }: IStep1AdTitleProps) => {
-
-   //Activates forward button when input value meets the specified requirements.
+  const { t } = useAppContext();
+  //Activates forward button when input value meets the specified requirements.
   useEffect(() => {
     const wordsCount = title.split(" ").filter((word) => word !== "").length;
     const valid = wordsCount >= 5 && wordsCount <= 30;
@@ -24,14 +25,15 @@ const Step1AdTitle = ({
     <div className="step">
       <div className="step_title">
         <h1>
-          <span>Titel</span> deiner Anzeige
+          <span>{t("steps.step1.title.span")}</span>
+          {t("steps.step1.title.other")}
         </h1>
-        <p>(mindestens 5 Wörter)</p>
+        <p>{t("steps.step1.description")}</p>
       </div>
       <input
         className="text_input"
         type="text"
-        placeholder="Titel"
+        placeholder={t("steps.step1.placeholder")!}
         value={title}
         onChange={(e) => updateFields({ title: e.target.value })}
       />

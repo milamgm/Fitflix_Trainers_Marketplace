@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { TUpdateFields } from "../../../types/types";
+import { useAppContext } from "../../../utilities/utils";
 
 interface IStep6PriceProps {
   price: number;
@@ -12,12 +13,14 @@ const Step6Price = ({
   updateFields,
   setActiveNextBtn,
 }: IStep6PriceProps) => {
+  const { t } = useAppContext();
+
   //Adds inut to state
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
     updateFields({ price: value });
   };
-//Activates forward button when the input value meets the specified requirements.
+  //Activates forward button when the input value meets the specified requirements.
   useEffect(() => {
     const valid = price >= 1 && price <= 200;
     setActiveNextBtn(valid);
@@ -27,18 +30,18 @@ const Step6Price = ({
     <div className="step">
       <div className="step_title">
         <h1>
-          <span>Stundensatz</span>
+          <span>{t("steps.step6.title.span")}</span>
         </h1>
-        <p>Der maximale Preis ist 200€.</p>
+        <p>{t("steps.step6.description")}</p>
       </div>
       <input
         className="number_input"
         type="number"
-        placeholder="21"
+        placeholder={t("steps.step6.placeholder")!}
         value={price}
         onChange={(e) => handleChange(e)}
       />
-      <h3>€/Std.</h3>
+      <h3>{t("global.currencyTime")}</h3>
     </div>
   );
 };

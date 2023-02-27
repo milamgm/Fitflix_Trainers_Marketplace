@@ -11,7 +11,6 @@ import SearchBox from "../components/SearchBox";
 import SignModal from "../components/SignModal";
 import PhotoField from "../components/PhotoField";
 import Map from "../components/Map";
-import DeleteAccountModal from "../components/DeleteAccountModal";
 import Footer from "../../application/components/Footer";
 import MobileSearch from "../components/MobileSearch";
 import { addToDB, setAdToAdsCollection } from "../../application/api/ManageDB";
@@ -74,7 +73,6 @@ export {
   PersonalInfoWidget,
   ReauthModal,
   useChatContext,
-  DeleteAccountModal,
   MobileSearch,
   Footer,
   Map,
