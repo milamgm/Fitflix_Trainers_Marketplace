@@ -1,16 +1,17 @@
-import { useState } from "react";
 import {
-  useAppContext,
-  ReauthModal,
   PersonalInfoWidget,
   PhotoField,
-} from "../../../common/utilities/utils";
-import persId from "../../../../public/certification.png";
-import "./MyAccount.scss"
+  persId,
+  useAppContext,
+} from "../../../../../../common/utilities/utils";
 
-const MyAccount = () => {
-  const [openReauthModal, setOpenReauthModal] = useState(false);
+interface Props {
+  setOpenReauthModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const DisplayCards = ({ setOpenReauthModal }: Props) => {
   const { userData } = useAppContext();
+
   const userCards = [
     {
       id: "personalangaben",
@@ -44,24 +45,15 @@ const MyAccount = () => {
   ];
 
   return (
-    <section className="myaccount">
+    <>
       {userCards.map(({ id, title, content }) => (
         <div key={id} className="half_card">
           <h2 className="title">{title}</h2>
           <div className="content">{content}</div>
         </div>
       ))}
-
-      {openReauthModal && (
-        <ReauthModal
-          openReauthModal={openReauthModal}
-          setOpenReauthModal={setOpenReauthModal}
-          inputEmail=""
-          deleteAccount={true}
-        />
-      )}
-    </section>
+    </>
   );
 };
 
-export default MyAccount;
+export default DisplayCards;

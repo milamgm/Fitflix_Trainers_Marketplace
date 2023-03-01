@@ -1,17 +1,18 @@
 import { signOut } from "firebase/auth";
-import { auth } from "../../../common/utilities/utils";
+import { auth, useClickOutside } from "../../../../../common/utilities/utils";
 import { Link, useNavigate } from "react-router-dom";
-import { useClickOutside } from "../../../common/utilities/utils";
+
 interface IProfileMenuProps {
   setOpenProfileMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 const ProfileMenu = ({ setOpenProfileMenu }: IProfileMenuProps) => {
   const navigate = useNavigate();
   //Closes menu when user clicks outside it
   let domNode = useClickOutside(() => {
     setOpenProfileMenu(false);
   });
-  
+
   const logOut = () => {
     navigate("/");
     signOut(auth);

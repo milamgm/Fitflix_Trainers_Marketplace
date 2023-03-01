@@ -1,6 +1,6 @@
 import { useAppContext } from "../../application/context/AppContext";
 import { useChatContext } from "../../application/context/ChatContext";
-import ProfileMenu from "../../application/components/Header/ProfileMenu";
+import ProfileMenu from "../../application/components/Header/components/ProfileMenu";
 import AdCard from "../components/AdCard";
 import Banner from "../components/Banner";
 import Sidebar from "../components/Chat/components/Sidebar";
@@ -39,9 +39,11 @@ import { handleSearch } from "../scripts/handleSearch";
 import RegisterForm from "../components/SignModal/Forms/RegisterForm";
 import LoginForm from "../components/SignModal/Forms/LoginForm";
 import { registerAccount } from "../../application/api/ManageAccount";
+import persId from "../../../public/certification.png";
 
 export {
   registerAccount,
+  persId,
   addPhoto,
   validateRegister,
   LoginForm,

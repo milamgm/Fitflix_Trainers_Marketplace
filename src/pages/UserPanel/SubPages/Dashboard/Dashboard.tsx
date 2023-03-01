@@ -9,8 +9,8 @@ import {
   AdCard,
   useAppContext,
   PhotoField,
-} from "../../../common/utilities/utils";
-import { IAdData } from "../../../common/types/types";
+} from "../../../../common/utilities/utils";
+import { IAdData } from "../../../../common/types/types";
 
 const Dashboard = () => {
   const navigate = useNavigate();
