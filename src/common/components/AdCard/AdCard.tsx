@@ -29,7 +29,7 @@ const AdCard = ({ data }: Props) => {
   //Navigates to Ad page to edit it
   const handleEdit = () => {
     const editData = data;
-    navigate("/anzeigeaufgeben", { replace: true, state: { editData } });
+  //  navigate("/anzeigeaufgeben", { replace: true, state: { editData } });
   };
 
   //Navigates to Ad page

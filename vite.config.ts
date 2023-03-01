@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [react()],
   base: "/fitflix-trainers-marketplace/",
 test: {
-  environment: "jsdom"
+  environment: "jsdom",
+  globals: true
 }
 })
