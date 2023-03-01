@@ -10,6 +10,7 @@ interface IMessageCardProps {
 const MessageCard = (data: IMessageCardProps) => {
   const navigate = useNavigate();
   const { setActiveChat } = useChatContext();
+  
   const handleSelectChat = () => {
     setActiveChat(data);
     navigate("/benutzerpanel/nachrichten");
