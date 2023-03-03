@@ -1,13 +1,13 @@
 import { useEffect, useRef } from "react";
-import { useAppContext } from "../../../utilities/utils";
+import { useAppContext } from "../../../../utilities/utils";
 
-interface IMessageProps {
+interface Props {
   message: string;
   date: any;
   sender_uid: string;
 }
 
-const Message = ({ message, date, sender_uid }: IMessageProps) => {
+const Message = ({ message, date, sender_uid }: Props) => {
   const timestamp = date.toDate().toLocaleString("de-De");
   const { user } = useAppContext();
   const lastMessageRef = useRef<HTMLDivElement>(null);

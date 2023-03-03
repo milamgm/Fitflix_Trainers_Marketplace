@@ -1,11 +1,11 @@
 import { doc, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { createContext, useContext } from "react";
-import { db } from "../../common/utilities/utils";
-import { IChatContext, IPartnertData, IUserChat } from "../../common/types/types";
-import { useAppContext } from "./AppContext";
+import { db } from "../../../common/utilities/utils";
+import { IChatContext, IPartnertData, IUserChat } from "../../../common/types/types";
+import { useAppContext } from "../AppContext";
 
-const ChatContext = createContext({} as IChatContext);
+export const ChatContext = createContext({} as IChatContext);
 export const useChatContext = () => {
   return useContext(ChatContext);
 };

@@ -34,7 +34,7 @@ function App() {
       <Routes>
         <Route index element={<Home />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/trainer" element={<Trainer />} />
+        <Route path="/trainer/:adId" element={<Trainer />} />
         <Route
           path="/benutzerpanel"
           element={

@@ -1,5 +1,5 @@
-import Input from "./components/Input";
-import Messages from "./components/Messages";
+import Input from "./components/Input/Input";
+import Messages from "./components/Messages/Messages";
 import { useEffect, useState } from "react";
 import { doc, onSnapshot } from "firebase/firestore";
 import { useChatContext, db } from "../../utilities/utils";

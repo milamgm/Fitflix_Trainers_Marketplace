@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import {
-  setAdToAdsCollection,
+  addToDB,
   useAppContext,
   useMultistepForm,
 } from "../../../common/utilities/utils";
@@ -103,7 +103,7 @@ const CreateAd = ({ editDataParams }: ICreateAdProps) => {
     if (!isLastStep) {
       return next();
     } else {
-      setAdToAdsCollection(data);
+      addToDB("ads_collection", data.aid, data, true);
       toast.success(t("createAd.toastSuccess"));
       navigate("/benutzerpanel");
     }
