@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useChatContext, defaultPhoto } from "../../../utilities/utils";
-import { IPartnertData } from "../../../types/types";
+import { useChatContext, defaultPhoto } from "../../../../utilities/utils";
+import { IPartnertData } from "../../../../types/types";
 
 const Sidebar = () => {
-  const { partnertsData,  setActiveChat, activeChat } = useChatContext();
+  const { partnertsData, setActiveChat, activeChat } = useChatContext();
   const [searchInput, setSearchInput] = useState("");
   const [displayChatsArr, setDisplayChatsArr] = useState<IPartnertData[]>([]);
 
@@ -21,6 +21,7 @@ const Sidebar = () => {
       <div className="search">
         <div className="searchForm">
           <input
+            aria-label="searchInput"
             type="text"
             placeholder="Suchen"
             value={searchInput}
@@ -29,20 +30,20 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="chats">
-        {displayChatsArr.map((user) => (
+        {displayChatsArr.map((partner) => (
           <div
-            key={user.partnerUid}
-            className={`${
-              user.partnerUid === activeChat.partnerUid ? "active" : ""
-            } userChat`}
-            onClick={() => setActiveChat(user)}
+            role="button"
+            key={partner.partnerUid}
+            className={`${partner.partnerUid === activeChat.partnerUid ? "active" : ""
+              } userChat`}
+            onClick={() => setActiveChat(partner)}
           >
             <img
-              src={user.partnerPic !== "" ? user.partnerPic : defaultPhoto}
-              alt={user.partnerName}
+              src={partner.partnerPic !== "" ? partner.partnerPic : defaultPhoto}
+              alt={partner.partnerName}
             />
             <div className="userChatInfo">
-              <span>{user.partnerName}</span>
+              <span>{partner.partnerName}</span>
             </div>
           </div>
         ))}

@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { I18nextProvider } from "react-i18next";
 import App from "./application/App";
 import AppProvider from "./application/context/AppContext";
-import ChatProvider from "./application/context/ChatContext";
+import ChatProvider from "./application/context/ChatContext/ChatContext";
 import i18next from "i18next";
 import global_de from "./common/translations/de/global.json"
 

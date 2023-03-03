@@ -1,9 +1,9 @@
 import { useAppContext } from "../../application/context/AppContext";
-import { useChatContext } from "../../application/context/ChatContext";
+import { useChatContext } from "../../application/context/ChatContext/ChatContext";
 import ProfileMenu from "../../application/components/Header/components/ProfileMenu";
 import AdCard from "../components/AdCard";
 import Banner from "../components/Banner";
-import Sidebar from "../components/Chat/components/Sidebar";
+import Sidebar from "../components/Chat/components/Sidebar/Sidebar";
 import Chat from "../components/Chat";
 import CreateAd from "../components/CreateAd";
 import Header from "../../application/components/Header";
@@ -13,7 +13,7 @@ import PhotoField from "../components/PhotoField";
 import Map from "../components/Map";
 import Footer from "../../application/components/Footer";
 import MobileSearch from "../components/MobileSearch";
-import { addToDB, setAdToAdsCollection } from "../../application/api/ManageDB";
+import { addToDB, deleteFromDB, setAdToAdsCollection } from "../../application/api/ManageDB";
 import ReauthModal from "../components/ReauthModal";
 import PersonalInfoWidget from "../components/PersonalInfoForm";
 import Card from "../components/ItemCard/ItemCard";
@@ -41,7 +41,9 @@ import LoginForm from "../components/SignModal/Forms/LoginForm";
 import { registerAccount } from "../../application/api/ManageAccount";
 import persId from "../../../public/certification.png";
 
+
 export {
+  deleteFromDB,
   registerAccount,
   persId,
   addPhoto,

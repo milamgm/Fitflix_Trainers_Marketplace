@@ -17,6 +17,11 @@
         "subtitle": "Online oder vor Ort, jetzt Termin vereinbaren!",
         "button": "Jetzt Finden"
     },
+    "chat" : {
+        "messagesPage" : {
+            "noChats" : "Sie haben noch keine Nachrichten"
+        }
+    },
     "createAd": {
         "toastSuccess" : "Ihre Anzeige wurde erfolgreich veröffentlicht.",
         "postAd": "Anzeige Stellen",

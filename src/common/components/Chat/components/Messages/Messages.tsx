@@ -1,12 +1,13 @@
-import { IMessage } from "../../../types/types";
-import { useAppContext } from "../../../utilities/utils";
-import Message from "./Message";
+import { IMessage } from "../../../../types/types";
+import { useAppContext } from "../../../../utilities/utils";
+import Message from "../Message/Message";
 
-interface IMessagesPorps {
+interface Props {
   messages: IMessage[];
 }
-const Messages = ({ messages }: IMessagesPorps) => {
-  const {t} = useAppContext()
+
+const Messages = ({ messages }: Props) => {
+  const { t } = useAppContext()
   return (
     <div className="messages">
       {messages.length >= 1 &&

@@ -1,7 +1,8 @@
 import "./Messages.scss";
-import { Sidebar, Chat, useChatContext } from "../../../../common/utilities/utils";
+import { Sidebar, Chat, useChatContext, useAppContext } from "../../../../common/utilities/utils";
 
 const Messages = () => {
+  const {t} = useAppContext()
   const { partnertsData } = useChatContext();
   return (
     <div className="container">
@@ -13,7 +14,7 @@ const Messages = () => {
       )}
       {partnertsData.length === 0 && (
         <div className="empty_div">
-          <h3>Sie haben noch keine Nachrichten</h3>
+          <h3>{t("chat.messagesPage.noChats")}</h3>
         </div>
       )}
     </div>

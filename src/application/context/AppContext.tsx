@@ -24,6 +24,7 @@ const AppProvider = ({ children }: IAppProviderProps) => {
 
   //Loads Google Maps API
   const { isLoaded } = useMapsAPILoader();
+  
   //Fetches user log from firebase auth
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (currentUser) => {
@@ -33,6 +34,7 @@ const AppProvider = ({ children }: IAppProviderProps) => {
       unsub();
     };
   }, []);
+
   //Fethes user data from "user_data" table
   useEffect(() => {
     const getUserData = async (uid: string) => {
