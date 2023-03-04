@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 
 import { toast } from 'react-hot-toast'
+=======
+>>>>>>> 3f34bce1f24253eda9af763b0dcd17d939ca2956
 import { useNavigate } from 'react-router-dom'
 import { IAdData } from '../../../../types/types'
 import { deleteFromDB, useAppContext } from '../../../../utilities/utils'
@@ -23,17 +26,27 @@ const BtnArea = ({ data }: Props) => {
 
     //Navigates to Ad page
     const goToAd = () => {
+<<<<<<< HEAD
         navigate(`/trainer/${data.aid}`, {
+=======
+        navigate("/trainer", {
+>>>>>>> 3f34bce1f24253eda9af763b0dcd17d939ca2956
             replace: true,
             state: {
                 ...data,
                 email,
+<<<<<<< HEAD
                 trainerName
+=======
+                trainerName,
+                location,
+>>>>>>> 3f34bce1f24253eda9af763b0dcd17d939ca2956
             },
         });
     };
 
     //Deletes Ad from database
+<<<<<<< HEAD
     const handleDelete = async () => {
         try {
             deleteFromDB("ads_collection", data.aid)
@@ -43,6 +56,12 @@ const BtnArea = ({ data }: Props) => {
         }
     };
 
+=======
+    const handleDelete = () => {
+        deleteFromDB("ads_collection", data.aid)
+    };
+    
+>>>>>>> 3f34bce1f24253eda9af763b0dcd17d939ca2956
     return (
         <div className="btn_area">
             <>

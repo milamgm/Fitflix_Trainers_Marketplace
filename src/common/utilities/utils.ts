@@ -13,7 +13,11 @@ import PhotoField from "../components/PhotoField";
 import Map from "../components/Map";
 import Footer from "../../application/components/Footer";
 import MobileSearch from "../components/MobileSearch";
+<<<<<<< HEAD
 import { addToDB, deleteFromDB} from "../../application/api/ManageDB";
+=======
+import { addToDB, deleteFromDB, setAdToAdsCollection } from "../../application/api/ManageDB";
+>>>>>>> 3f34bce1f24253eda9af763b0dcd17d939ca2956
 import ReauthModal from "../components/ReauthModal";
 import PersonalInfoWidget from "../components/PersonalInfoForm";
 import Card from "../components/ItemCard/ItemCard";
@@ -42,8 +46,12 @@ import { registerAccount } from "../../application/api/ManageAccount";
 import persId from "../../../public/certification.png";
 import i18next from "../../application/i18nestConfig/i18nestConfig";
 
+
 export {
+<<<<<<< HEAD
   i18next,
+=======
+>>>>>>> 3f34bce1f24253eda9af763b0dcd17d939ca2956
   deleteFromDB,
   registerAccount,
   persId,
