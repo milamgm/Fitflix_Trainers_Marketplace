@@ -3,9 +3,10 @@ import { ref, uploadBytes, getStorage } from "firebase/storage";
 import { v4 } from "uuid";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
-import { addToDB, useAppContext, spinnersvg } from "../../utilities/utils";
+import { addToDB, useAppContext } from "../../utilities/utils";
 import "../../styles/components/Card.scss";
 import { TUpdateFields } from "../../types/types";
+import Spinner from "../Spinner";
 
 interface IPhotoFieldProps {
   img: string;
@@ -88,7 +89,7 @@ const PhotoField = ({ img, imgType, updateFields }: IPhotoFieldProps) => {
           src={showPhoto}
         />
       )}
-      {!showPhoto && <img className="spinner" src={spinnersvg} />}
+      {!showPhoto && <Spinner/>}
     </>
   );
 };

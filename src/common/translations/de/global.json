@@ -143,5 +143,19 @@
     },
     "search": {
         "description": " Trainer in der Nähe von"
+    },
+    "trainer": {
+        "toastSuccess": "Ihre Nachricht wurde erfolgreich gesendet.",
+        "toastError": "Fehler. Bitte probieren Sie noch Mal.",
+        "subtitle": "Personal Trainer in ",
+        "aboutCourse": "Über die Unterricht",
+        "now": "Jetzt ",
+        "contactTitle": "Jetzt Trainer kontaktieren",
+        "contactBtn": "Senden",
+        "bookNow": "Jetzt Buchen!",
+        "about": "Über ",
+        "contactNoAccoutBtn": " kontaktieren und berraten zu lassen",
+        "contactPlaceholder": "Schreiben Sie Ihre Nachricht für ",
+        "contactDone": "  Ihre Nachricht wurde erfolgreich gesendet. Sie können in Ihrem persönlichen Nachrichtenbereich nachsehen."
     }
 }

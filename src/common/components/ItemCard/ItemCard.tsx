@@ -41,23 +41,7 @@ const ItemCard = ({
     <div
       className="itemCard"
       onClick={() =>
-        navigate("/trainer", {
-          replace: true,
-          state: {
-            aid,
-            title,
-            trainerUid,
-            trainerName,
-            trainerPhone,
-            trainerPic,
-            photo,
-            categories,
-            description,
-            about,
-            price,
-            location,
-          },
-        })
+        navigate(`/trainer/${aid}`)
       }
     >
       <div className="img_div">
