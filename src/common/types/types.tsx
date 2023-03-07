@@ -59,6 +59,7 @@ export interface IUserChat {
   chat_id: string;
   partner_uid: string;
 }
+
 export interface IMessage {
   id: string;
   date: any;

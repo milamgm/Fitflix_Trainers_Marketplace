@@ -1,8 +1,8 @@
 import Input from "./components/Input/Input";
 import Messages from "./components/Messages/Messages";
 import { useEffect, useState } from "react";
-import { doc, onSnapshot } from "firebase/firestore";
-import { useChatContext, db } from "../../utilities/utils";
+import { useChatContext } from "../../utilities/utils";
+import { getChat } from "../../../application/api/retrieveData";
 
 const Chat = () => {
   const { userChats, activeChat } = useChatContext();
@@ -14,11 +14,13 @@ const Chat = () => {
   )!.chat_id;
 
   //Fetches messages of the specified chat
+  const retrieveData = async (chatid: string) => {
+    const chat = await getChat(chatid);
+    setMessages(chat!.messages);
+  };
+
   useEffect(() => {
-    const unsub = onSnapshot(doc(db, "chats", chatid), (doc) => {
-      doc.exists() && setMessages(doc.data()!.messages);
-    });
-    return unsub;
+    retrieveData(chatid);
   }, [activeChat.partnerUid]);
 
   return (

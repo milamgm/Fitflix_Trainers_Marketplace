@@ -24,7 +24,6 @@ const mockPartners = [
 render(
     <Sidebar />, {
     wrapper: ({ children }) => (
-<<<<<<< HEAD
         <ChatContext.Provider value={{
             partnertsData: mockPartners, setActiveChat: () => { }, activeChat: {
                 partnerUid: "",
@@ -32,9 +31,6 @@ render(
                 partnerPic: "",
             }, userChats: []
         }}>
-=======
-        <ChatContext.Provider value={{ partnertsData: mockPartners, setActiveChat: () => { }, activeChat: {} }}>
->>>>>>> 3f34bce1f24253eda9af763b0dcd17d939ca2956
             {children}
         </ChatContext.Provider>
     )

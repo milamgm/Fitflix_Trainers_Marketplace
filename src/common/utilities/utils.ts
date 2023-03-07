@@ -13,7 +13,7 @@ import PhotoField from "../components/PhotoField";
 import Map from "../components/Map";
 import Footer from "../../application/components/Footer";
 import MobileSearch from "../components/MobileSearch";
-import { addToDB, deleteFromDB} from "../../application/api/ManageDB";
+import { addToDB, deleteFromDB } from "../../application/api/ManageDB";
 import ReauthModal from "../components/ReauthModal";
 import PersonalInfoWidget from "../components/PersonalInfoForm";
 import Card from "../components/ItemCard/ItemCard";
@@ -42,10 +42,13 @@ import { registerAccount } from "../../application/api/ManageAccount";
 import persId from "../../../public/certification.png";
 import i18next from "../../application/i18nestConfig/i18nestConfig";
 import Spinner from "../components/Spinner";
-
-
+import done from "../../../public/done.svg";
+import { getAd, getUser } from "../../application/api/retrieveData";
 
 export {
+  getAd,
+  getUser,
+  done,
   i18next,
   Spinner,
   deleteFromDB,
