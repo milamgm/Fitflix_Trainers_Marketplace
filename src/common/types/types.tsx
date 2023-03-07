@@ -7,7 +7,7 @@ export interface IAppContext {
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   userData: IUserData | null;
   isLoaded: boolean;
-  t: TFunction
+  t: TFunction;
 }
 export interface IChatContext {
   partnertsData: IPartnertData[];
@@ -16,7 +16,7 @@ export interface IChatContext {
   setActiveChat: React.Dispatch<React.SetStateAction<IPartnertData>>;
 }
 export interface IUserData {
-  uid: string,
+  uid: string;
   name: string;
   email: string;
   phoneNumber: string;
@@ -59,9 +59,13 @@ export interface IUserChat {
   chat_id: string;
   partner_uid: string;
 }
+
 export interface IMessage {
   id: string;
   date: any;
   message: string;
   sender_uid: string;
+}
+export interface IChat {
+  messages: IMessage[];
 }

@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import "./UserPanel.scss";
 import { Link, Outlet } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const UserPanel = () => {
   const [active, setActive] = useState("Dashboard");
-
+  const page = useParams();
+console.log(page)
   //Gets url page and sets it as active in the nav
   const url = window.location.href;
   useEffect(() => {

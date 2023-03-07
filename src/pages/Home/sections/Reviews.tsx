@@ -2,6 +2,9 @@ import image16 from "../../../../public/image16.jpg";
 import image17 from "../../../../public/image17.jpg";
 import { useAppContext } from "../../../application/context/AppContext";
 
+interface Props {
+  addToRefs: (el: HTMLDivElement) => void;
+}
 
 const Reviews = ({ addToRefs }: Props) => {
   const { t } = useAppContext();
