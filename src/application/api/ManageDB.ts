@@ -1,5 +1,4 @@
 import { setDoc, doc, deleteDoc, onSnapshot } from "firebase/firestore";
-import { setDoc, doc, deleteDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../../common/utilities/utils";
 
 //Sets document into database
@@ -11,6 +10,7 @@ export const addToDB = async (
 ) => {
   await setDoc(doc(db, folder, id), data, { merge: merge });
 };
+
 
 //Deletes document from database
 export const deleteFromDB = async (collection: string, id: string) => {

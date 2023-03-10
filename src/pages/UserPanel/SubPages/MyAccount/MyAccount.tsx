@@ -7,8 +7,10 @@ const MyAccount = () => {
   const [openReauthModal, setOpenReauthModal] = useState(false);
 
   return (
-    <section className="myaccount">
-      <DisplayCards setOpenReauthModal={setOpenReauthModal} />
+    <div className="myaccount">
+      <section>
+        <DisplayCards setOpenReauthModal={setOpenReauthModal} />
+      </section>
       {openReauthModal && (
         <ReauthModal
           openReauthModal={openReauthModal}
@@ -17,7 +19,7 @@ const MyAccount = () => {
           deleteAccount={true}
         />
       )}
-    </section>
+    </div>
   );
 };
 

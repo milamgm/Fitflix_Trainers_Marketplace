@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
 import { useChatContext, defaultPhoto } from "../../../../utilities/utils";
 import { IPartnertData } from "../../../../types/types";
-import "./Sidebar.scss"
+import "./PartnersList.scss";
 
-const Sidebar = () => {
-  const { partnertsData, setActiveChat, activeChat, displaySidebar } =
-    useChatContext();
+const PartnersList = () => {
+  const {
+    partnertsData,
+    setActiveChat,
+    activeChat,
+    displayMobilePartnersList,
+    setDisplayMobilePartnersList,
+  } = useChatContext();
   const [searchInput, setSearchInput] = useState("");
   const [displayChatsArr, setDisplayChatsArr] = useState<IPartnertData[]>([]);
+
+
 
   //Searchs the input string in partnertsData array
   useEffect(() => {
@@ -17,12 +24,13 @@ const Sidebar = () => {
 
     setDisplayChatsArr(searchInput !== "" ? searchResult : partnertsData);
   }, [searchInput]);
-
+  const selectPartner = (partner: IPartnertData) => {
+    setActiveChat(partner);
+    setDisplayMobilePartnersList(false);
+    console.log(displayMobilePartnersList)
+  };
   return (
-    <div
-      className="sidebar"
-      style={{ display: `${displaySidebar ? "inline" : "none"}` }}
-    >
+    <div className="partners_list">
       <div className="search">
         <div className="searchForm">
           <input
@@ -42,7 +50,7 @@ const Sidebar = () => {
             className={`${
               partner.partnerUid === activeChat.partnerUid ? "active" : ""
             } userChat`}
-            onClick={() => setActiveChat(partner)}
+            onClick={() => selectPartner(partner)}
           >
             <img
               src={
@@ -60,4 +68,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default PartnersList;

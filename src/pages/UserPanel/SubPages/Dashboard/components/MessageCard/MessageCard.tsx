@@ -1,6 +1,6 @@
 import "./MessageCard.scss";
 import { useNavigate } from "react-router-dom";
-import { defaultPhoto, useChatContext } from "../../utilities/utils";
+import { defaultPhoto, useChatContext } from "../../../../../../common/utilities/utils";
 
 interface IMessageCardProps {
   partnerUid: string;

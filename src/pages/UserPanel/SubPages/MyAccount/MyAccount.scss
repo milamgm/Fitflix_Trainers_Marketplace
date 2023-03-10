@@ -1,16 +1,18 @@
 @use "../../../../common/styles/abstracts/" as *;
-@use "../../../../common/styles/components/Card.scss" as * ;
+@use "../../../../common/styles/components/Card.scss" as *;
 
 .myaccount {
-    max-width: 1000px;
-    padding: 60px;
+  width: 80%;
+  padding-top: 70px;
+  margin-bottom: 150px;
+  section {
+    gap: 40px;
     display: flex;
     justify-content: space-around;
-    gap: 30px;
     flex-wrap: wrap;
-    .half_card {
-      width: 40%;
+
+    .card {
       @include card;
     }
   }
-  
+}

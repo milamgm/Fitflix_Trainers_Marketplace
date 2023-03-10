@@ -14,6 +14,8 @@ export interface IChatContext {
   userChats: IUserChat[];
   activeChat: IPartnertData;
   setActiveChat: React.Dispatch<React.SetStateAction<IPartnertData>>;
+  displayMobilePartnersList: boolean;
+  setDisplayMobilePartnersList: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export interface IUserData {
   uid: string;

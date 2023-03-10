@@ -23,7 +23,7 @@ import { SlSocialTwitter } from "react-icons/sl";
 import PlacesAutocomplete from "../components/PlacesAutocomplete";
 import Dropdown from "../components/DropDown/Dropdown";
 import { auth, db } from "../../application/api/firebaseConfig";
-import MessageCard from "../components/MessageCard";
+import MessageCard from "../../pages/UserPanel/SubPages/Dashboard/components/MessageCard";
 import useClickOutside from "../hooks/useOnClickOutside";
 import useLocalStorage from "../hooks/useLocalStorage";
 import useMapsApiLoader from "../hooks/useMapsApiLoader";
@@ -43,9 +43,11 @@ import persId from "../../../public/certification.png";
 import i18next from "../../application/i18nestConfig/i18nestConfig";
 import Spinner from "../components/Spinner";
 import done from "../../../public/done.svg";
+import chatPartnersSVG from "../../../public/users.svg";
 import { getAd, getUser } from "../../application/api/retrieveData";
 
 export {
+  chatPartnersSVG,
   getAd,
   getUser,
   done,

@@ -1,0 +1,64 @@
+@use "../../../../../common/styles/abstracts/" as *;
+
+.sidebar {
+
+  background-color: mix($secondary, black, 90%);
+
+
+  .search {
+    border-bottom: 1px solid gray;
+
+    .searchForm {
+      padding: 10px;
+
+      input {
+        background-color: transparent;
+        border: none;
+        color: white;
+        outline: none;
+
+        &::placeholder {
+          color: lightgray;
+        }
+      }
+    }
+  }
+
+  .userChat {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: mix($secondary, black, 82%);
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .userChatInfo {
+      span {
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      p {
+        font-size: 0.8rem;
+        color: lightgray;
+      }
+    }
+  }
+
+  .active {
+    background-color: mix($secondary, black, 60%);
+    pointer-events: none;
+  }
+}

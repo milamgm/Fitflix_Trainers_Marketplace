@@ -1,14 +1,22 @@
 import "./Messages.scss";
-import { Sidebar, Chat, useChatContext, useAppContext } from "../../../../common/utilities/utils";
+import {
+  Sidebar,
+  Chat,
+  useChatContext,
+  useAppContext,
+} from "../../../../common/utilities/utils";
+import PartnersList from "../../../../common/components/Chat/components/PartnersList";
 
 const Messages = () => {
-  const {t} = useAppContext()
+  const { t } = useAppContext();
   const { partnertsData } = useChatContext();
   return (
     <div className="container">
       {partnertsData.length >= 1 && (
         <>
-          <Sidebar />
+          <div className="sidebar">
+            <PartnersList />
+          </div>
           <Chat />
         </>
       )}

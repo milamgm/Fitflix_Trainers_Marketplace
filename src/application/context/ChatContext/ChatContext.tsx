@@ -2,7 +2,11 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { createContext, useContext } from "react";
 import { db } from "../../../common/utilities/utils";
-import { IChatContext, IPartnertData, IUserChat } from "../../../common/types/types";
+import {
+  IChatContext,
+  IPartnertData,
+  IUserChat,
+} from "../../../common/types/types";
 import { useAppContext } from "../AppContext";
 
 export const ChatContext = createContext({} as IChatContext);
@@ -17,6 +21,9 @@ const ChatProvider = ({ children }: IChatProviderProps) => {
   const { user } = useAppContext();
   const [userChats, setUserChats] = useState<IUserChat[]>([]);
   const [partnertsData, setPartnertsData] = useState<IPartnertData[]>([]);
+  const [displayMobilePartnersList, setDisplayMobilePartnersList] =
+  useState<boolean>(false);
+
   const [activeChat, setActiveChat] =
     useState<IPartnertData>(partnertDataEmpty);
 
@@ -68,6 +75,8 @@ const ChatProvider = ({ children }: IChatProviderProps) => {
     setUserChats,
     activeChat,
     setActiveChat,
+    displayMobilePartnersList,
+    setDisplayMobilePartnersList,
   };
   return <ChatContext.Provider value={values}>{children}</ChatContext.Provider>;
 };

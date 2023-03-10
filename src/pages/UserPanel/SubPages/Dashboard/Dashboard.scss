@@ -18,6 +18,7 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+
     .profile_card {
       display: flex;
       flex-direction: column;
@@ -30,10 +31,10 @@
         max-width: 300px;
       }
     }
+    
     .messages_card {
       @include card;
-
-      width: 60%;
+      width: fit-content;
       .content {
         display: flex;
         flex-direction: column;

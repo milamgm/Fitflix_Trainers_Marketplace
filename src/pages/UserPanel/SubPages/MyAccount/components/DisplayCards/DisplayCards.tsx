@@ -47,7 +47,7 @@ const DisplayCards = ({ setOpenReauthModal }: Props) => {
   return (
     <>
       {userCards.map(({ id, title, content }) => (
-        <div key={id} className="half_card">
+        <div key={id} className="card">
           <h2 className="title">{title}</h2>
           <div className="content">{content}</div>
         </div>

@@ -1,14 +1,15 @@
-@use "../../styles/abstracts/" as *;
+@use "../../../../../../common/styles/abstracts/" as *;
 
 .message_card {
   background-color: $terciary;
   cursor: pointer;
-  width: 50%;
+  width: 80%;
+  overflow: hidden;
   border-radius: 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 10px 0px;
+  padding: 10px 15px;
   transition: transform 0.2s ease;
   &:hover {
     transform: scale(1.05);

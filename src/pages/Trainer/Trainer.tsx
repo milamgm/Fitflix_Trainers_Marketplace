@@ -7,14 +7,15 @@ import {
   Spinner,
   getAd,
   getUser,
+  useAppContext,
 } from "../../common/utilities/utils";
 import "./Trainer.scss";
 import { IAdData, IUserData } from "../../common/types/types";
 import ContactForm from "./components/ContactForm/ContactForm";
 import { redirect, useParams } from "react-router-dom";
-import { t } from "i18next";
 
 const Trainer = () => {
+  const { t, user } = useAppContext();
   const [ad, setAd] = useState<IAdData | null>(null);
   const [trainer, setTrainer] = useState<IUserData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -71,7 +72,7 @@ const Trainer = () => {
                   <p>{ad.about}</p>
                 </div>
               </div>
-              <div className="second_div">
+              <div className="trainer_card">
                 <img
                   className="avatar_photo"
                   src={
@@ -95,7 +96,9 @@ const Trainer = () => {
                   <SlSocialTwitter className="icon" />
                 </div>
                 <hr />
-                {trainer.uid && <ContactForm adData={ad} trainer={trainer} />}
+                {trainer.uid !== user!.uid && (
+                  <ContactForm adData={ad} trainer={trainer} />
+                )}
               </div>
             </div>
           </div>
