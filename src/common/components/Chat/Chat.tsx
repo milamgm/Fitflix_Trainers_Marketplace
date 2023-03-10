@@ -1,11 +1,12 @@
 import Input from "./components/Input/Input";
 import Messages from "./components/Messages/Messages";
 import { useEffect, useState } from "react";
-import { chatPartnersSVG, useChatContext } from "../../utilities/utils";
+import { chatPartnersSVG, db, useChatContext } from "../../utilities/utils";
 import { getChat } from "../../../application/api/retrieveData";
 import { IChat, IMessage } from "../../types/types";
 import "./Chat.scss";
 import PartnersList from "./components/PartnersList";
+import { doc, onSnapshot } from "firebase/firestore";
 
 const Chat = () => {
   const { userChats, activeChat, displayMobilePartnersList, setDisplayMobilePartnersList } = useChatContext();
@@ -17,14 +18,12 @@ const Chat = () => {
     (chat) => chat.partner_uid === activeChat.partnerUid
   )!.chat_id;
 
-  //Fetches messages of the specified chat
-  const retrieveData = async (chatid: string) => {
-    const chat = await getChat(chatid);
-    setMessages((chat as IChat).messages);
-  };
-
-  useEffect(() => {
-    retrieveData(chatid);
+   //Fetches messages of the specified chat
+   useEffect(() => {
+    const unsub = onSnapshot(doc(db, "chats", chatid), (doc) => {
+      doc.exists() && setMessages(doc.data()!.messages);
+    });
+    return unsub;
   }, [activeChat.partnerUid]);
 
   return (
