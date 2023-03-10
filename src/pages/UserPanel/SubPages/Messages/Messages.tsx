@@ -1,11 +1,10 @@
 import "./Messages.scss";
 import {
-  Sidebar,
   Chat,
   useChatContext,
   useAppContext,
 } from "../../../../common/utilities/utils";
-import PartnersList from "../../../../common/components/Chat/components/PartnersList";
+import { PartnersList } from "../../../../common/utilities/utils";
 
 const Messages = () => {
   const { t } = useAppContext();

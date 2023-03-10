@@ -3,7 +3,6 @@ import { useChatContext } from "../../application/context/ChatContext/ChatContex
 import ProfileMenu from "../../application/components/Header/components/ProfileMenu";
 import AdCard from "../components/AdCard";
 import Banner from "../components/Banner";
-import Sidebar from "../components/Chat/components/Sidebar/Sidebar";
 import Chat from "../components/Chat";
 import CreateAd from "../components/CreateAd";
 import Header from "../../application/components/Header";
@@ -45,9 +44,11 @@ import Spinner from "../components/Spinner";
 import done from "../../../public/done.svg";
 import chatPartnersSVG from "../../../public/users.svg";
 import { getAd, getUser } from "../../application/api/retrieveData";
+import PartnersList from "../components/Chat/components/PartnersList";
 
 export {
   chatPartnersSVG,
+  PartnersList,
   getAd,
   getUser,
   done,
@@ -90,7 +91,6 @@ export {
   Footer,
   Map,
   PhotoField,
-  Sidebar,
   Chat,
   useAppContext,
   AdCard,
